@@ -1,71 +1,59 @@
-SRCS	=	ft_memset.c \
-			ft_bzero.c \
-			ft_memcpy.c \
-			ft_memccpy.c \
-			ft_memmove.c \
-			ft_memchr.c \
-			ft_memcmp.c \
-			ft_strlen.c \
-			ft_strlen.c \
-			ft_isalpha.c \
-			ft_isdigit.c \
-			ft_isalnum.c \
-			ft_isascii.c \
-			ft_isprint.c \
-			ft_toupper.c \
-			ft_tolower.c \
-			ft_strchr.c \
-			ft_strrchr.c \
-			ft_strncmp.c \
-			ft_strlcpy.c \
-			ft_strlcat.c \
-			ft_strnstr.c \
-			ft_atoi.c \
-			ft_calloc.c \
-			ft_strdup.c \
-			ft_substr.c \
-			ft_strjoin.c \
-			ft_strtrim.c \
-			ft_split.c \
-			ft_itoa.c \
-			ft_strmapi.c \
-			ft_putchar_fd.c \
-			ft_putstr_fd.c \
-			ft_putendl_fd.c \
-			ft_putnbr_fd.c \
-			ft_lstnew.c \
-			ft_lstadd_front.c \
-			ft_lstsize.c \
-			ft_lstlast.c \
-			ft_lstadd_back.c \
-			ft_lstdelone.c \
-			ft_lstclear.c \
-			ft_lstiter.c \
-			ft_lstmap.c
+FOLDER = srcs/
 
-OBJS	= $(SRCS:.c=.o)
+SRCS_LIST =	graphic_interface/window.c \
+			graphic_interface/keys.c \
+			graphic_interface/mouse.c \
+			graphic_interface/images.c \
+			math/basic_operations.c \
+			math/sphere.c \
+			geometry/draw.c \
+			parsing/parser.c
 
-RM		= rm -f
+SRCS = $(addprefix $(FOLDER), $(SRCS_LIST))
 
-CC		= clang 
+OBJS = $(SRCS:.c=.o)
 
-CFLAGS	= -Wall -Wextra -Werror
+HEADER = includes/
 
-NAME	= libft.a
+RM = rm -f
 
-$(NAME):	$(OBJS)
-			ar rcs $(NAME) $? 
+CC = gcc
 
-$(OBJS):	libft.h
+CFLAGS = -Wall -Wextra -Werror
 
-all:		$(NAME)
+LIBFLAGS = -L . -lft
+
+MLXFLAGS = -L $(MLX) -lmlx -framework OpenGL -framework AppKit
+
+NAME = miniRT
+
+MLX = minilibx
+LIBFT = libft
+
+%.o: %.c 
+	$(CC) $(CFLAGS) -g -I $(HEADER) -c $< -o $@
+
+all: $(NAME)
+
+$(NAME): $(OBJS) main.c
+	$(MAKE) -C $(MLX)
+	mv $(MLX)/libmlx.dylib .
+	$(MAKE) -C $(LIBFT)
+	mv $(LIBFT)/$(LIBFT).a .
+	$(CC) $(CFLAGS) $(LIBFLAGS) $(MLXFLAGS) -g $(OBJS) main.c -o $(NAME)
 
 clean:
-			$(RM) $(OBJS)
+	$(RM) $(OBJS)
+	$(MAKE) clean -C $(LIBFT)
+	$(MAKE) clean -C $(MLX)
 
-fclean:		clean
-			$(RM) $(NAME)
+fclean: clean
+	$(RM) $(NAME)
+	$(MAKE) fclean -C $(LIBFT)
+	$(RM) libmlx.dylib
+	$(RM) libft.a
+	$(RM) -r $(NAME).dSYM
 
-re:			fclean all
+re: fclean all
 
-.PHONY:		all clean fclean re
+.PHONY: clean fclean re

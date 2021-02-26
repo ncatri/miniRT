@@ -1,0 +1,15 @@
+esc:53
+spacebar:49
+arrow up:126
+arrow down:125
+arrow left:123
+arrow right:124
+enter:36
+enter (numpad):76
+ctrl (left):256
+maj (left):257
+caps lock:272
+tab:48
+tilde:50
+1:18
+backspace:51
