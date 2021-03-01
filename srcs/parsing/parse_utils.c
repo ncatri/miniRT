@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/24 02:09:10 by ncatrien          #+#    #+#             */
-/*   Updated: 2020/11/25 00:06:36 by ncatrien         ###   ########lyon.fr   */
+/*   Created: 2021/03/01 13:15:35 by ncatrien          #+#    #+#             */
+/*   Updated: 2021/03/01 17:02:00 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/miniRT.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+int	split_len(char **split)
 {
-	char			*ptr;
-	size_t			len;
-	unsigned int	i;
+	int i;
 
-	if (!s || !f)
-		return (NULL);
-	len = ft_strlen(s);
-	if (!(ptr = (char*)malloc(sizeof(char) * (len + 1))))
-		return (NULL);
 	i = -1;
-	while (++i < len)
-		ptr[i] = (*f)(i, s[i]);
-	ptr[i] = '\0';
-	return (ptr);
+	while (split[++i])
+		;
+	return (i);
+}
+
+t_scene	initialize_scene(void)
+{
+	t_scene	scene;
+
+	scene.width = 0;
+	scene.height = 0;
+//	scene.lightning = 0;
+	scene.valid = TRUE;
+	return (scene);
 }

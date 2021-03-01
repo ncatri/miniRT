@@ -7,7 +7,9 @@ SRCS_LIST =	graphic_interface/window.c \
 			math/basic_operations.c \
 			math/sphere.c \
 			geometry/draw.c \
-			parsing/parser.c
+			parsing/parser.c \
+			parsing/parse_objects.c \
+			parsing/parse_utils.c
 
 SRCS = $(addprefix $(FOLDER), $(SRCS_LIST))
 

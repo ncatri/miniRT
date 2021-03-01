@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/02/26 14:35:23 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/01 17:01:52 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,11 @@ typedef struct s_scene
 {
 	double		width;
 	double		height;
+//	t_ambient	lightning;
 	t_camera	camera;
 	t_sphere	sphere;
+
+	t_bool		valid;
 }				t_scene;
 
 typedef struct s_ray
@@ -154,7 +157,21 @@ t_ray			primary_ray(double x, double y, t_scene scene);
 t_bool			intersect_sp(t_sphere sp, t_ray ray);
 
 /* parsing */
+
+int				split_len(char **split);
+t_scene			initialize_scene(void);
 t_scene			scene_extractor(char *filename);
 t_bool			check_extension(char *filename);
+t_scene			parse_file(int fd);
+void			parse_line(char *line, t_scene *scene);
+void			parse_resolution(char *line, t_scene *scene);
+void			parse_ambient_light(char *line, t_scene *scene);
+void			parse_camera(char *line, t_scene *scene);
+void			parse_light(char *line, t_scene *scene);
+void			parse_sphere(char *line, t_scene *scene);
+void			parse_plane(char *line, t_scene *scene);
+void			parse_square(char *line, t_scene *scene);
+void			parse_cylinder(char *line, t_scene *scene);
+void			parse_triangle(char *line, t_scene *scene);
 
 #endif
