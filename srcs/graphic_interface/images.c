@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 14:12:02 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/02/25 10:29:56 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 11:34:52 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,15 @@ void	fill_image(t_image image, int color)
 		}
 		i++;
 	}
+}
+
+t_color	set_color(int r, int g, int b)
+{
+	t_color	color;
+
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	color.value = create_trgb(color);
+	return (color);
 }

@@ -37,12 +37,16 @@ LIBFT = libft
 
 all: $(NAME)
 
-$(NAME): $(OBJS) main.c
-	$(MAKE) -C $(MLX)
-	mv $(MLX)/libmlx.dylib .
+$(NAME): $(OBJS) main.c $(LIBFT).a libmlx.dylib
+	$(CC) $(CFLAGS) $(LIBFLAGS) $(MLXFLAGS) -g $(OBJS) main.c -o $(NAME)
+
+$(LIBFT).a:
 	$(MAKE) -C $(LIBFT)
 	mv $(LIBFT)/$(LIBFT).a .
-	$(CC) $(CFLAGS) $(LIBFLAGS) $(MLXFLAGS) -g $(OBJS) main.c -o $(NAME)
+
+libmlx.dylib:
+	$(MAKE) -C $(MLX)
+	mv $(MLX)/libmlx.dylib .
 
 clean:
 	$(RM) $(OBJS)

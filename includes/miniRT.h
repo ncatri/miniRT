@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/01 17:01:52 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 08:13:31 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,18 @@ typedef struct s_camera
 	double			fov;
 }				t_camera;
 
+typedef struct s_light
+{
+	t_coordinates	position;
+	t_color			color;
+	double			ratio;
+}				t_light;
+
 typedef struct s_scene
 {
 	double		width;
 	double		height;
-//	t_ambient	lightning;
+	t_light		ambient;;
 	t_camera	camera;
 	t_sphere	sphere;
 
