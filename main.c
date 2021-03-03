@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:39:08 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/01 17:01:47 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 10:30:35 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int main(int argc, char **argv)
 	t_sphere	sphere;
 
 	scene = scene_extractor(argv[1]);
+	(void)argv;
 
 	camera.position.x = 0;
 	camera.position.y = 0;
@@ -42,7 +43,7 @@ int main(int argc, char **argv)
 	sphere.centre.y = 0;
 	sphere.centre.z = 0;
 	sphere.diameter = 50;
-	sphere.color.r = 255;	
+	sphere.color.r = 255;
 	sphere.color.g = 0;	
 	sphere.color.b = 0;	
 	sphere.color.value = create_trgb(sphere.color);

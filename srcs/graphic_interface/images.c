@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 14:12:02 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/02 11:34:52 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 07:27:32 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	fill_image(t_image image, int color)
 	int j;
 
 	i = 0;
-	j = 0;
 	while (i < image.width)
 	{
 		j = 0;
@@ -60,9 +59,9 @@ t_color	set_color(int r, int g, int b)
 {
 	t_color	color;
 
-	color.r = r;
-	color.g = g;
-	color.b = b;
+	color.r = (unsigned char)r;
+	color.g = (unsigned char)g;
+	color.b = (unsigned char)b;
 	color.value = create_trgb(color);
 	return (color);
 }

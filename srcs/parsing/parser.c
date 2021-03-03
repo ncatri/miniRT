@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:53:58 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/02 09:20:00 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 16:52:24 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,11 @@ void	parse_line(char *line, t_scene *scene)
 {
 	if (ft_strncmp(line, "R ", 2) == 0)
 		parse_resolution(line, scene);
-/*
 	else if (ft_strncmp(line, "A ", 2) == 0)
 		parse_ambient_light(line, scene);
 	else if (ft_strncmp(line, "c ", 2) == 0)
 		parse_camera(line, scene);
+/*
 	else if (ft_strncmp(line, "l ", 2) == 0)
 		parse_light(line, scene);
 	else if (ft_strncmp(line, "sp ", 3) == 0)

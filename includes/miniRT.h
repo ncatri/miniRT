@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/02 08:13:31 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 16:52:35 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ typedef struct s_image
 
 typedef struct s_color
 {
-	unsigned char	t;
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-	int				value;
+	int	t;
+	int	r;
+	int	g;
+	int	b;
+	int	value;
 }					t_color;
 
 typedef struct s_coordinates
@@ -97,7 +97,8 @@ typedef struct s_scene
 {
 	double		width;
 	double		height;
-	t_light		ambient;;
+	t_light		ambient;
+	t_list		*camera_list;
 	t_camera	camera;
 	t_sphere	sphere;
 
@@ -165,6 +166,10 @@ t_bool			intersect_sp(t_sphere sp, t_ray ray);
 
 /* parsing */
 
+t_coordinates	extract_coordinates(char *data);
+t_color			extract_color(char *data);
+t_bool			valid_rgb(t_color color);
+t_bool			str_isnumber(const char *str);
 int				split_len(char **split);
 t_scene			initialize_scene(void);
 t_scene			scene_extractor(char *filename);
