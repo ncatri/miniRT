@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/03 16:52:35 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 14:24:48 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,13 @@ typedef struct s_coordinates
 	double	z;
 }				t_coordinates;
 
+typedef struct s_plane
+{
+	t_coordinates	position;
+	t_coordinates	orientation;
+	t_color			color;
+}				t_plane;
+
 typedef struct s_sphere
 {
 	t_coordinates	centre;
@@ -99,7 +106,11 @@ typedef struct s_scene
 	double		height;
 	t_light		ambient;
 	t_list		*camera_list;
+	t_list		*light_list;
+	t_list		*sphere_list;
+	t_list		*plane_list;
 	t_camera	camera;
+	t_light		light;
 	t_sphere	sphere;
 
 	t_bool		valid;
@@ -166,8 +177,11 @@ t_bool			intersect_sp(t_sphere sp, t_ray ray);
 
 /* parsing */
 
-t_coordinates	extract_coordinates(char *data);
-t_color			extract_color(char *data);
+double			get_positive_val(char *str);
+double			get_fov(char *str);
+double			get_ratio(char *str);
+t_coordinates	get_coordinates(char *data);
+t_color			get_color(char *data);
 t_bool			valid_rgb(t_color color);
 t_bool			str_isnumber(const char *str);
 int				split_len(char **split);

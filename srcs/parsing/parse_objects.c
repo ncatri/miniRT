@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 11:19:21 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/03 16:51:22 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 10:49:18 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	parse_resolution(char *line, t_scene *scene)
 void	parse_ambient_light(char *line, t_scene *scene)
 {
 	char	**split;
-	double	ratio;
 	t_light	amb_light;
 
 	split = ft_split(line, ' ');
@@ -47,12 +46,9 @@ void	parse_ambient_light(char *line, t_scene *scene)
 		free_split(split);
 		return ;
 	}
-	ratio = ft_atod(split[1]);
-	if (ratio < 0 && ratio > 1)
-		scene->valid = FALSE;
-	amb_light.ratio = ratio;
-	amb_light.color = extract_color(split[2]);
-	if (amb_light.color.value < 0)
+	amb_light.ratio = get_ratio(split[1]);
+	amb_light.color = get_color(split[2]);
+	if (amb_light.ratio == -1 || amb_light.color.value == -1)
 		scene->valid = FALSE;
 	scene->ambient = amb_light;
 	free_split(split);
@@ -70,17 +66,56 @@ void	parse_camera(char *line, t_scene *scene)
 		free_split(split);
 		return ;
 	}
-	camera.position = extract_coordinates(split[1]);
-	camera.orientation = extract_coordinates(split[2]);
-	if (camera.position.x == INFINITY || camera.orientation.x == INFINITY)
+	camera.position = get_coordinates(split[1]);
+	camera.orientation = get_coordinates(split[2]);
+	camera.fov = get_fov(split[3]);
+	if (camera.position.x == INFINITY || camera.orientation.x == INFINITY || \
+camera.fov == -1)
+		scene->valid = FALSE;
+	ft_lstadd_back(&scene->camera_list, ft_lstnew(&camera));
+	free_split(split);
+}
+
+void	parse_light(char *line, t_scene *scene)
+{
+	char	**split;
+	t_light	light;
+
+	split = ft_split(line, ' ');
+	if (split_len(split) != 4)
 	{
 		scene->valid = FALSE;
 		free_split(split);
 		return ;
 	}
-	camera.fov = ft_atod(split[3]);
-	if (camera.fov < 0 || camera.fov > 180)
+	light.position = get_coordinates(split[1]);
+	light.ratio = get_ratio(split[2]);
+	light.color = get_color(split[3]);
+	if (light.position.x == INFINITY || light.ratio == -1 || \
+light.color.value == -1)
 		scene->valid = FALSE;
-	ft_lstadd_back(&scene->camera_list, ft_lstnew(&camera));
+	scene->light = light;
+	free_split(split);
+}
+
+void	parse_sphere(char *line, t_scene *scene)
+{
+	char		**split;
+	t_sphere	sphere;
+
+	split = ft_split(line, ' ');
+	if (split_len(split) != 4)
+	{
+		scene->valid = FALSE;
+		free_split(split);
+		return ;
+	}
+	sphere.centre = get_coordinates(split[1]);
+	sphere.diameter = get_positive_val(split[2]);
+	sphere.color = get_color(split[3]);
+	if (sphere.centre.x == INFINITY || sphere.diameter == -1 || \
+sphere.color.value == -1)
+		scene->valid = FALSE;
+	scene->sphere = sphere;
 	free_split(split);
 }

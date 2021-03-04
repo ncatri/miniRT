@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 08:38:01 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/02/19 10:49:10 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 07:49:13 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int		quit_on_esc(int key, t_mlx *mlx)
 {
 	if (key == 53)
 	{
-		mlx_destroy_window(mlx->connection_graphic_server, mlx->window_id);
+	//	mlx_destroy_window(mlx->connection_graphic_server, mlx->window_id);
+		(void)mlx;
 		exit(0);
 	}
 	return (0);

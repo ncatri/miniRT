@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:53:58 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/03 16:52:24 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 10:53:58 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,11 @@ t_scene	parse_file(int fd)
 	if (scene.valid)
 	{
 		parse_line(line, &scene);
-		if (scene.valid == FALSE)
-			printf("Error at line %d.\n", num_line);
-		free(line);
+		num_line++;
 	}
-	else
+	if (!scene.valid)
 		printf("Error at line %d.\n", num_line);
+	free(line);
 	return (scene);
 }
 
@@ -77,11 +76,12 @@ void	parse_line(char *line, t_scene *scene)
 		parse_ambient_light(line, scene);
 	else if (ft_strncmp(line, "c ", 2) == 0)
 		parse_camera(line, scene);
-/*
+
 	else if (ft_strncmp(line, "l ", 2) == 0)
 		parse_light(line, scene);
 	else if (ft_strncmp(line, "sp ", 3) == 0)
 		parse_sphere(line, scene);
+/*
 	else if (ft_strncmp(line, "pl ", 3) == 0)
 		parse_plane(line, scene);
 	else if (ft_strncmp(line, "sq ", 3) == 0)

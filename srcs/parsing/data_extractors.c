@@ -6,13 +6,13 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 08:55:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/03 16:51:18 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 10:05:17 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-t_color	extract_color(char *data)
+t_color	get_color(char *data)
 {
 	char	**extract;
 	t_color	color;
@@ -44,7 +44,7 @@ color.b < 0 || color.b > 255)
 	return (TRUE);
 }
 
-t_coordinates	extract_coordinates(char *data)
+t_coordinates	get_coordinates(char *data)
 {
 	char			**extract;
 	t_coordinates	coord;

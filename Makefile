@@ -10,7 +10,8 @@ SRCS_LIST =	graphic_interface/window.c \
 			parsing/parser.c \
 			parsing/parse_objects.c \
 			parsing/parse_utils.c \
-			parsing/data_extractors.c
+			parsing/data_extractors.c \
+			parsing/data_extractors2.c
 
 SRCS = $(addprefix $(FOLDER), $(SRCS_LIST))
 
@@ -22,7 +23,7 @@ RM = rm -f
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror 
 
 LIBFLAGS = -L . -lft
 
