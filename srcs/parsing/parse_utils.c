@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:15:35 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/04 10:11:33 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/07 14:12:22 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,22 @@ int	split_len(char **split)
 	while (split[++i])
 		;
 	return (i);
+}
+
+char	**get_split(char *line, char sep, int size, t_scene *scene)
+{
+	char	**split;
+
+	split = ft_split(line, sep);
+	if (split_len(split) != size)
+	{
+		scene->valid = FALSE;
+		scene->err_msg = E_NUM_ELEMT;
+		free_split(split);
+		return (NULL);
+	}
+	else
+		return (split);
 }
 
 t_scene	initialize_scene(void)
@@ -50,4 +66,12 @@ t_bool	str_isnumber(const char *str)
 		str++;
 	}
 	return (TRUE);
+}
+
+void	free_all(t_scene scene)
+{
+	ft_lstclear(&scene.camera_list, free);
+	ft_lstclear(&scene.light_list, free);
+	ft_lstclear(&scene.sphere_list, free);
+	ft_lstclear(&scene.plane_list, free);
 }

@@ -10,6 +10,7 @@ SRCS_LIST =	graphic_interface/window.c \
 			parsing/parser.c \
 			parsing/parse_objects.c \
 			parsing/parse_utils.c \
+			parsing/parse_utils2.c \
 			parsing/data_extractors.c \
 			parsing/data_extractors2.c
 
@@ -23,7 +24,7 @@ RM = rm -f
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 LIBFLAGS = -L . -lft
 

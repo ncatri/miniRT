@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/04 14:24:48 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/07 16:23:07 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@
 # include <math.h>
 # include <stdio.h>
 # include "../minilibx/mlx.h"
-# include "../libft/libft.h" 
+# include "../libft/libft.h"
+# include "error_codes.h"
+# include <errno.h>
 
 # define NO_ERROR 1
 # define ERROR 0
 
 # define TRUE 1
 # define FALSE 0
-
 typedef int t_bool;
 
 /* low level abstraction */
@@ -114,6 +115,7 @@ typedef struct s_scene
 	t_sphere	sphere;
 
 	t_bool		valid;
+	char		*err_msg;
 }				t_scene;
 
 typedef struct s_ray
@@ -177,6 +179,10 @@ t_bool			intersect_sp(t_sphere sp, t_ray ray);
 
 /* parsing */
 
+void			set_error(t_scene *scene, char *message);
+void			free_all(t_scene scene);
+char			**get_split(char *line, char sep, int size, t_scene *scene);
+t_bool			check_args(int argc, char **argv);
 double			get_positive_val(char *str);
 double			get_fov(char *str);
 double			get_ratio(char *str);

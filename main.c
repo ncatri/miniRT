@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:39:08 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/03 10:30:35 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/07 14:30:06 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 int main(int argc, char **argv)
 {
-	if (argc != 2)
-	{
-		printf("Needs a .rt file as only argument.\n");
+	if (!check_args(argc, argv))
 		return (0);
-	}
 
 	t_window	window;
 	t_mlx		mlx;
@@ -28,7 +25,6 @@ int main(int argc, char **argv)
 	t_sphere	sphere;
 
 	scene = scene_extractor(argv[1]);
-	(void)argv;
 
 	camera.position.x = 0;
 	camera.position.y = 0;
