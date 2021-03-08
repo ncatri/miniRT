@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 11:19:21 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/07 16:33:14 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 13:50:34 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	parse_resolution(char *line, t_scene *scene)
 		scene->valid = FALSE;
 		return ;
 	}
-	split = get_split(line, ' ', 3, scene);
+	split = get_split(line, " \t", 3, scene);
 	if (split)
 	{
 		x = (int)get_positive_val(split[1]);
@@ -50,7 +50,7 @@ void	parse_ambient_light(char *line, t_scene *scene)
 		set_error(scene, E_ALREADY_EXISTS);
 		return ;
 	}
-	split = get_split(line, ' ', 3, scene);
+	split = get_split(line, " \t", 3, scene);
 	if (split)
 	{
 		amb_light.ratio = get_ratio(split[1]);
@@ -67,7 +67,7 @@ void	parse_camera(char *line, t_scene *scene)
 	char		**split;
 	t_camera	*camera;
 
-	split = get_split(line, ' ', 4, scene);
+	split = get_split(line, " \t", 4, scene);
 	if (split == NULL)
 		return ;
 	camera = malloc(sizeof(t_camera));
@@ -91,7 +91,7 @@ void	parse_light(char *line, t_scene *scene)
 	char	**split;
 	t_light	*light;
 
-	split = get_split(line, ' ', 4, scene);
+	split = get_split(line, " \t", 4, scene);
 	if (split == NULL)
 		return ;
 	light = malloc(sizeof(t_light));
@@ -115,7 +115,7 @@ void	parse_sphere(char *line, t_scene *scene)
 	char		**split;
 	t_sphere	*sphere;
 
-	split = get_split(line, ' ', 4, scene);
+	split = get_split(line, " \t", 4, scene);
 	if (split == NULL)
 		return ;
 	sphere = malloc(sizeof(t_sphere));

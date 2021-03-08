@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/07 16:23:07 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 13:21:21 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,9 +179,10 @@ t_bool			intersect_sp(t_sphere sp, t_ray ray);
 
 /* parsing */
 
+t_bool			is_complete(t_scene scene);
 void			set_error(t_scene *scene, char *message);
 void			free_all(t_scene scene);
-char			**get_split(char *line, char sep, int size, t_scene *scene);
+char			**get_split(char *line, char *sep, int size, t_scene *scene);
 t_bool			check_args(int argc, char **argv);
 double			get_positive_val(char *str);
 double			get_fov(char *str);

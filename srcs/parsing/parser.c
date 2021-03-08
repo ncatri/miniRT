@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:53:58 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/07 14:16:04 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 14:27:53 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ t_scene	scene_extractor(char *filename)
 	else
 	{
 		scene.valid = FALSE;
-		printf("Can't open file %s.\n", filename);
+		printf("Error\nCan't open file %s.\n", filename);
 	}
 	close(fd);
-	if (!scene.valid)
+	if (!scene.valid || !is_complete(scene))
 	{
 		free_all(scene);
 		exit(1);
@@ -87,23 +87,23 @@ t_scene	parse_file(int fd)
 		num_line++;
 	}
 	if (!scene.valid)
-		printf("Error at line %d: %s\n", num_line, scene.err_msg);
+		printf("Error\nLine %d: %s\n", num_line, scene.err_msg);
 	free(line);
 	return (scene);
 }
 
 void	parse_line(char *line, t_scene *scene)
 {
-	if (ft_strncmp(line, "R ", 2) == 0)
+	if (ft_strncmp(line, "R", 1) == 0)
 		parse_resolution(line, scene);
-	else if (ft_strncmp(line, "A ", 2) == 0)
+	else if (ft_strncmp(line, "A", 1) == 0)
 		parse_ambient_light(line, scene);
-	else if (ft_strncmp(line, "c ", 2) == 0)
+	else if (ft_strncmp(line, "c", 1) == 0)
 		parse_camera(line, scene);
 
-	else if (ft_strncmp(line, "l ", 2) == 0)
+	else if (ft_strncmp(line, "l", 1) == 0)
 		parse_light(line, scene);
-	else if (ft_strncmp(line, "sp ", 3) == 0)
+	else if (ft_strncmp(line, "sp", 2) == 0)
 		parse_sphere(line, scene);
 /*
 	else if (ft_strncmp(line, "pl ", 3) == 0)
@@ -118,6 +118,6 @@ void	parse_line(char *line, t_scene *scene)
 	else if (line[0] != '\0' && line[0] != '#')
 	{
 		scene->valid = FALSE;
-		scene->err_msg = E_INVAL;
+		scene->err_msg = E_BADLINE;
 	}
 }

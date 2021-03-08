@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 08:55:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/04 10:05:17 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 13:27:47 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_color	get_color(char *data)
 	char	**extract;
 	t_color	color;
 
-	extract = ft_split(data, ',');
+	extract = ft_split(data, ",");
 	if (split_len(extract) != 3 || !str_isnumber(extract[0]) || \
 !str_isnumber(extract[1]) || !str_isnumber(extract[2]))
 	{
@@ -49,7 +49,7 @@ t_coordinates	get_coordinates(char *data)
 	char			**extract;
 	t_coordinates	coord;
 
-	extract = ft_split(data, ',');
+	extract = ft_split(data, ",");
 	if (split_len(extract) != 3 || !str_isnumber(extract[0]) || \
 !str_isnumber(extract[1]) || !str_isnumber(extract[2]))
 		coord.x = INFINITY;

@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:15:35 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/07 14:12:22 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 13:17:58 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	split_len(char **split)
 	return (i);
 }
 
-char	**get_split(char *line, char sep, int size, t_scene *scene)
+char	**get_split(char *line, char *sep, int size, t_scene *scene)
 {
 	char	**split;
 

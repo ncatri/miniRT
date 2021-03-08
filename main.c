@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:39:08 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/07 14:30:06 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 13:29:33 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 	camera.position.x = 0;
 	camera.position.y = 0;
 	camera.position.z = -100;
-	camera.fov = 45;
+	camera.fov = 60;
 
 	scene.camera = camera;
 	scene.width = 1000;
