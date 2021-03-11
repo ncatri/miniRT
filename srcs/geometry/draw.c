@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/02/25 13:48:49 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 13:21:05 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,16 @@ void	ray_tracer(t_image image, t_scene scene)
 	}
 }
 
-t_ray	primary_ray(double x, double y, t_scene scene)
+t_ray	primary_ray(int	x, int y, t_scene scene)
 {
 	t_ray	ray;
 
 	x = x - scene.width / 2;
-	y = y - scene.height / 2;
+	y = scene.height / 2 - y;
 
 	ray.direction.x = x - scene.camera.position.x / 2;
 	ray.direction.y = y - scene.camera.position.y / 2;
-	ray.direction.z = scene.width / \
+	ray.direction.z = - scene.width / \
 					  (2 * tan(scene.camera.fov * M_PI / (2 * 180)));
 	ray.origin = scene.camera.position;
 	return (ray);

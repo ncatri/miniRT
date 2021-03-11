@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/08 13:21:21 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 13:21:22 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ double			get_norm2(const t_coordinates a);
 t_coordinates	normalized(t_coordinates v);
 
 void			ray_tracer(t_image image, t_scene scene);
-t_ray			primary_ray(double x, double y, t_scene scene);
+t_ray			primary_ray(int x, int y, t_scene scene);
 t_bool			intersect_sp(t_sphere sp, t_ray ray);
 
 /* parsing */

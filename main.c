@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:39:08 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/08 13:29:33 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 12:47:14 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,17 @@ int main(int argc, char **argv)
 
 	camera.position.x = 0;
 	camera.position.y = 0;
-	camera.position.z = -100;
+	camera.position.z = 100;
 	camera.fov = 60;
+	camera.orientation.x = 0;
+	camera.orientation.y = 0;
+	camera.orientation.z = -1;
 
 	scene.camera = camera;
 	scene.width = 1000;
 	scene.height = 800;
 
-	sphere.centre.x = 0;
+	sphere.centre.x = -20;
 	sphere.centre.y = 0;
 	sphere.centre.z = 0;
 	sphere.diameter = 50;
