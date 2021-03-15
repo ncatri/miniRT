@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 11:19:21 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/08 13:50:34 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 07:42:23 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	parse_resolution(char *line, t_scene *scene)
 		}
 		scene->width = x;
 		scene->height = y;
+		scene->ratio = x / (double)y;
 		free_split(split);
 	}
 }

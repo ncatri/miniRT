@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/11 13:21:22 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 14:34:19 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct s_camera
 	t_coordinates	position;
 	t_coordinates	orientation;
 	double			fov;
+	double			**c2w_matrix;
 }				t_camera;
 
 typedef struct s_light
@@ -105,6 +106,8 @@ typedef struct s_scene
 {
 	double		width;
 	double		height;
+	double		ratio;
+
 	t_light		ambient;
 	t_list		*camera_list;
 	t_list		*light_list;
@@ -165,13 +168,19 @@ t_image		initialize_image(t_mlx mlx, int width, int height);
 int			create_trgb(t_color color);
 void		draw_rainbow(t_image img);
 
-/* basic operations */
+/* mathematics */
 
 t_coordinates	add(const t_coordinates a, const t_coordinates b);
 t_coordinates	substract(const t_coordinates a, const t_coordinates b);
 double			dot(t_coordinates a, t_coordinates b);
 double			get_norm2(const t_coordinates a);
 t_coordinates	normalized(t_coordinates v);
+
+t_coordinates	cross_product(t_coordinates a, t_coordinates b);
+void			print_matrix44d(double matrix[4][4]);
+t_coordinates	set_coordinates(double a, double b, double c);
+t_bool			is_equal(t_coordinates a, t_coordinates b);
+double			**set_cameratoworld_matrix(t_camera camera);
 
 void			ray_tracer(t_image image, t_scene scene);
 t_ray			primary_ray(int x, int y, t_scene scene);

@@ -4,7 +4,8 @@ SRCS_LIST =	graphic_interface/window.c \
 			graphic_interface/keys.c \
 			graphic_interface/mouse.c \
 			graphic_interface/images.c \
-			math/basic_operations.c \
+			math/operations1.c \
+			math/operations2.c \
 			math/sphere.c \
 			geometry/draw.c \
 			parsing/parser.c \
