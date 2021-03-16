@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/15 14:34:19 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 16:20:19 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct s_camera
 	t_coordinates	position;
 	t_coordinates	orientation;
 	double			fov;
-	double			**c2w_matrix;
+	double			c2w_matrix[4][4];
 }				t_camera;
 
 typedef struct s_light
@@ -180,7 +180,7 @@ t_coordinates	cross_product(t_coordinates a, t_coordinates b);
 void			print_matrix44d(double matrix[4][4]);
 t_coordinates	set_coordinates(double a, double b, double c);
 t_bool			is_equal(t_coordinates a, t_coordinates b);
-double			**set_cameratoworld_matrix(t_camera camera);
+void			set_cameratoworld_matrix(t_camera *camera);
 
 void			ray_tracer(t_image image, t_scene scene);
 t_ray			primary_ray(int x, int y, t_scene scene);

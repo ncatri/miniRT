@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:39:08 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/12 09:54:10 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 16:37:56 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int main(int argc, char **argv)
 	camera.orientation.x = 0;
 	camera.orientation.y = 0;
 	camera.orientation.z = 1;
+	set_cameratoworld_matrix(&camera);
+	print_matrix44d(camera.c2w_matrix);
 
 	scene.camera = camera;
 	scene.width = 1000;
