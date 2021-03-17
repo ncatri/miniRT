@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 14:12:02 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/03 07:27:32 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 08:42:18 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ int		create_trgb(t_color color)
 	return (color.t << 24 | color.r << 16 | color.g << 8 | color.b);
 }
 
-void	pixel_put_image(t_image image, int x, int y, int color)
+void	pixel_put_image(t_image image, int x, int y, t_color color)
 {
 	char *dst;
 
 	dst = image.address + (y * image.size_line + x * (image.bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int*)dst = color.value;
 }
 
-void	fill_image(t_image image, int color)
+void	fill_image(t_image image, t_color color)
 {
 	int i;
 	int j;

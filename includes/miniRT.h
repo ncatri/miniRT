@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/16 16:20:19 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 08:42:35 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,10 +162,11 @@ void		mode_quit_on_esc(t_mlx mlx);
 
 /* images */
 
-void		pixel_put_image(t_image image, int x, int y, int color);
-void		fill_image(t_image image, int color);
+void		pixel_put_image(t_image image, int x, int y, t_color color);
+void		fill_image(t_image image, t_color color);
 t_image		initialize_image(t_mlx mlx, int width, int height);
 int			create_trgb(t_color color);
+t_color		set_color(int r, int g, int b);
 void		draw_rainbow(t_image img);
 
 /* mathematics */

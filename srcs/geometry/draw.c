@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/15 09:36:53 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 08:54:13 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,12 @@ void	ray_tracer(t_image image, t_scene scene)
 			ray = primary_ray(i, j, scene);
 			ray.direction = normalized(ray.direction);
 			if (intersect_sp(scene.sphere, ray))
-				pixel_put_image(image, i, j, scene.sphere.color.value); 
+				pixel_put_image(image, i, j, scene.sphere.color); 
 			else
-				pixel_put_image(image, i, j, 16777215); 
+			{
+				t_color background = set_color(255,255,255);
+				pixel_put_image(image, i, j, background); 
+			}
 			j++;
 		}
 		i++;
