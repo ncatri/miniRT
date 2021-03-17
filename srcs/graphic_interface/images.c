@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 14:12:02 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/17 08:42:18 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 11:29:36 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ t_color	set_color(int r, int g, int b)
 {
 	t_color	color;
 
+	color.t = 0;
 	color.r = (unsigned char)r;
 	color.g = (unsigned char)g;
 	color.b = (unsigned char)b;

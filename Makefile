@@ -13,7 +13,8 @@ SRCS_LIST =	graphic_interface/window.c \
 			parsing/parse_utils.c \
 			parsing/parse_utils2.c \
 			parsing/data_extractors.c \
-			parsing/data_extractors2.c
+			parsing/data_extractors2.c \
+			debug.c
 
 SRCS = $(addprefix $(FOLDER), $(SRCS_LIST))
 
@@ -36,7 +37,7 @@ NAME = miniRT
 MLX = minilibx
 LIBFT = libft
 
-%.o: %.c 
+%.o: %.c
 	$(CC) $(CFLAGS) -g -I $(HEADER) -c $< -o $@
 
 all: $(NAME)

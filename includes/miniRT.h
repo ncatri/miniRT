@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/17 08:42:35 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 15:59:13 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define TRUE 1
 # define FALSE 0
 typedef int t_bool;
+
+enum e_obj {SPHERE, PLANE, TRIANGLE};
 
 /* low level abstraction */
 
@@ -102,17 +104,28 @@ typedef struct s_light
 	double			ratio;
 }				t_light;
 
+union u_objects
+{
+	t_sphere	*sp;
+	t_plane		*pl;
+};	
+
+typedef struct s_object
+{
+	int				type;
+	union u_objects	u;
+}				t_object;
+
 typedef struct s_scene
 {
-	double		width;
-	double		height;
+	int			width;
+	int			height;
 	double		ratio;
 
 	t_light		ambient;
 	t_list		*camera_list;
 	t_list		*light_list;
-	t_list		*sphere_list;
-	t_list		*plane_list;
+	t_list		*objects_list;
 	t_camera	camera;
 	t_light		light;
 	t_sphere	sphere;
@@ -126,6 +139,7 @@ typedef struct s_ray
 	t_coordinates	origin;
 	t_coordinates	direction;
 }				t_ray;
+
 
 typedef struct s_polynome2deg
 {
@@ -212,6 +226,7 @@ void			parse_ambient_light(char *line, t_scene *scene);
 void			parse_camera(char *line, t_scene *scene);
 void			parse_light(char *line, t_scene *scene);
 void			parse_sphere(char *line, t_scene *scene);
+void			set_sphere_object(t_scene *scene, t_sphere *sphere);
 void			parse_plane(char *line, t_scene *scene);
 void			parse_square(char *line, t_scene *scene);
 void			parse_cylinder(char *line, t_scene *scene);

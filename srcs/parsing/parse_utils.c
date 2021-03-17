@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:15:35 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/08 13:17:58 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 16:23:41 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,5 @@ void	free_all(t_scene scene)
 {
 	ft_lstclear(&scene.camera_list, free);
 	ft_lstclear(&scene.light_list, free);
-	ft_lstclear(&scene.sphere_list, free);
-	ft_lstclear(&scene.plane_list, free);
+	ft_lstclear(&scene.objects_list, free); // la y a ptetre une couille
 }
