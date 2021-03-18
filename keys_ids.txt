@@ -12,4 +12,8 @@ caps lock:272
 tab:48
 tilde:50
 1:18
+
+q: 12 w:13 e:14 r: 15 t:17 y: 16 u:32 i:34 o:31 p:35
+c: 8
+
 backspace:51

@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/17 15:59:13 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/18 15:59:49 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ typedef struct s_scene
 
 	t_light		ambient;
 	t_list		*camera_list;
+	t_camera	*cur_cam;
 	t_list		*light_list;
 	t_list		*objects_list;
 	t_camera	camera;
@@ -231,5 +232,12 @@ void			parse_plane(char *line, t_scene *scene);
 void			parse_square(char *line, t_scene *scene);
 void			parse_cylinder(char *line, t_scene *scene);
 void			parse_triangle(char *line, t_scene *scene);
+
+/* debug */
+
+void			print_objlist(t_scene scene);
+void			print_coord(t_coordinates coord);
+void			print_color(t_color col);
+void			print_sphere(t_sphere sp);
 
 #endif

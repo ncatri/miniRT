@@ -6,12 +6,33 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:39:08 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/16 16:37:56 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/18 16:02:38 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/miniRT.h"
+/*
+int	fct(int key, t_mlx *mlx)
+{
+	if (key == 8)
+		printf("in hook, key: %d\n", key);
+	if (key == 53)
+	{
+//		free_all(*scene);
+		mlx_destroy_window(mlx->connection_graphic_server, mlx->window_id);
+	}
+	
+	return (0);
+}
 
+int	iter_camera(int key, void *param)
+{
+	if (key == 124)
+		printf("iter_camera\n");
+	(void)param;
+	return (0);
+}
+*/
 int main(int argc, char **argv)
 {
 	if (!check_args(argc, argv))
@@ -25,6 +46,7 @@ int main(int argc, char **argv)
 	t_sphere	sphere;
 
 	scene = scene_extractor(argv[1]);
+	print_objlist(scene);
 
 	camera.position.x = 0;
 	camera.position.y = 0;
@@ -55,15 +77,14 @@ int main(int argc, char **argv)
 	mlx = initialize_mlx(window);
 	img.id = mlx_new_image(mlx.connection_graphic_server, 1000, 800);
 	img = initialize_image(mlx, 1000, 800);
-//	draw_rainbow(img);
-	mlx_put_image_to_window(mlx.connection_graphic_server, mlx.window_id,\
-			img.id, 0, 0);
 	if (mlx.checks)
 	{
 		ray_tracer(img, scene);
 		mode_quit_on_click_red_cross(mlx);
 		mode_quit_on_esc(mlx);
-		mlx_destroy_image(mlx.connection_graphic_server, img.id);
+		mlx_put_image_to_window(mlx.connection_graphic_server, mlx.window_id, 
+		img.id, 0, 0);
+	//	mlx_destroy_image(mlx.connection_graphic_server, img.id);
 		mlx_loop(mlx.connection_graphic_server);
 	}
 	else
