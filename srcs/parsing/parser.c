@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:53:58 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/08 14:27:53 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 14:27:57 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_scene	scene_extractor(char *filename)
 	close(fd);
 	if (!scene.valid || !is_complete(scene))
 	{
-		free_all(scene);
+		free_all(&scene);
 		exit(1);
 	}
 	return (scene);

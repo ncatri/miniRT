@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/18 15:59:49 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 15:22:41 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define FALSE 0
 typedef int t_bool;
 
+# define WINDOW_TITLE "The dankest miniRT"
+
 enum e_obj {SPHERE, PLANE, TRIANGLE};
 
 /* low level abstraction */
@@ -35,6 +37,9 @@ typedef struct s_mlx
 {
 	void	*connection_graphic_server;
 	void	*window_id;
+	int		width;
+	int		height;
+	char	*title;
 
 	int		checks;	
 }				t_mlx;
@@ -118,6 +123,8 @@ typedef struct s_object
 
 typedef struct s_scene
 {
+	t_mlx		mlx;
+
 	int			width;
 	int			height;
 	double		ratio;
@@ -154,26 +161,11 @@ typedef struct s_polynome2deg
 
 /* mlx management functions */
 
-void		*connection_server(t_mlx *mlx);
-void		*connect_window(t_mlx *mlx, t_window window);
-t_window	define_window(int width, int height, char *title);
-t_mlx		initialize_mlx(t_window window);
+void		set_mlx(t_scene *scene);
+int			key_hooks(int key, t_scene *scene);
+int			red_cross_quit(int key, t_scene *scene);
 
-/* Window events functions */
-
-void		open_mode(t_window window);
-int			keys_find_id(int key, void *param);
-void		mode_display_keysid(t_mlx mlx);
-int			quit_on_esc(int key, t_mlx *mlx);
-int			close_window(int key, t_mlx *mlx);
-int			mouse_hook_display_position_and_button(int button, \
-		int x, int y, t_mlx *mlx);
-int			display_mouse_position_on_click(t_mlx mlx);
-int			mouse_angle(int button, int x, int y, t_coordinates *p);
-int			mouse_hook_display_angle(t_mlx mlx);
-int			mode_quit_on_click_red_cross(t_mlx mlx);
-int			close_red_cross(int key, t_mlx *mlx);
-void		mode_quit_on_esc(t_mlx mlx);
+void		display_something(t_scene scene);
 
 /* images */
 
@@ -206,7 +198,7 @@ t_bool			intersect_sp(t_sphere sp, t_ray ray);
 
 t_bool			is_complete(t_scene scene);
 void			set_error(t_scene *scene, char *message);
-void			free_all(t_scene scene);
+void			free_all(t_scene *scene);
 char			**get_split(char *line, char *sep, int size, t_scene *scene);
 t_bool			check_args(int argc, char **argv);
 double			get_positive_val(char *str);

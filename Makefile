@@ -1,8 +1,6 @@
 FOLDER = srcs/
 
 SRCS_LIST =	graphic_interface/window.c \
-			graphic_interface/keys.c \
-			graphic_interface/mouse.c \
 			graphic_interface/images.c \
 			math/operations1.c \
 			math/operations2.c \

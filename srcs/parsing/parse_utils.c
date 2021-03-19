@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:15:35 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/17 16:23:41 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 14:19:16 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ t_bool	str_isnumber(const char *str)
 	return (TRUE);
 }
 
-void	free_all(t_scene scene)
+void	free_all(t_scene *scene)
 {
-	ft_lstclear(&scene.camera_list, free);
-	ft_lstclear(&scene.light_list, free);
-	ft_lstclear(&scene.objects_list, free); // la y a ptetre une couille
+	ft_lstclear(&scene->camera_list, free);
+	ft_lstclear(&scene->light_list, free);
+	ft_lstclear(&scene->objects_list, free); // la y a ptetre une couille
 }
