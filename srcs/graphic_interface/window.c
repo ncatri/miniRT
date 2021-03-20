@@ -23,9 +23,9 @@ void	set_mlx(t_scene *scene)
 
 int	key_hooks(int key, t_scene *scene)
 {
-	if (key == 8)
+	if (key == K_C)
 		printf("iter_cam goes here.\n");
-	if (key == 53)
+	if (key == K_ESC)
 	{
 		free_all(scene);
 		mlx_destroy_window(scene->mlx.connection_graphic_server,

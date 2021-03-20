@@ -45,8 +45,11 @@ t_scene	initialize_scene(void)
 	scene.width = 0;
 	scene.height = 0;
 	scene.ambient.ratio = -1;
-	scene.valid = TRUE;
 	scene.camera_list = NULL;
+	scene.cur_cam = NULL;
+	scene.light_list = NULL;
+	scene.objects_list = NULL;
+	scene.valid = TRUE;
 	return (scene);
 }
 

@@ -10,8 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_CODES_H
-# define ERROR_CODES_H
+#ifndef CODES_H
+# define CODES_H
+
+/* error codes */
 
 # define E_NUM_ELEMT "Invalid number of elements for the object"
 # define E_ALREADY_EXISTS "The object must be defined only once; already defined"
@@ -20,5 +22,10 @@
 # define E_NORES "No resolution defined"
 # define E_NOAMB "No ambient light defined"
 # define E_BADLINE "Invalid line type"
+
+/* key codes */
+
+# define K_ESC (53)
+# define K_C (8)
 
 #endif

@@ -21,12 +21,12 @@ t_bool	check_args(int argc, char **argv)
 		check = FALSE;
 	else if (!check_extension(argv[1]))
 	{
-		printf("Invalid file extension.\t");
+		printf("Error\nInvalid file extension\t");
 		check = FALSE;
 	}
-	else if (argc == 3 && ft_strncmp(argv[2], "--save", 6) != 0)
+	else if (argc == 3 && ft_strcmp(argv[2], "--save") != 0)
 	{
-		printf("Unknown option.\t");
+		printf("Error\nUnknown option\t");
 		check = FALSE;
 	}
 	if (check == FALSE)
@@ -61,7 +61,7 @@ t_bool	check_extension(char *filename)
 	int	i_dot;
 
 	i_dot = ft_strlen(filename) - 3;
-	if (ft_strncmp(&filename[i_dot], ".rt", 3) == 0)
+	if (ft_strcmp(&filename[i_dot], ".rt") == 0)
 		return (TRUE);
 	else
 		return (FALSE);
@@ -100,7 +100,6 @@ void	parse_line(char *line, t_scene *scene)
 		parse_ambient_light(line, scene);
 	else if (ft_strncmp(line, "c", 1) == 0)
 		parse_camera(line, scene);
-
 	else if (ft_strncmp(line, "l", 1) == 0)
 		parse_light(line, scene);
 	else if (ft_strncmp(line, "sp", 2) == 0)
@@ -116,8 +115,5 @@ void	parse_line(char *line, t_scene *scene)
 		parse_triangle(line, scene);
 */
 	else if (line[0] != '\0' && line[0] != '#')
-	{
-		scene->valid = FALSE;
-		scene->err_msg = E_BADLINE;
-	}
+		set_error(scene, E_BADLINE);
 }

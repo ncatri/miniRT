@@ -15,23 +15,19 @@
 
 # include <math.h>
 # include <stdio.h>
+# include <errno.h>
 # include "../minilibx/mlx.h"
 # include "../libft/libft.h"
-# include "error_codes.h"
-# include <errno.h>
-
-# define NO_ERROR 1
-# define ERROR 0
+# include "codes.h"
 
 # define TRUE 1
 # define FALSE 0
-typedef int t_bool;
 
 # define WINDOW_TITLE "The dankest miniRT"
 
-enum e_obj {SPHERE, PLANE, TRIANGLE};
+typedef int t_bool;
 
-/* low level abstraction */
+enum e_obj {SPHERE, PLANE, TRIANGLE};
 
 typedef struct s_mlx
 {
@@ -43,8 +39,6 @@ typedef struct s_mlx
 
 	int		checks;	
 }				t_mlx;
-
-/* mid level abstraction */
 
 typedef struct s_window
 {
