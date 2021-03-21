@@ -44,7 +44,7 @@ $(NAME): $(OBJS) main.c $(LIBFT).a libmlx.dylib
 	$(CC) $(CFLAGS) $(LIBFLAGS) $(MLXFLAGS) -g $(OBJS) main.c -o $(NAME)
 
 hometest: $(OBJS) main.c $(LIBFT).a
-	$(CC) $(CFLAGS) $(LIBFLAGS) -g $(OBJS) main.c -o $(NAME)
+	$(CC) $(CFLAGS) -fPIE -g $(OBJS) main.c $(LIBFLAGS) -lm -o $(NAME)
 
 $(LIBFT).a:
 	$(MAKE) -C $(LIBFT)

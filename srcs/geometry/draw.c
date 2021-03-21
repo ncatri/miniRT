@@ -18,8 +18,6 @@ void	ray_tracer(t_image image, t_scene scene)
 	int j;
 	t_ray	ray;
 
-	(void)image;
-
 	i = 0;
 	while (i < scene.width)
 	{
@@ -56,6 +54,17 @@ t_ray	primary_ray(int	x, int y, t_scene scene)
 
 	ray.origin = scene.camera.position;
 	return (ray);
+}
+
+int	iter_cur_cam(t_scene *scene)
+{
+	if (scene->camera_list == NULL || scene->cur_cam == NULL)
+		return (0);
+	if (scene->cur_cam->next == NULL)
+		scene->cur_cam = scene->camera_list;
+	else
+		scene->cur_cam = scene->cur_cam->next;
+	return (1);
 }
 
 /*

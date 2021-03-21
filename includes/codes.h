@@ -21,6 +21,7 @@
 # define E_MEM "Memory problem (not enough space?)"
 # define E_NORES "No resolution defined"
 # define E_NOAMB "No ambient light defined"
+# define E_NOCAM "No camera defined"
 # define E_BADLINE "Invalid line type"
 
 /* key codes */

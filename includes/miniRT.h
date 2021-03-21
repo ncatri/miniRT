@@ -125,7 +125,7 @@ typedef struct s_scene
 
 	t_light		ambient;
 	t_list		*camera_list;
-	t_camera	*cur_cam;
+	t_list		*cur_cam;
 	t_list		*light_list;
 	t_list		*objects_list;
 	t_camera	camera;
@@ -188,9 +188,11 @@ void			ray_tracer(t_image image, t_scene scene);
 t_ray			primary_ray(int x, int y, t_scene scene);
 t_bool			intersect_sp(t_sphere sp, t_ray ray);
 
+int				iter_cur_cam(t_scene *scene);
+
 /* parsing */
 
-t_bool			is_complete(t_scene scene);
+t_bool			check_complete(t_scene *scene);
 void			set_error(t_scene *scene, char *message);
 void			free_all(t_scene *scene);
 char			**get_split(char *line, char *sep, int size, t_scene *scene);

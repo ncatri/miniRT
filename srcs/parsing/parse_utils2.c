@@ -18,23 +18,15 @@ void	set_error(t_scene *scene, char *message)
 	scene->err_msg = message;
 }
 
-t_bool	is_complete(t_scene scene)
+t_bool	check_complete(t_scene *scene)
 {
-	t_bool	ret;
-	char*	err_msg;
-
-	ret = TRUE;
-	if (scene.width == 0)
-	{
-		ret = FALSE;
-		err_msg = E_NORES;
-	}
-	else if (scene.ambient.ratio == -1)
-	{
-		ret = FALSE;
-		err_msg = E_NOAMB;
-	}
-	if (ret == FALSE)
-		printf("Error in scene file: %s.\n", err_msg);
-	return (ret);
+	if (scene->width == 0)
+		set_error(scene, E_NORES);
+	else if (scene->ambient.ratio == -1)
+		set_error(scene, E_NOAMB);
+	else if (scene->camera_list == NULL)
+		set_error(scene, E_NOCAM);
+	if (scene->valid == FALSE)
+		printf("Error in scene file: %s.\n", scene->err_msg);
+	return (scene->valid);
 }

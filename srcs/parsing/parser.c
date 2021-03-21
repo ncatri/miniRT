@@ -48,7 +48,7 @@ t_scene	scene_extractor(char *filename)
 		printf("Error\nCan't open file %s.\n", filename);
 	}
 	close(fd);
-	if (!scene.valid || !is_complete(scene))
+	if (!scene.valid || !check_complete(&scene))
 	{
 		free_all(&scene);
 		exit(1);

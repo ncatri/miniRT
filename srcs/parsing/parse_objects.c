@@ -82,6 +82,8 @@ void	parse_camera(char *line, t_scene *scene)
 camera->fov == -1)
 			set_error(scene, E_INVAL);
 		ft_lstadd_back(&scene->camera_list, ft_lstnew(camera));
+		if (scene->cur_cam == NULL)
+			scene->cur_cam = scene->camera_list;
 	}
 	else if (!camera || errno != 0)
 		set_error(scene, E_MEM);
