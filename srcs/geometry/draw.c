@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/18 15:59:38 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 13:42:17 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,15 @@ void	ray_tracer(t_image image, t_scene scene)
 	int i;
 	int j;
 	t_ray	ray;
+	t_intersection	inter;
+
+	t_sphere *sp;
+	t_object *obj;
+	obj = scene.objects_list->content;
+	sp = obj->u.sp;
 
 	i = 0;
+	inter = init_intersection();
 	while (i < scene.width)
 	{
 		j = 0;
@@ -26,8 +33,8 @@ void	ray_tracer(t_image image, t_scene scene)
 		{
 			ray = primary_ray(i, j, scene);
 			ray.direction = normalized(ray.direction);
-			if (intersect_sp(scene.sphere, ray))
-				pixel_put_image(image, i, j, scene.sphere.color); 
+			if (intersect_sp(sp, ray))
+				pixel_put_image(image, i, j, sp->color); 
 			else
 			{
 				t_color background = set_color(255,255,255);
@@ -42,17 +49,19 @@ void	ray_tracer(t_image image, t_scene scene)
 t_ray	primary_ray(int	x, int y, t_scene scene)
 {
 	t_ray	ray;
+	t_camera *cam;
 
+	cam = scene.cur_cam->content;
 	x = x - scene.width / 2;
 	y = scene.height / 2 - y;
 
 //	ray direction in the camera base
-	ray.direction.x = scene.camera.position.x / 2 - x;
-	ray.direction.y = y - scene.camera.position.y / 2;
+	ray.direction.x = cam->position.x / 2 - x;
+	ray.direction.y = y - cam->position.y / 2;
 	ray.direction.z = scene.width / \
-					  (2 * tan(scene.camera.fov * M_PI / (2 * 180)));
+					  (2 * tan(cam->fov * M_PI / (2 * 180)));
 
-	ray.origin = scene.camera.position;
+	ray.origin = cam->position;
 	return (ray);
 }
 
@@ -66,25 +75,23 @@ int	iter_cur_cam(t_scene *scene)
 		scene->cur_cam = scene->cur_cam->next;
 	return (1);
 }
-
 /*
-t_ray	primary_ray(int x, int y, t_scene scene)
+t_bool	intersect(t_scene *scene, t_ray prim_ray, t_intersection *inter)
 {
-	t_ray	ray;
+	t_object	*obj;
 
-	x = (x + 0.5) / scene.width;
-	y = (y + 0.5) / scene.height;
-
-	x = (2 * x - 1) * scene.ratio;
-	y = 1 - 2 * y;
-
-	x = x * tan(scene.camera.fov * M_PI / (2 * 180));
-	y = y * tan(scene.camera.fov * M_PI / (2 * 180));
-
-	ray.direction.x = x - scene.camera.position.x;
-	ray.direction.y = y - scene.camera.position.y;
-	ray.direction.z = -1;
-	ray.origin = scene.camera.position;
-	return (ray);
+	obj = scene->cur_object->content;
+	if (obj->type == SPHERE)
+		return (intersect_sp((obj.u.sp), prim_ray));
+	else
+		return (FALSE);
 }
 */
+t_intersection	init_intersection(void)
+{
+	t_intersection	inter;
+
+	inter.t = INFINITY;
+	inter.obj = NULL;
+	return (inter);
+}

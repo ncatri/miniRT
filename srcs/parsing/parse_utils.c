@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:15:35 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/19 14:19:16 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 13:43:18 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_scene	initialize_scene(void)
 	scene.cur_cam = NULL;
 	scene.light_list = NULL;
 	scene.objects_list = NULL;
+//	scene.cur_object = objects_list;
 	scene.valid = TRUE;
 	return (scene);
 }

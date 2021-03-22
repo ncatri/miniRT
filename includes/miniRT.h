@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/19 15:22:41 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 14:32:36 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,9 +128,7 @@ typedef struct s_scene
 	t_list		*cur_cam;
 	t_list		*light_list;
 	t_list		*objects_list;
-	t_camera	camera;
-	t_light		light;
-	t_sphere	sphere;
+	t_list		*cur_object;
 
 	t_bool		valid;
 	char		*err_msg;
@@ -152,6 +150,12 @@ typedef struct s_polynome2deg
 	double	sol1;
 	double	sol2;
 }				t_polynome2deg;
+
+typedef struct	s_intersection
+{
+	double		t;
+	t_object	*obj;
+}				t_intersection;
 
 /* mlx management functions */
 
@@ -186,7 +190,10 @@ void			set_cameratoworld_matrix(t_camera *camera);
 
 void			ray_tracer(t_image image, t_scene scene);
 t_ray			primary_ray(int x, int y, t_scene scene);
-t_bool			intersect_sp(t_sphere sp, t_ray ray);
+t_bool			intersect_sp(t_sphere *sp, t_ray ray);
+
+t_bool			intersect(t_scene *scene, t_ray prim_ray, t_intersection *inter);
+t_intersection	init_intersection(void);
 
 int				iter_cur_cam(t_scene *scene);
 
@@ -227,5 +234,6 @@ void			print_objlist(t_scene scene);
 void			print_coord(t_coordinates coord);
 void			print_color(t_color col);
 void			print_sphere(t_sphere sp);
+void			print_camera(t_camera *cam);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 08:55:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/08 13:27:47 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 14:25:13 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_color	get_color(char *data)
 		free_split(extract);
 		return (color);
 	}
+	color.t = 0;
 	color.r = ft_atoi(extract[0]);
 	color.g = ft_atoi(extract[1]);
 	color.b = ft_atoi(extract[2]);
