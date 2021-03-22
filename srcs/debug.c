@@ -65,3 +65,19 @@ void	print_color(t_color col)
 {
 	printf("R: %d, G: %d, B: %d\n", col.r, col.g, col.b);
 }
+
+void	print_matrix44d(double matrix[4][4])
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (++i < 4)
+	{
+		j = -1;
+		printf("| ");
+		while (++j < 4)
+			printf("%4.2f ", matrix[i][j]);
+		printf("|\n");
+	}
+}

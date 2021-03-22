@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 12:29:21 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/16 16:23:20 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 15:28:35 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,14 @@ t_coordinates	cross_product(t_coordinates a, t_coordinates b)
 	return (result);
 }
 
-void	print_matrix44d(double matrix[4][4])
+t_coordinates	mult_vec_matrix(double mat[4][4], t_coordinates vec)
 {
-	int i;
-	int j;
+	t_coordinates	res;
 
-	i = -1;
-	while (++i < 4)
-	{
-		j = -1;
-		printf("| ");
-		while (++j < 4)
-			printf("%4.2f ", matrix[i][j]);
-		printf("|\n");
-	}
+	res.x = vec.x * mat[0][0] + vec.y * mat[0][1] + vec.z * mat[0][2];
+	res.y = vec.x * mat[1][0] + vec.y * mat[1][1] + vec.z * mat[1][2];
+	res.z = vec.x * mat[2][0] + vec.y * mat[2][1] + vec.z * mat[2][2];
+	return (res);
 }
 
 t_coordinates	set_coordinates(double a, double b, double c)

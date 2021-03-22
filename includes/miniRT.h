@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/22 14:32:36 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 15:29:43 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ void			print_matrix44d(double matrix[4][4]);
 t_coordinates	set_coordinates(double a, double b, double c);
 t_bool			is_equal(t_coordinates a, t_coordinates b);
 void			set_cameratoworld_matrix(t_camera *camera);
+t_coordinates	mult_vec_matrix(double mat[4][4], t_coordinates vec);
 
 void			ray_tracer(t_image image, t_scene scene);
 t_ray			primary_ray(int x, int y, t_scene scene);
