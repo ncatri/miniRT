@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 12:29:21 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/22 15:28:35 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 08:56:18 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ t_coordinates	mult_vec_matrix(double mat[4][4], t_coordinates vec)
 {
 	t_coordinates	res;
 
-	res.x = vec.x * mat[0][0] + vec.y * mat[0][1] + vec.z * mat[0][2];
-	res.y = vec.x * mat[1][0] + vec.y * mat[1][1] + vec.z * mat[1][2];
-	res.z = vec.x * mat[2][0] + vec.y * mat[2][1] + vec.z * mat[2][2];
+	res.x = vec.x * mat[0][0] + vec.y * mat[1][0] + vec.z * mat[2][0];
+	res.y = vec.x * mat[0][1] + vec.y * mat[1][1] + vec.z * mat[2][1];
+	res.z = vec.x * mat[0][2] + vec.y * mat[1][2] + vec.z * mat[2][2];
 	return (res);
 }
 

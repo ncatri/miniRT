@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/22 15:32:30 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 12:49:58 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ray_tracer(t_image image, t_scene scene)
 		while (j < scene.height)
 		{
 			ray = primary_ray(i, j, scene);
-			ray.direction = normalized(ray.direction);
 			if (intersect_sp(sp, ray))
 				pixel_put_image(image, i, j, sp->color); 
 			else
@@ -55,14 +54,12 @@ t_ray	primary_ray(int	x, int y, t_scene scene)
 	x = x - scene.width / 2;
 	y = scene.height / 2 - y;
 
-//	ray direction in the camera base
 	ray.direction.x = cam->position.x / 2 - x;
 	ray.direction.y = y - cam->position.y / 2;
 	ray.direction.z = scene.width / \
 					  (2 * tan(cam->fov * M_PI / (2 * 180)));
-//	let's multiply
 	ray.direction = mult_vec_matrix(cam->c2w_matrix, ray.direction);
-
+	ray.direction = normalized(ray.direction);
 	ray.origin = cam->position;
 	return (ray);
 }
