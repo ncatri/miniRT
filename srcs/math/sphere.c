@@ -12,7 +12,7 @@
 
 #include "../../includes/miniRT.h"
 
-t_bool intersect_sp(t_sphere *sp, t_ray ray)
+double	intersect_sp(t_sphere *sp, t_ray ray)
 {
 	t_polynome2deg	poly;
 
@@ -22,10 +22,13 @@ t_bool intersect_sp(t_sphere *sp, t_ray ray)
 		(sp->diameter / 2) * (sp->diameter / 2);
 	poly.delta = poly.b * poly.b - 4 * poly.a * poly.c;
 	if (poly.delta < 0)
-		return (FALSE);
+		return (INFINITY);
 	poly.sol1 = (-poly.b + sqrt(poly.delta)) / (2 * poly.a);
 	poly.sol2 = (-poly.b - sqrt(poly.delta)) / (2 * poly.a);
-	if (poly.sol1 > 0)
-		return (TRUE);
-	return (FALSE);
+	if (poly.sol1 < 0)
+		return (INFINITY);
+	if (poly.sol2 > 0)
+		return (poly.sol2);
+	else
+		return (poly.sol1);
 }

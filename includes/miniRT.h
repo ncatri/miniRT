@@ -153,7 +153,9 @@ typedef struct s_polynome2deg
 
 typedef struct	s_intersection
 {
-	double		t;
+	double		min_dist;
+	t_coordinates	p_hit;
+	t_coordinates	norm_hit;
 	t_object	*obj;
 }				t_intersection;
 
@@ -191,10 +193,12 @@ t_coordinates	mult_vec_matrix(double mat[4][4], t_coordinates vec);
 
 void			ray_tracer(t_image image, t_scene scene);
 t_ray			primary_ray(int x, int y, t_scene scene);
-t_bool			intersect_sp(t_sphere *sp, t_ray ray);
+double			intersect_sp(t_sphere *sp, t_ray ray);
 
 t_bool			intersect(t_scene *scene, t_ray prim_ray, t_intersection *inter);
 t_intersection	init_intersection(void);
+void			get_intersection(t_ray prim_ray, t_scene scene, t_intersection *inter);
+double			intersect(t_object *obj, t_ray ray);
 
 int				iter_cur_cam(t_scene *scene);
 

@@ -25,13 +25,15 @@ void	ray_tracer(t_image image, t_scene scene)
 	sp = obj->u.sp;
 
 	i = 0;
-	inter = init_intersection();
 	while (i < scene.width)
 	{
 		j = 0;
 		while (j < scene.height)
 		{
+			inter = init_intersection();
 			ray = primary_ray(i, j, scene);
+			get_intersection(ray, scene, &inter);
+/*
 			if (intersect_sp(sp, ray))
 				pixel_put_image(image, i, j, sp->color); 
 			else
@@ -39,6 +41,7 @@ void	ray_tracer(t_image image, t_scene scene)
 				t_color background = set_color(255,255,255);
 				pixel_put_image(image, i, j, background); 
 			}
+*/
 			j++;
 		}
 		i++;
@@ -90,7 +93,35 @@ t_intersection	init_intersection(void)
 {
 	t_intersection	inter;
 
-	inter.t = INFINITY;
+	inter.min_dist = INFINITY;
+	inter.p_hit = set_coordinates(0, 0, 0);
+	inter.norm_hit = set_coordinates(0, 0, 0);
 	inter.obj = NULL;
 	return (inter);
+}
+
+void	get_intersection(t_ray prim_ray, t_scene scene, t_intersection *inter)
+{
+	t_object *object;
+	double	t;
+
+	object = scene.objects_list;
+	while (object != NULL)
+	{
+		t = intersect(object, prim_ray);
+		if (t < inter->min_dist)
+		{
+			inter->min_dist = t;
+			inter->obj = object;
+		}
+		object = object->next;
+	}
+}
+
+double	intersect(t_object *obj, t_ray ray)
+{
+	if (obj->type == SPHERE)
+		return (intersect_sp(obj->u.sp, ray));
+	else
+		return (INFINITY);
 }
