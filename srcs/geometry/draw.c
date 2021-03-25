@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/23 12:49:58 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/25 08:53:02 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,21 @@ void	ray_tracer(t_image image, t_scene scene)
 	t_ray	ray;
 	t_intersection	inter;
 
-	t_sphere *sp;
-	t_object *obj;
-	obj = scene.objects_list->content;
-	sp = obj->u.sp;
-
-	i = 0;
-	while (i < scene.width)
+	i = -1;
+	while (++i < scene.width)
 	{
-		j = 0;
-		while (j < scene.height)
+		j = -1;
+		while (++j < scene.height)
 		{
 			inter = init_intersection();
 			ray = primary_ray(i, j, scene);
-			get_intersection(ray, scene, &inter);
-/*
-			if (intersect_sp(sp, ray))
-				pixel_put_image(image, i, j, sp->color); 
-			else
+			set_intersection(ray, scene, &inter);
+			if (inter.obj != NULL)
 			{
-				t_color background = set_color(255,255,255);
-				pixel_put_image(image, i, j, background); 
+				inter.color = get_obj_color(inter.obj);
+				pixel_put_image(image, i, j, inter.color);
 			}
-*/
-			j++;
 		}
-		i++;
 	}
 }
 
@@ -77,18 +66,7 @@ int	iter_cur_cam(t_scene *scene)
 		scene->cur_cam = scene->cur_cam->next;
 	return (1);
 }
-/*
-t_bool	intersect(t_scene *scene, t_ray prim_ray, t_intersection *inter)
-{
-	t_object	*obj;
 
-	obj = scene->cur_object->content;
-	if (obj->type == SPHERE)
-		return (intersect_sp((obj.u.sp), prim_ray));
-	else
-		return (FALSE);
-}
-*/
 t_intersection	init_intersection(void)
 {
 	t_intersection	inter;
@@ -100,28 +78,40 @@ t_intersection	init_intersection(void)
 	return (inter);
 }
 
-void	get_intersection(t_ray prim_ray, t_scene scene, t_intersection *inter)
+void	set_intersection(t_ray prim_ray, t_scene scene, t_intersection *inter)
 {
-	t_object *object;
-	double	t;
+	t_list		*obj_cursor;
+	t_object	*object;
+	double		t;
 
-	object = scene.objects_list;
-	while (object != NULL)
+	obj_cursor = scene.objects_list;
+	while (obj_cursor != NULL)
 	{
-		t = intersect(object, prim_ray);
+		object = obj_cursor->content;
+		t = get_obj_intersect(object, prim_ray);
 		if (t < inter->min_dist)
 		{
 			inter->min_dist = t;
 			inter->obj = object;
+			inter->color = get_obj_color(object); 
 		}
-		object = object->next;
+		obj_cursor = obj_cursor->next;
 	}
 }
 
-double	intersect(t_object *obj, t_ray ray)
+double	get_obj_intersect(t_object *obj, t_ray ray)
 {
 	if (obj->type == SPHERE)
 		return (intersect_sp(obj->u.sp, ray));
 	else
 		return (INFINITY);
 }
+
+t_color	get_obj_color(t_object *obj)
+{
+	if (obj->type == SPHERE)
+		return (obj->u.sp->color);
+	else
+		return (set_color(125,125,200));
+}
+

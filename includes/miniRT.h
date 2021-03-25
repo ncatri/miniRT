@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/22 15:29:43 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/25 08:53:21 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ typedef struct	s_intersection
 	t_coordinates	p_hit;
 	t_coordinates	norm_hit;
 	t_object	*obj;
+	t_color		color;
 }				t_intersection;
 
 /* mlx management functions */
@@ -195,10 +196,11 @@ void			ray_tracer(t_image image, t_scene scene);
 t_ray			primary_ray(int x, int y, t_scene scene);
 double			intersect_sp(t_sphere *sp, t_ray ray);
 
-t_bool			intersect(t_scene *scene, t_ray prim_ray, t_intersection *inter);
 t_intersection	init_intersection(void);
-void			get_intersection(t_ray prim_ray, t_scene scene, t_intersection *inter);
-double			intersect(t_object *obj, t_ray ray);
+void			set_intersection(t_ray prim_ray, t_scene scene, \
+		t_intersection *inter);
+double			get_obj_intersect(t_object *obj, t_ray ray);
+t_color			get_obj_color(t_object *obj);
 
 int				iter_cur_cam(t_scene *scene);
 

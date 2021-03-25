@@ -1,3 +1,8 @@
 *.swp
 *.o
 libft
+libft.a
+libmlx.dylib
+miniRT
+miniRT.dSYM
+minilibx
