@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 11:19:21 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/17 15:58:42 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 16:32:10 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	parse_ambient_light(char *line, t_scene *scene)
 		amb_light.color = get_color(split[2]);
 		if (amb_light.ratio == -1 || amb_light.color.value == -1)
 			set_error(scene, E_INVAL);
+		amb_light.intensity = scalar_mult(amb_light.ratio, set_coordinates(\
+amb_light.color.r / (double)255, amb_light.color.g / (double)255, amb_light.color.b / (double)255));
 		scene->ambient = amb_light;
 		free_split(split);
 	}

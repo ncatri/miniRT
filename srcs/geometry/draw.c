@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/25 08:53:02 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 16:18:40 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ray_tracer(t_image image, t_scene scene)
 			if (inter.obj != NULL)
 			{
 				inter.color = get_obj_color(inter.obj);
+				compute_shading(scene, ray, &inter);
 				pixel_put_image(image, i, j, inter.color);
 			}
 		}

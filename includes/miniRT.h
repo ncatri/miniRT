@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/25 08:53:21 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 16:11:49 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_light
 	t_coordinates	position;
 	t_color			color;
 	double			ratio;
+	t_coordinates	intensity;
 }				t_light;
 
 union u_objects
@@ -191,6 +192,7 @@ t_coordinates	set_coordinates(double a, double b, double c);
 t_bool			is_equal(t_coordinates a, t_coordinates b);
 void			set_cameratoworld_matrix(t_camera *camera);
 t_coordinates	mult_vec_matrix(double mat[4][4], t_coordinates vec);
+t_coordinates	scalar_mult(double k, t_coordinates vect);
 
 void			ray_tracer(t_image image, t_scene scene);
 t_ray			primary_ray(int x, int y, t_scene scene);
@@ -203,6 +205,12 @@ double			get_obj_intersect(t_object *obj, t_ray ray);
 t_color			get_obj_color(t_object *obj);
 
 int				iter_cur_cam(t_scene *scene);
+
+/* shading */
+
+void			compute_shading(t_scene scene, t_ray prim_ray, t_intersection *inter);
+t_color			ambient_light(t_color obj_color, t_light ambient);
+t_color			mult_color(t_color color, t_coordinates mult);
 
 /* parsing */
 

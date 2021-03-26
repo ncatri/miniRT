@@ -12,7 +12,8 @@ SRCS_LIST =	graphic_interface/window.c \
 			parsing/parse_utils2.c \
 			parsing/data_extractors.c \
 			parsing/data_extractors2.c \
-			debug.c
+			debug.c \
+			shading.c
 
 SRCS = $(addprefix $(FOLDER), $(SRCS_LIST))
 
