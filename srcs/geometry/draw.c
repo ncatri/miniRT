@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/26 16:18:40 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/28 13:50:31 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ void	ray_tracer(t_image image, t_scene scene)
 		{
 			inter = init_intersection();
 			ray = primary_ray(i, j, scene);
-			set_intersection(ray, scene, &inter);
-			if (inter.obj != NULL)
+			if (found_intersection(ray, scene, &inter))
 			{
-				inter.color = get_obj_color(inter.obj);
+				set_intersection(ray, scene, &inter);
 				compute_shading(scene, ray, &inter);
 				pixel_put_image(image, i, j, inter.color);
 			}
@@ -79,7 +78,7 @@ t_intersection	init_intersection(void)
 	return (inter);
 }
 
-void	set_intersection(t_ray prim_ray, t_scene scene, t_intersection *inter)
+t_bool	found_intersection(t_ray prim_ray, t_scene scene, t_intersection *inter)
 {
 	t_list		*obj_cursor;
 	t_object	*object;
@@ -94,10 +93,10 @@ void	set_intersection(t_ray prim_ray, t_scene scene, t_intersection *inter)
 		{
 			inter->min_dist = t;
 			inter->obj = object;
-			inter->color = get_obj_color(object); 
 		}
 		obj_cursor = obj_cursor->next;
 	}
+	return (inter->min_dist != INFINITY);
 }
 
 double	get_obj_intersect(t_object *obj, t_ray ray)
@@ -116,3 +115,21 @@ t_color	get_obj_color(t_object *obj)
 		return (set_color(125,125,200));
 }
 
+void	set_intersection(t_ray prim_ray, t_scene scene, t_intersection *inter)
+{
+	(void)scene;
+	inter->color = get_obj_color(inter->obj); 
+	inter->p_hit = scalar_mult(inter->min_dist, prim_ray.direction);
+	inter->norm_hit = get_normal(inter);
+}
+
+t_coordinates	get_normal(t_intersection *inter)
+{
+	t_coordinates	normal;
+
+	if (inter->obj->type == SPHERE)
+		normal = substract(inter->p_hit, inter->obj->u.sp->centre);
+	else
+		normal = set_coordinates(0, 0, 0);
+	return (normalized(normal));
+}

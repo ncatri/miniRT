@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/26 16:11:49 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/28 13:40:43 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,10 +199,13 @@ t_ray			primary_ray(int x, int y, t_scene scene);
 double			intersect_sp(t_sphere *sp, t_ray ray);
 
 t_intersection	init_intersection(void);
+t_bool			found_intersection(t_ray prim_ray, t_scene scene, \
+		t_intersection *inter);
 void			set_intersection(t_ray prim_ray, t_scene scene, \
 		t_intersection *inter);
 double			get_obj_intersect(t_object *obj, t_ray ray);
 t_color			get_obj_color(t_object *obj);
+t_coordinates	get_normal(t_intersection *inter);
 
 int				iter_cur_cam(t_scene *scene);
 
@@ -211,6 +214,7 @@ int				iter_cur_cam(t_scene *scene);
 void			compute_shading(t_scene scene, t_ray prim_ray, t_intersection *inter);
 t_color			ambient_light(t_color obj_color, t_light ambient);
 t_color			mult_color(t_color color, t_coordinates mult);
+t_bool			is_inshadow(t_scene scene, t_ray prim_ray, t_intersection *inter);
 
 /* parsing */
 
