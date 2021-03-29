@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/28 13:40:43 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/29 13:31:02 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,7 @@ int				iter_cur_cam(t_scene *scene);
 void			compute_shading(t_scene scene, t_ray prim_ray, t_intersection *inter);
 t_color			ambient_light(t_color obj_color, t_light ambient);
 t_color			mult_color(t_color color, t_coordinates mult);
-t_bool			is_inshadow(t_scene scene, t_ray prim_ray, t_intersection *inter);
+t_bool			is_lighted(t_scene scene, t_intersection *inter, t_intersection *inter_light);
 
 /* parsing */
 

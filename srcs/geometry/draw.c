@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/28 13:50:31 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/29 09:51:48 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,9 @@ void	set_intersection(t_ray prim_ray, t_scene scene, t_intersection *inter)
 {
 	(void)scene;
 	inter->color = get_obj_color(inter->obj); 
-	inter->p_hit = scalar_mult(inter->min_dist, prim_ray.direction);
+	inter->p_hit = add(prim_ray.origin, scalar_mult(inter->min_dist, prim_ray.direction));
 	inter->norm_hit = get_normal(inter);
+	inter->p_hit = add(scalar_mult(0.01, inter->norm_hit), inter->p_hit);
 }
 
 t_coordinates	get_normal(t_intersection *inter)
@@ -128,7 +129,7 @@ t_coordinates	get_normal(t_intersection *inter)
 	t_coordinates	normal;
 
 	if (inter->obj->type == SPHERE)
-		normal = substract(inter->p_hit, inter->obj->u.sp->centre);
+		normal = normalized(substract(inter->p_hit, inter->obj->u.sp->centre));
 	else
 		normal = set_coordinates(0, 0, 0);
 	return (normalized(normal));

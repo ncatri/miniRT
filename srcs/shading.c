@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:41:39 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/28 13:46:30 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/29 14:02:39 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,17 @@
 
 void	compute_shading(t_scene scene, t_ray prim_ray, t_intersection *inter)
 {
+	(void)prim_ray;
+	t_intersection inter_light;
 
 	inter->color =  ambient_light(inter->color, scene.ambient);
-	if (!is_inshadow(scene, prim_ray, inter))
+	if (is_lighted(scene, inter, &inter_light))
 	{
 		inter->color = set_color(255,255,255);
+	//	inter->color = add_diffuse(inter->color, inter, inter_light); 
 	}
 
-/*
-	if (!is_inshadow)
-	{
-		for every light
-			diffuse_light;
-			specular_light;
-	}
-*/
+
 }
 
 t_color ambient_light(t_color obj_color, t_light ambient)
@@ -53,10 +49,8 @@ t_color	mult_color(t_color color, t_coordinates mult)
 	return (result);
 }
 
-t_bool	is_inshadow(t_scene scene, t_ray prim_ray, t_intersection *inter)
+t_bool	is_lighted(t_scene scene, t_intersection *inter, t_intersection *inter_light)
 {
-	(void)prim_ray;
-	t_intersection	inter_light;
 	t_ray	light_ray;
 	t_light	*light;
 
@@ -66,11 +60,18 @@ t_bool	is_inshadow(t_scene scene, t_ray prim_ray, t_intersection *inter)
 	light_ray.direction = substract(light->position, inter->p_hit);
 	light_ray.direction = normalized(light_ray.direction);
 	
-	inter_light = init_intersection();
-	if (found_intersection(light_ray, scene, &inter_light))
+	*inter_light = init_intersection();
+	if (found_intersection(light_ray, scene, inter_light))
 	{
-		if (inter_light.min_dist < sqrt(get_norm2(substract(light->position, inter->p_hit))))
+		if (inter_light->min_dist < sqrt(get_norm2(substract(light->position, inter->p_hit))))
 			return (FALSE);
 	}
 	return (TRUE);
 }
+/*
+t_color	add_diffuse(t_color color, t_intersection *inter, t_intersection inter_light){
+	t_color diffuse;
+
+	diffuse = 
+
+*/
