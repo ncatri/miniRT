@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:15:35 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/30 08:59:59 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/30 13:13:17 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,14 @@ void	free_all(t_scene *scene)
 	ft_lstclear(&scene->camera_list, free);
 	ft_lstclear(&scene->light_list, free);
 	ft_lstclear(&scene->objects_list, free); // la y a ptetre une couille
+}
+
+t_coordinates	set_light_intensity(t_color color, double ratio)
+{
+	t_coordinates rgb;
+
+	rgb.x = color.r / (double)255;
+	rgb.y = color.g / (double)255;
+	rgb.z = color.b / (double)255;
+	return (scalar_mult(ratio, rgb));
 }

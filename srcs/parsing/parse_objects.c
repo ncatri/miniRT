@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 11:19:21 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/30 08:58:36 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/30 13:16:08 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ void	parse_ambient_light(char *line, t_scene *scene)
 		amb_light.color = get_color(split[2]);
 		if (amb_light.ratio == -1 || amb_light.color.value == -1)
 			set_error(scene, E_INVAL);
-		amb_light.intensity = scalar_mult(amb_light.ratio, set_coordinates(\
-amb_light.color.r / (double)255, amb_light.color.g / (double)255, amb_light.color.b / (double)255));
+		amb_light.intensity = set_light_intensity(amb_light.color, amb_light.ratio);
 		scene->ambient = amb_light;
 		free_split(split);
 	}
@@ -106,6 +105,7 @@ void	parse_light(char *line, t_scene *scene)
 		light->position = get_coordinates(split[1]);
 		light->ratio = get_ratio(split[2]);
 		light->color = get_color(split[3]);
+		light->intensity = set_light_intensity(light->color, light->ratio);
 		if (light->position.x == INFINITY || light->ratio == -1 || \
 light->color.value == -1)
 			set_error(scene, E_INVAL);

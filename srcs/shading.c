@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:41:39 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/30 11:43:18 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/30 15:20:45 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,16 @@ void	compute_shading(t_scene scene, t_ray prim_ray, t_intersection *inter)
 	(void)prim_ray;
 	t_intersection	inter_light;
 	t_ray			light_ray;
+	t_light			*light;
 
 	inter->color =  ambient_light(inter->color, scene.ambient);
 	while (iter_cur_light(&scene))
 	{
+		light = scene.cur_light->content;
 		light_ray = cast_light_ray(scene, inter);
-		if (get_light(scene, inter, &inter_light))
+		if (get_light(scene, inter, &inter_light, light_ray))
 		{
-			inter->color = set_color(255,255,255);
-		//	inter->color = add_diffuse(inter->color, inter, inter_light); 
+			inter->color = add_diffuse(inter, light_ray, light); 
 		}
 	}
 }
@@ -52,18 +53,12 @@ t_color	mult_color(t_color color, t_coordinates mult)
 	return (result);
 }
 
-t_bool	get_light(t_scene scene, t_intersection *inter, t_intersection *inter_light)
+t_bool	get_light(t_scene scene, t_intersection *inter, \
+		t_intersection *inter_light, t_ray light_ray)
 {
-	t_ray	light_ray;
 	t_light	*light;
 
-//	light = scene.light_list->content;
 	light = scene.cur_light->content;
-
-	light_ray.origin = inter->p_hit;
-	light_ray.direction = substract(light->position, inter->p_hit);
-	light_ray.direction = normalized(light_ray.direction);
-	
 	*inter_light = init_intersection();
 	if (found_intersection(light_ray, scene, inter_light))
 	{
@@ -72,17 +67,35 @@ t_bool	get_light(t_scene scene, t_intersection *inter, t_intersection *inter_lig
 	}
 	return (TRUE);
 }
-/*
-t_color	add_diffuse(t_color color, t_intersection *inter, t_intersection inter_light){
-	t_color diffuse;
-	t_coordinates	l;
-	t_coordinates	n;
 
-	l = inter_light.
-	diffuse = 
+t_ray	cast_light_ray(t_scene scene, t_intersection *inter)
+{
+	t_ray	ray;
+	t_light	*light;
 
+	light = scene.cur_light->content;
+	ray.origin = inter->p_hit;
+	ray.direction = substract(light->position, inter->p_hit);
+	ray.direction = normalized(ray.direction);
+	return (ray);
 }
-*/
+
+t_color	add_diffuse(t_intersection *inter, t_ray light_ray, t_light *light)
+{
+	t_color		diffuse;
+	double		incidence;
+	t_color		k;
+
+	k = inter->color;
+	incidence = fmax(0, dot(inter->norm_hit, light_ray.direction));
+	diffuse.t = 0;
+	diffuse.r = fmin(k.r + light->color.r * light->ratio * incidence, 255);
+	diffuse.g = fmin(k.g + light->color.g * light->ratio * incidence, 255);
+	diffuse.b = fmin(k.b + light->color.b * light->ratio * incidence, 255);
+	diffuse.value = create_trgb(diffuse);
+	return (diffuse);
+}
+
 t_bool	iter_cur_light(t_scene *scene)
 {
 	if (scene && scene->light_list)
@@ -96,4 +109,14 @@ t_bool	iter_cur_light(t_scene *scene)
 		return (TRUE);
 	}
 	return (FALSE);
+}
+
+t_color	add_colors(t_color color1, t_color color2)
+{
+	t_color	res;
+
+	res.r = (color1.r + color2.r) / 2;
+	res.g = (color1.g + color2.g) / 2;
+	res.b = (color1.b + color2.b) / 2;
+	return (res);
 }
