@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:41:39 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/29 14:02:39 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/03/30 11:43:18 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,19 @@
 void	compute_shading(t_scene scene, t_ray prim_ray, t_intersection *inter)
 {
 	(void)prim_ray;
-	t_intersection inter_light;
+	t_intersection	inter_light;
+	t_ray			light_ray;
 
 	inter->color =  ambient_light(inter->color, scene.ambient);
-	if (is_lighted(scene, inter, &inter_light))
+	while (iter_cur_light(&scene))
 	{
-		inter->color = set_color(255,255,255);
-	//	inter->color = add_diffuse(inter->color, inter, inter_light); 
+		light_ray = cast_light_ray(scene, inter);
+		if (get_light(scene, inter, &inter_light))
+		{
+			inter->color = set_color(255,255,255);
+		//	inter->color = add_diffuse(inter->color, inter, inter_light); 
+		}
 	}
-
-
 }
 
 t_color ambient_light(t_color obj_color, t_light ambient)
@@ -49,12 +52,13 @@ t_color	mult_color(t_color color, t_coordinates mult)
 	return (result);
 }
 
-t_bool	is_lighted(t_scene scene, t_intersection *inter, t_intersection *inter_light)
+t_bool	get_light(t_scene scene, t_intersection *inter, t_intersection *inter_light)
 {
 	t_ray	light_ray;
 	t_light	*light;
 
-	light = scene.light_list->content;
+//	light = scene.light_list->content;
+	light = scene.cur_light->content;
 
 	light_ray.origin = inter->p_hit;
 	light_ray.direction = substract(light->position, inter->p_hit);
@@ -71,7 +75,25 @@ t_bool	is_lighted(t_scene scene, t_intersection *inter, t_intersection *inter_li
 /*
 t_color	add_diffuse(t_color color, t_intersection *inter, t_intersection inter_light){
 	t_color diffuse;
+	t_coordinates	l;
+	t_coordinates	n;
 
+	l = inter_light.
 	diffuse = 
 
+}
 */
+t_bool	iter_cur_light(t_scene *scene)
+{
+	if (scene && scene->light_list)
+	{
+		if (scene->cur_light == NULL)
+			scene->cur_light = scene->light_list;
+		else if (scene->cur_light->next != NULL)
+			scene->cur_light = scene->cur_light->next;
+		else
+			return (FALSE);
+		return (TRUE);
+	}
+	return (FALSE);
+}
