@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/01 11:29:55 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 09:04:05 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@
 # include "../libft/libft.h"
 # include "codes.h"
 
-# define TRUE 1
-# define FALSE 0
+# define TRUE (1)
+# define FALSE (0)
 
 # define WINDOW_TITLE "The dankest miniRT"
+# define SHININESS (10)
 
 typedef int t_bool;
 
@@ -214,9 +215,9 @@ int				iter_cur_cam(t_scene *scene);
 
 void			compute_shading(t_scene scene, t_ray prim_ray, t_intersection *inter);
 t_color			mult_color(t_color color, t_coordinates mult);
-t_bool			get_light(t_scene scene, t_intersection *inter, t_intersection *inter_light, t_ray light_ray);
-t_bool			iter_cur_light(t_scene *scene);
-t_ray			cast_light_ray(t_scene scene, t_intersection *inter);
+t_bool			get_light(t_scene scene, t_intersection *inter, t_ray light_ray);
+t_bool			iterate_current_light(t_scene *scene);
+t_ray			cast_light_ray(t_light *light, t_intersection *inter);
 t_coordinates	set_light_intensity(t_color color, double ratio);
 t_color			add_diffuse(t_intersection *inter, t_ray light_ray, t_light *light);
 t_color			add_specular(t_intersection *inter, t_ray light_ray, \
