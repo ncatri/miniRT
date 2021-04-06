@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 11:19:21 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/30 13:16:08 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 09:08:43 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,6 @@ void	parse_sphere(char *line, t_scene *scene)
 		if (sphere->centre.x == INFINITY || sphere->diameter == -1 || \
 sphere->color.value == -1)
 			set_error(scene, E_INVAL);
-		//ft_lstadd_back(&scene->sphere_list, ft_lstnew(sphere));
 		set_sphere_object(scene, sphere);
 	}
 	else if (!sphere || errno != 0)
@@ -144,15 +143,22 @@ sphere->color.value == -1)
 void	set_sphere_object(t_scene *scene, t_sphere *sphere)
 {
 	t_object	*obj;
+	t_list		*new;
 
 	obj = malloc(sizeof(t_object));
 	if (obj)
 	{
 		obj->u.sp = sphere;
 		obj->type = SPHERE;
-		ft_lstadd_back(&scene->objects_list, ft_lstnew(obj));
+		new = ft_lstnew(obj);
+		if (new == NULL)
+		{
+			set_error(scene, E_MEM);
+			return ;
+		}
+		ft_lstadd_back(&scene->objects_list, new);
 	}
-	else if (!obj || errno != 0)
+	else 
 		set_error(scene, E_MEM);
 }
 

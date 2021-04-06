@@ -1,0 +1,22 @@
+
+
+R	1000	800 
+A 0.25			  255,255,255 
+
+l	0,80,0	0.8		255,255,255
+
+c 	0,20,150   		0,0,-1  75 
+
+sp	 0,0,0		50		255,102,102
+
+#light steel blue, horizontal floor
+pl   0,-30,0   0,1,0   176,196,222 
+
+#old lace, vertical left wall
+pl -100,0,0		1,0,0	253,245,230
+
+#old lace, vertical right wall
+pl 100,0,0		-1,0,0	253,245,230
+
+#light steel blue, horizontal ceiling
+pl   0,100,0   0,-1,0   176,196,222 

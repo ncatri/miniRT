@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:35:16 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/22 08:03:46 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 09:15:26 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	print_objlist(t_scene scene)
 		printf("elt number: %d, type: %d\n", i, obj->type);
 		if (obj->type == SPHERE)
 			print_sphere(*(obj->u.sp));	
+		else if (obj->type == PLANE)
+			print_plane(*(obj->u.pl));
 		i++;
 		cursor = cursor->next;
 	}
@@ -40,6 +42,16 @@ void	print_sphere(t_sphere sp)
 	printf("\tdiameter --> %.2f\n", sp.diameter);
 	printf("\tcolor --> ");
 	print_color(sp.color);
+}
+
+void print_plane(t_plane pl)
+{
+	printf("\tposition --> ");
+	print_coord(pl.position);
+	printf("\torientation --> ");
+	print_coord(pl.orientation);
+	printf("\tcolor --> ");
+	print_color(pl.color);
 }
 
 void	print_camera(t_camera *cam)

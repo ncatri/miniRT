@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 11:37:57 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/08 14:15:32 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 09:04:21 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define E_NOAMB "No ambient light defined"
 # define E_NOCAM "No camera defined"
 # define E_BADLINE "Invalid line type"
+# define E_NOT_NORMED "Orientation vector is not normalized"
 
 /* key codes */
 

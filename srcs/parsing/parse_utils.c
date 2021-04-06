@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:15:35 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/30 13:13:17 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 08:06:53 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,14 @@ char	**get_split(char *line, char *sep, int size, t_scene *scene)
 	char	**split;
 
 	split = ft_split(line, sep);
-	if (split_len(split) != size)
+	if (split == NULL)
 	{
-		scene->valid = FALSE;
-		scene->err_msg = E_NUM_ELEMT;
+		set_error(scene, E_MEM);
+		return (NULL);
+	}
+	else if (split_len(split) != size)
+	{
+		set_error(scene, E_NUM_ELEMT);
 		free_split(split);
 		return (NULL);
 	}

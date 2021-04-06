@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/02 09:04:05 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 10:20:25 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,7 @@ t_coordinates	scalar_mult(double k, t_coordinates vect);
 void			ray_tracer(t_image image, t_scene scene);
 t_ray			primary_ray(int x, int y, t_scene scene);
 double			intersect_sp(t_sphere *sp, t_ray ray);
+double			intersect_pl(t_plane *pl, t_ray ray);
 
 t_intersection	init_intersection(void);
 t_bool			found_intersection(t_ray prim_ray, t_scene scene, \
@@ -252,6 +253,7 @@ void			parse_light(char *line, t_scene *scene);
 void			parse_sphere(char *line, t_scene *scene);
 void			set_sphere_object(t_scene *scene, t_sphere *sphere);
 void			parse_plane(char *line, t_scene *scene);
+void			set_plane_object(t_scene *scene, t_plane *plane);
 void			parse_square(char *line, t_scene *scene);
 void			parse_cylinder(char *line, t_scene *scene);
 void			parse_triangle(char *line, t_scene *scene);
@@ -262,6 +264,7 @@ void			print_objlist(t_scene scene);
 void			print_coord(t_coordinates coord);
 void			print_color(t_color col);
 void			print_sphere(t_sphere sp);
+void			print_plane(t_plane pl);
 void			print_camera(t_camera *cam);
 
 #endif

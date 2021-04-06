@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/15 10:39:08 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/06 09:27:39 by ncatrien         ###   ########lyon.fr   */
+/*   Created: 2021/04/06 07:39:49 by ncatrien          #+#    #+#             */
+/*   Updated: 2021/04/06 11:12:03 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/miniRT.h"
+#include "../../includes/miniRT.h"
 
-int main(int argc, char **argv)
+double	intersect_pl(t_plane *pl, t_ray ray)
 {
-	if (!check_args(argc, argv))
-		return (0);
+	double	t;
+	double	denom;
+	t_coordinates	p0l0;
 
-	t_scene		scene;
-	scene = scene_extractor(argv[1]);
-	print_objlist(scene);
-	
-	print_coord(scene.ambient.intensity);
-	display_something(scene);
+	denom = dot(ray.direction, pl->orientation);
+	if (fabs(denom) < 0.001) 
+		return (INFINITY);
+	p0l0 = substract(pl->position, ray.origin);
+	t = dot(p0l0, pl->orientation) / denom;
+	if (t < 0)
+		return (INFINITY);
+	return (t);
 }

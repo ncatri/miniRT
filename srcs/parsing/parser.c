@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:53:58 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/19 14:27:57 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 08:40:13 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,9 @@ void	parse_line(char *line, t_scene *scene)
 		parse_light(line, scene);
 	else if (ft_strncmp(line, "sp", 2) == 0)
 		parse_sphere(line, scene);
-/*
 	else if (ft_strncmp(line, "pl ", 3) == 0)
 		parse_plane(line, scene);
+/*
 	else if (ft_strncmp(line, "sq ", 3) == 0)
 		parse_square(line, scene);
 	else if (ft_strncmp(line, "cy ", 3) == 0)
