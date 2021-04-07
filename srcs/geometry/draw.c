@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/06 10:22:44 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/07 13:51:54 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ double	get_obj_intersect(t_object *obj, t_ray ray)
 		return (intersect_sp(obj->u.sp, ray));
 	else if (obj->type == PLANE)
 		return (intersect_pl(obj->u.pl, ray));
+	else if (obj->type == SQUARE)
+		return (intersect_sq(obj->u.sq, ray));
 	else
 		return (INFINITY);
 }
@@ -115,6 +117,8 @@ t_color	get_obj_color(t_object *obj)
 		return (obj->u.sp->color);
 	else if (obj->type == PLANE)
 		return (obj->u.pl->color);
+	else if (obj->type == SQUARE)
+		return (obj->u.sq->color);
 	else
 		return (set_color(125,125,200));
 }
@@ -136,6 +140,8 @@ t_coordinates	get_normal(t_intersection *inter)
 		normal = normalized(substract(inter->p_hit, inter->obj->u.sp->centre));
 	else if (inter->obj->type == PLANE)
 		normal = inter->obj->u.pl->orientation;
+	else if (inter->obj->type == SQUARE)
+		normal = inter->obj->u.sq->orientation;
 	else
 		normal = set_coordinates(0, 0, 0);
 	return (normalized(normal));

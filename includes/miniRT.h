@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/07 12:06:28 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/07 13:47:07 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,6 +210,7 @@ void			ray_tracer(t_image image, t_scene scene);
 t_ray			primary_ray(int x, int y, t_scene scene);
 double			intersect_sp(t_sphere *sp, t_ray ray);
 double			intersect_pl(t_plane *pl, t_ray ray);
+double			intersect_sq(t_square *sq, t_ray ray);
 
 t_intersection	init_intersection(void);
 t_bool			found_intersection(t_ray prim_ray, t_scene scene, \
