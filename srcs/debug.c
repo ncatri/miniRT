@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:35:16 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/06 09:15:26 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/07 12:07:52 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	print_objlist(t_scene scene)
 			print_sphere(*(obj->u.sp));	
 		else if (obj->type == PLANE)
 			print_plane(*(obj->u.pl));
+		else if (obj->type == SQUARE)
+			print_square(*(obj->u.sq));
 		i++;
 		cursor = cursor->next;
 	}
@@ -65,6 +67,18 @@ void	print_camera(t_camera *cam)
 	printf("%.1f\n", cam->fov);
 	print_matrix44d(cam->c2w_matrix);
 	printf("----\n");
+}
+
+void	print_square(t_square sq)
+{
+	printf("\tposition --> ");
+	print_coord(sq.position);
+	printf("\torientation --> ");
+	print_coord(sq.orientation);
+	printf("\tside length --> %.2f\n", sq.side);
+	printf("\tcolor --> ");
+	print_color(sq.color);
+	print_matrix44d(sq.coord_matrix);
 }
 	
 

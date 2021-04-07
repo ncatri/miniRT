@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/06 10:20:25 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/07 12:06:28 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 typedef int t_bool;
 
-enum e_obj {SPHERE, PLANE, TRIANGLE};
+enum e_obj {SPHERE, PLANE, SQUARE, TRIANGLE};
 
 typedef struct s_mlx
 {
@@ -89,6 +89,15 @@ typedef struct s_sphere
 	t_color			color;
 }					t_sphere;
 
+typedef struct	s_square
+{
+	t_coordinates	position;
+	t_coordinates	orientation;
+	double			side;
+	t_color			color;
+	double			coord_matrix[4][4];
+}				t_square;
+
 typedef struct s_camera
 {
 	t_coordinates	position;
@@ -109,6 +118,7 @@ union u_objects
 {
 	t_sphere	*sp;
 	t_plane		*pl;
+	t_square	*sq;
 };	
 
 typedef struct s_object
@@ -255,6 +265,8 @@ void			set_sphere_object(t_scene *scene, t_sphere *sphere);
 void			parse_plane(char *line, t_scene *scene);
 void			set_plane_object(t_scene *scene, t_plane *plane);
 void			parse_square(char *line, t_scene *scene);
+void			set_square_object(t_scene *scene, t_square *square);
+void			set_coordmatrix(t_square *sq);
 void			parse_cylinder(char *line, t_scene *scene);
 void			parse_triangle(char *line, t_scene *scene);
 
@@ -265,6 +277,7 @@ void			print_coord(t_coordinates coord);
 void			print_color(t_color col);
 void			print_sphere(t_sphere sp);
 void			print_plane(t_plane pl);
+void			print_square(t_square sq);
 void			print_camera(t_camera *cam);
 
 #endif
