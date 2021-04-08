@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 11:11:45 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/07 13:14:09 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/08 08:56:28 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ void	parse_square(char *line, t_scene *scene)
 			set_error(scene, E_INVAL);
 		else if (fabs(get_norm2(square->orientation) - 1) > 0.01)
 			set_error(scene, E_NOT_NORMED);
-		set_coordmatrix(square);
+//		set_coordmatrix(square);
+		set_orientation_vectors(square);
 		set_square_object(scene, square);
 	}
 	else
@@ -108,6 +109,19 @@ void	set_square_object(t_scene *scene, t_square *square)
 	}
 	else
 		set_error(scene, E_MEM);
+}
+
+void	set_orientation_vectors(t_square *sq)
+{
+	t_coordinates	tmp;
+
+	if (is_equal(sq->orientation, set_coordinates(0, 1, 0)) ||
+			is_equal(sq->orientation, set_coordinates(0, -1, 0)))
+		tmp = set_coordinates(0, 0, 1);
+	else
+		tmp = set_coordinates(0, 1, 0);
+	sq->right = normalized(cross_product(tmp, sq->orientation));
+	sq->up = normalized(cross_product(sq->orientation, sq->right));
 }
 
 void	set_coordmatrix(t_square *sq)

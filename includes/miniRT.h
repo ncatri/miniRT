@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/07 13:47:07 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/08 07:34:43 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ typedef struct	s_square
 {
 	t_coordinates	position;
 	t_coordinates	orientation;
+	t_coordinates	up;
+	t_coordinates	right;
 	double			side;
 	t_color			color;
 	double			coord_matrix[4][4];
@@ -268,6 +270,7 @@ void			set_plane_object(t_scene *scene, t_plane *plane);
 void			parse_square(char *line, t_scene *scene);
 void			set_square_object(t_scene *scene, t_square *square);
 void			set_coordmatrix(t_square *sq);
+void			set_orientation_vectors(t_square *sq);
 void			parse_cylinder(char *line, t_scene *scene);
 void			parse_triangle(char *line, t_scene *scene);
 

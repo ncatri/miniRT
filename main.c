@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:39:08 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/07 12:11:47 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/08 09:12:00 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ int main(int argc, char **argv)
 	print_camera(cam);
 	print_objlist(scene);
 	
-	print_coord(scene.ambient.intensity);
 	display_something(scene);
 }

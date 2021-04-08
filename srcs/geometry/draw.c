@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/07 13:51:54 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/08 11:20:09 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ray_tracer(t_image image, t_scene scene)
 			if (found_intersection(ray, scene, &inter))
 			{
 				set_intersection(ray, scene, &inter);
-				compute_shading(scene, ray, &inter);
+			//	compute_shading(scene, ray, &inter);
 				pixel_put_image(image, i, j, inter.color);
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:35:16 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/07 12:07:52 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/08 09:01:15 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,14 @@ void	print_square(t_square sq)
 	print_coord(sq.position);
 	printf("\torientation --> ");
 	print_coord(sq.orientation);
+	printf("\tright --> ");
+	print_coord(sq.right);
+	printf("\tup --> ");
+	print_coord(sq.up);
 	printf("\tside length --> %.2f\n", sq.side);
 	printf("\tcolor --> ");
 	print_color(sq.color);
-	print_matrix44d(sq.coord_matrix);
+//	print_matrix44d(sq.coord_matrix);
 }
 	
 
