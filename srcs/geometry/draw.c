@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/08 11:20:09 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 09:43:53 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ray_tracer(t_image image, t_scene scene)
 			if (found_intersection(ray, scene, &inter))
 			{
 				set_intersection(ray, scene, &inter);
-			//	compute_shading(scene, ray, &inter);
+				compute_shading(scene, ray, &inter);
 				pixel_put_image(image, i, j, inter.color);
 			}
 		}
@@ -128,20 +128,20 @@ void	set_intersection(t_ray prim_ray, t_scene scene, t_intersection *inter)
 	(void)scene;
 	inter->color = get_obj_color(inter->obj); 
 	inter->p_hit = add(prim_ray.origin, scalar_mult(inter->min_dist, prim_ray.direction));
-	inter->norm_hit = get_normal(inter);
-	inter->p_hit = add(scalar_mult(0.01, inter->norm_hit), inter->p_hit);
+	inter->norm_hit = get_normal(inter, prim_ray);
+	inter->p_hit = add(scalar_mult(ACNEA, inter->norm_hit), inter->p_hit);
 }
 
-t_coordinates	get_normal(t_intersection *inter)
+t_coordinates	get_normal(t_intersection *inter, t_ray prim_ray)
 {
 	t_coordinates	normal;
 
 	if (inter->obj->type == SPHERE)
 		normal = normalized(substract(inter->p_hit, inter->obj->u.sp->centre));
 	else if (inter->obj->type == PLANE)
-		normal = inter->obj->u.pl->orientation;
+		normal = get_plane_normal(inter->obj->u.pl, prim_ray);
 	else if (inter->obj->type == SQUARE)
-		normal = inter->obj->u.sq->orientation;
+		normal = get_square_normal(inter->obj->u.sq, prim_ray);
 	else
 		normal = set_coordinates(0, 0, 0);
 	return (normalized(normal));

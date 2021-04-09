@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/08 07:34:43 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 10:51:35 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 # define WINDOW_TITLE "The dankest miniRT"
 # define SHININESS (10)
+# define ACNEA (0.01)
 
 typedef int t_bool;
 
@@ -212,7 +213,9 @@ void			ray_tracer(t_image image, t_scene scene);
 t_ray			primary_ray(int x, int y, t_scene scene);
 double			intersect_sp(t_sphere *sp, t_ray ray);
 double			intersect_pl(t_plane *pl, t_ray ray);
+t_coordinates	get_plane_normal(t_plane *plane, t_ray ray);
 double			intersect_sq(t_square *sq, t_ray ray);
+t_coordinates	get_square_normal(t_square *square, t_ray ray);
 
 t_intersection	init_intersection(void);
 t_bool			found_intersection(t_ray prim_ray, t_scene scene, \
@@ -221,7 +224,7 @@ void			set_intersection(t_ray prim_ray, t_scene scene, \
 		t_intersection *inter);
 double			get_obj_intersect(t_object *obj, t_ray ray);
 t_color			get_obj_color(t_object *obj);
-t_coordinates	get_normal(t_intersection *inter);
+t_coordinates	get_normal(t_intersection *inter, t_ray ray);
 
 int				iter_cur_cam(t_scene *scene);
 
@@ -269,7 +272,6 @@ void			parse_plane(char *line, t_scene *scene);
 void			set_plane_object(t_scene *scene, t_plane *plane);
 void			parse_square(char *line, t_scene *scene);
 void			set_square_object(t_scene *scene, t_square *square);
-void			set_coordmatrix(t_square *sq);
 void			set_orientation_vectors(t_square *sq);
 void			parse_cylinder(char *line, t_scene *scene);
 void			parse_triangle(char *line, t_scene *scene);

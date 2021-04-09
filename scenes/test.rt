@@ -16,7 +16,10 @@ pl   0,-30,0   0,1,0   176,196,222
 pl -100,0,0		1,0,0	253,245,230
 
 #old lace, vertical right wall
-pl 100,0,0		-1,0,0	253,245,230
+pl 100,0,0		1,0,0	253,245,230
 
 #light steel blue, horizontal ceiling
 pl   0,100,0   0,-1,0   176,196,222 
+
+#silver, background wall
+pl	0,0,-500	0,0,1	192,192,192
