@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:53:58 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/08 09:42:23 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 11:14:16 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,9 @@ void	parse_line(char *line, t_scene *scene)
 /*
 	else if (ft_strncmp(line, "cy ", 3) == 0)
 		parse_cylinder(line, scene);
-	else if (ft_strncmp(line, "tr ", 3) == 0)
-		parse_triangle(line, scene);
 */
+	else if (ft_strncmp(line, "tr", 2) == 0)
+		parse_triangle(line, scene);
 	else if (line[0] != '\0' && line[0] != '#')
 		set_error(scene, E_BADLINE);
 }

@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/09 10:51:35 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 13:56:28 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,18 @@ typedef struct	s_square
 	double			coord_matrix[4][4];
 }				t_square;
 
+typedef	struct	s_triangle
+{
+	t_coordinates	p1;
+	t_coordinates	p2;
+	t_coordinates	p3;
+	t_coordinates	v12;
+	t_coordinates	v23;
+	t_coordinates	v31;
+	t_coordinates	normal;
+	t_color			color;
+}				t_triangle;
+
 typedef struct s_camera
 {
 	t_coordinates	position;
@@ -122,6 +134,7 @@ union u_objects
 	t_sphere	*sp;
 	t_plane		*pl;
 	t_square	*sq;
+	t_triangle	*tr;
 };	
 
 typedef struct s_object
@@ -216,6 +229,9 @@ double			intersect_pl(t_plane *pl, t_ray ray);
 t_coordinates	get_plane_normal(t_plane *plane, t_ray ray);
 double			intersect_sq(t_square *sq, t_ray ray);
 t_coordinates	get_square_normal(t_square *square, t_ray ray);
+double			intersect_tr(t_triangle *tr, t_ray ray);
+t_bool			is_hit_inside_triangle(t_coordinates point, t_triangle *tr);
+t_coordinates	get_triangle_normal(t_triangle *triangle, t_ray ray);
 
 t_intersection	init_intersection(void);
 t_bool			found_intersection(t_ray prim_ray, t_scene scene, \
@@ -275,6 +291,8 @@ void			set_square_object(t_scene *scene, t_square *square);
 void			set_orientation_vectors(t_square *sq);
 void			parse_cylinder(char *line, t_scene *scene);
 void			parse_triangle(char *line, t_scene *scene);
+void			set_triangle_vectors(t_triangle *triangle);
+void			push_triangle_objlist(t_scene *scene, t_triangle *triangle);
 
 /* debug */
 
@@ -285,5 +303,6 @@ void			print_sphere(t_sphere sp);
 void			print_plane(t_plane pl);
 void			print_square(t_square sq);
 void			print_camera(t_camera *cam);
+void			print_triangle(t_triangle tr);
 
 #endif

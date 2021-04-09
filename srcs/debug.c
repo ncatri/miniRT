@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:35:16 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/08 09:01:15 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 13:01:29 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	print_objlist(t_scene scene)
 			print_plane(*(obj->u.pl));
 		else if (obj->type == SQUARE)
 			print_square(*(obj->u.sq));
+		else if (obj->type == TRIANGLE)
+			print_triangle(*(obj->u.tr));
 		i++;
 		cursor = cursor->next;
 	}
@@ -82,9 +84,27 @@ void	print_square(t_square sq)
 	printf("\tside length --> %.2f\n", sq.side);
 	printf("\tcolor --> ");
 	print_color(sq.color);
-//	print_matrix44d(sq.coord_matrix);
 }
-	
+
+void	print_triangle(t_triangle tr)
+{
+	printf("\tp1 --> ");
+	print_coord(tr.p1);
+	printf("\tp2 --> ");
+	print_coord(tr.p2);
+	printf("\tp3 --> ");
+	print_coord(tr.p3);
+	printf("\tcolor --> ");
+	print_color(tr.color);
+	printf("\tv12 --> ");
+	print_coord(tr.v12);
+	printf("\tv23 --> ");
+	print_coord(tr.v23);
+	printf("\tv31 --> ");
+	print_coord(tr.v31);
+	printf("\tnormal --> ");
+	print_coord(tr.normal);
+}
 
 void	print_coord(t_coordinates coord)
 {

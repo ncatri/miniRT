@@ -7,10 +7,12 @@ SRCS_LIST =	graphic_interface/window.c \
 			math/sphere.c \
 			math/plane.c \
 			math/square.c \
+			math/triangle.c \
 			geometry/draw.c \
 			parsing/parser.c \
 			parsing/parse_objects.c \
 			parsing/parse_objects2.c \
+			parsing/parse_triangle.c \
 			parsing/parse_utils.c \
 			parsing/parse_utils2.c \
 			parsing/data_extractors.c \
