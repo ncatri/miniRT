@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/09 14:01:39 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/11 15:26:15 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ray_tracer(t_image image, t_scene scene)
 			if (found_intersection(ray, scene, &inter))
 			{
 				set_intersection(ray, scene, &inter);
-				compute_shading(scene, ray, &inter);
+		//		compute_shading(scene, ray, &inter);
 				pixel_put_image(image, i, j, inter.color);
 			}
 		}
@@ -109,6 +109,8 @@ double	get_obj_intersect(t_object *obj, t_ray ray)
 		return (intersect_sq(obj->u.sq, ray));
 	else if(obj->type == TRIANGLE)
 		return (intersect_tr(obj->u.tr, ray));
+	else if (obj->type == CYLINDER)
+		return (intersect_cy(obj->u.cy, ray));
 	else
 		return (INFINITY);
 }
@@ -123,6 +125,8 @@ t_color	get_obj_color(t_object *obj)
 		return (obj->u.sq->color);
 	else if (obj->type == TRIANGLE)
 		return (obj->u.tr->color);
+	else if (obj->type == CYLINDER)
+		return (obj->u.cy->color);
 	else
 		return (set_color(125,125,200));
 }

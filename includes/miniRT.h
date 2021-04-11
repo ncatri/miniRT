@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/11 12:57:15 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/11 15:21:13 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,6 +241,10 @@ t_coordinates	get_square_normal(t_square *square, t_ray ray);
 double			intersect_tr(t_triangle *tr, t_ray ray);
 t_bool			is_hit_inside_triangle(t_coordinates point, t_triangle *tr);
 t_coordinates	get_triangle_normal(t_triangle *triangle, t_ray ray);
+double			intersect_cy(t_cylinder *cy, t_ray ray);
+double			coef_a(t_cylinder cy, t_ray ray);
+double			coef_b(t_cylinder cy, t_ray ray);
+double			coef_c(t_cylinder cy, t_ray ray);
 
 t_intersection	init_intersection(void);
 t_bool			found_intersection(t_ray prim_ray, t_scene scene, \
