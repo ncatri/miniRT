@@ -17,6 +17,7 @@ SRCS_LIST =	graphic_interface/window.c \
 			parsing/parse_utils2.c \
 			parsing/data_extractors.c \
 			parsing/data_extractors2.c \
+			parsing/parse_cylinder.c \
 			debug.c \
 			shading.c \
 			colors.c \

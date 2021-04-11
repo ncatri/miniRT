@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:53:58 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/09 11:14:16 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/11 12:52:37 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ void	parse_line(char *line, t_scene *scene)
 		parse_resolution(line, scene);
 	else if (ft_strncmp(line, "A", 1) == 0)
 		parse_ambient_light(line, scene);
+	else if (ft_strncmp(line, "cy", 2) == 0)
+		parse_cylinder(line, scene);
 	else if (ft_strncmp(line, "c", 1) == 0)
 		parse_camera(line, scene);
 	else if (ft_strncmp(line, "l", 1) == 0)
@@ -108,10 +110,6 @@ void	parse_line(char *line, t_scene *scene)
 		parse_plane(line, scene);
 	else if (ft_strncmp(line, "sq", 2) == 0)
 		parse_square(line, scene);
-/*
-	else if (ft_strncmp(line, "cy ", 3) == 0)
-		parse_cylinder(line, scene);
-*/
 	else if (ft_strncmp(line, "tr", 2) == 0)
 		parse_triangle(line, scene);
 	else if (line[0] != '\0' && line[0] != '#')

@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/11 09:37:31 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/11 12:57:15 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 typedef int t_bool;
 
-enum e_obj {SPHERE, PLANE, SQUARE, TRIANGLE};
+enum e_obj {SPHERE, PLANE, SQUARE, TRIANGLE, CYLINDER};
 
 typedef struct s_mlx
 {
@@ -113,6 +113,15 @@ typedef	struct	s_triangle
 	t_color			color;
 }				t_triangle;
 
+typedef	struct	s_cylinder
+{
+	t_coordinates	position;
+	t_coordinates	orientation;
+	double			diameter;
+	double			height;
+	t_color			color;
+}				t_cylinder;
+
 typedef struct s_camera
 {
 	t_coordinates	position;
@@ -135,6 +144,7 @@ union u_objects
 	t_plane		*pl;
 	t_square	*sq;
 	t_triangle	*tr;
+	t_cylinder	*cy;
 };	
 
 typedef struct s_object
@@ -290,6 +300,7 @@ void			parse_square(char *line, t_scene *scene);
 void			set_square_object(t_scene *scene, t_square *square);
 void			set_orientation_vectors(t_square *sq);
 void			parse_cylinder(char *line, t_scene *scene);
+void			push_cylinder_objlist(t_scene *scene, t_cylinder *cy);
 void			parse_triangle(char *line, t_scene *scene);
 void			set_triangle_vectors(t_triangle *triangle);
 void			push_triangle_objlist(t_scene *scene, t_triangle *triangle);
@@ -304,5 +315,6 @@ void			print_plane(t_plane pl);
 void			print_square(t_square sq);
 void			print_camera(t_camera *cam);
 void			print_triangle(t_triangle tr);
+void			print_cylinder(t_cylinder cy);
 
 #endif

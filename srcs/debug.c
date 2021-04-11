@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:35:16 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/09 13:01:29 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/11 12:58:09 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	print_objlist(t_scene scene)
 			print_square(*(obj->u.sq));
 		else if (obj->type == TRIANGLE)
 			print_triangle(*(obj->u.tr));
+		else if (obj->type == CYLINDER)
+			print_cylinder(*(obj->u.cy));
 		i++;
 		cursor = cursor->next;
 	}
@@ -105,6 +107,18 @@ void	print_triangle(t_triangle tr)
 	printf("\tnormal --> ");
 	print_coord(tr.normal);
 }
+
+void	print_cylinder(t_cylinder cy)
+{
+	printf("\tposition --> ");
+	print_coord(cy.position);
+	printf("\torientation --> ");
+	print_coord(cy.orientation);
+	printf("\tdiameter --> %.2f\n", cy.diameter);
+	printf("\theight --> %.2f\n", cy.height);
+	printf("\tcolor --> ");
+	print_color(cy.color);
+}	
 
 void	print_coord(t_coordinates coord)
 {
