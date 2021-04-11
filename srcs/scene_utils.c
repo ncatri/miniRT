@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 10:09:05 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/02 10:09:36 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/11 09:37:33 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,20 @@ t_bool	iterate_current_light(t_scene *scene)
 		return (TRUE);
 	}
 	return (FALSE);
+}
+
+void	free_all(t_scene *scene)
+{
+	ft_lstclear(&scene->camera_list, free);
+	ft_lstclear(&scene->light_list, free);
+	ft_lstclear(&scene->objects_list, free_obj);
+}
+
+void	free_obj(void *content)
+{
+	t_object	*obj;
+
+	obj = content;
+	free(obj->u.tr);
+	free(content);
 }

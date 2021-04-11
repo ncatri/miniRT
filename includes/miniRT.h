@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/09 13:56:28 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/11 09:37:31 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,6 @@ typedef struct s_scene
 	t_list		*light_list;
 	t_list		*cur_light;
 	t_list		*objects_list;
-	t_list		*cur_object;
 
 	t_bool		valid;
 	char		*err_msg;
@@ -263,6 +262,7 @@ t_color			add_colors(t_color color1, t_color color2);
 t_bool			check_complete(t_scene *scene);
 void			set_error(t_scene *scene, char *message);
 void			free_all(t_scene *scene);
+void			free_obj(void *content);
 char			**get_split(char *line, char *sep, int size, t_scene *scene);
 t_bool			check_args(int argc, char **argv);
 double			get_positive_val(char *str);
