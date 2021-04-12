@@ -1,5 +1,11 @@
 #include "../../includes/miniRT.h"
 
+/*
+ * Method is from:
+ * https://mrl.cs.nyu.edu/~dzorin/rend05/lecture2.pdf
+ *
+*/
+
 double	intersect_cy(t_cylinder *cy, t_ray ray)
 {
 	t_polynome2deg	poly;
@@ -58,7 +64,7 @@ double	coef_c(t_cylinder cy, t_ray ray)
 	t_coordinates	tmp_v1;
 	t_coordinates	delta_p;
 
-	delta_p = substract(ray.origin, cy.orientation);
+	delta_p = substract(ray.origin, cy.position);
 	tmp_d = dot(delta_p, cy.orientation);
 	tmp_v1 = scalar_mult(tmp_d, cy.orientation);
 	tmp_v1 = substract(delta_p, tmp_v1);
