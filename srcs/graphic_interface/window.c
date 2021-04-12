@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 08:06:58 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/19 15:29:44 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 11:21:44 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ void	display_something(t_scene scene)
 	image = initialize_image(scene.mlx, scene.width, scene.height);
 	ray_tracer(image, scene);
 	mlx_put_image_to_window(scene.mlx.connection_graphic_server, scene.mlx.window_id, image.id, 0, 0);
+	display_mouse_position_on_click(scene.mlx);
 	mlx_loop(scene.mlx.connection_graphic_server);
 }

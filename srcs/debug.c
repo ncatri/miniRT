@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:35:16 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/11 12:58:09 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 11:15:57 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	print_cylinder(t_cylinder cy)
 	print_coord(cy.position);
 	printf("\torientation --> ");
 	print_coord(cy.orientation);
-	printf("\tdiameter --> %.2f\n", cy.diameter);
+	printf("\tdiameter --> %.2f\n", cy.radius * 2);
 	printf("\theight --> %.2f\n", cy.height);
 	printf("\tcolor --> ");
 	print_color(cy.color);
@@ -145,3 +145,17 @@ void	print_matrix44d(double matrix[4][4])
 		printf("|\n");
 	}
 }
+
+int		display_mouse_position_on_click(t_mlx mlx)
+{
+	mlx_mouse_hook(mlx.window_id, mouse_hook_display_position_and_button, &mlx);
+	return (0);
+}
+
+int		mouse_hook_display_position_and_button(int button, int x, int y, t_mlx *mlx)
+{
+	printf("button: %d, x: %d, y: %d\n", button, x, y);
+	(void)mlx;
+	return (0);
+}
+

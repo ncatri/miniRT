@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/11 15:21:13 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 11:17:52 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,9 @@ typedef	struct	s_cylinder
 {
 	t_coordinates	position;
 	t_coordinates	orientation;
-	double			diameter;
+	double			radius;
 	double			height;
+	t_coordinates	top_cap;
 	t_color			color;
 }				t_cylinder;
 
@@ -242,6 +243,7 @@ double			intersect_tr(t_triangle *tr, t_ray ray);
 t_bool			is_hit_inside_triangle(t_coordinates point, t_triangle *tr);
 t_coordinates	get_triangle_normal(t_triangle *triangle, t_ray ray);
 double			intersect_cy(t_cylinder *cy, t_ray ray);
+double			intersect_infinite_cy(t_cylinder *cy, t_ray ray);
 double			coef_a(t_cylinder cy, t_ray ray);
 double			coef_b(t_cylinder cy, t_ray ray);
 double			coef_c(t_cylinder cy, t_ray ray);
@@ -304,6 +306,9 @@ void			parse_square(char *line, t_scene *scene);
 void			set_square_object(t_scene *scene, t_square *square);
 void			set_orientation_vectors(t_square *sq);
 void			parse_cylinder(char *line, t_scene *scene);
+void			fill_cylinder_values(t_cylinder *cy, char **split);
+void			check_cylinder_values(t_cylinder *cy, t_scene *scene);
+void			complete_cylinder_values(t_cylinder *cy);
 void			push_cylinder_objlist(t_scene *scene, t_cylinder *cy);
 void			parse_triangle(char *line, t_scene *scene);
 void			set_triangle_vectors(t_triangle *triangle);
@@ -320,5 +325,8 @@ void			print_square(t_square sq);
 void			print_camera(t_camera *cam);
 void			print_triangle(t_triangle tr);
 void			print_cylinder(t_cylinder cy);
+
+int				display_mouse_position_on_click(t_mlx mlx);
+int				mouse_hook_display_position_and_button(int button, int x, int y, t_mlx *mlx);
 
 #endif

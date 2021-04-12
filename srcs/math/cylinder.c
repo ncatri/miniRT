@@ -8,6 +8,25 @@
 
 double	intersect_cy(t_cylinder *cy, t_ray ray)
 {
+	double			t;
+	t_coordinates	hit;
+	double			proj;
+
+	t = intersect_infinite_cy(cy, ray);
+	if (t != INFINITY)
+	{
+		hit = scalar_mult(t, ray.direction);
+		hit = substract(hit, cy->position);
+		proj = dot(hit, cy->orientation);
+		if (proj < 0 || proj > cy->height)
+			return (INFINITY);
+	}
+
+	return (t);
+}
+
+double	intersect_infinite_cy(t_cylinder *cy, t_ray ray)
+{
 	t_polynome2deg	poly;
 	
 	poly.a = coef_a(*cy, ray);
@@ -69,6 +88,6 @@ double	coef_c(t_cylinder cy, t_ray ray)
 	tmp_v1 = scalar_mult(tmp_d, cy.orientation);
 	tmp_v1 = substract(delta_p, tmp_v1);
 	tmp_d = dot(tmp_v1, tmp_v1);
-	tmp_d = tmp_d - cy.diameter * cy.diameter;
+	tmp_d = tmp_d - cy.radius * cy.radius;
 	return (tmp_d);
 }
