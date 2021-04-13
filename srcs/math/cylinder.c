@@ -15,13 +15,12 @@ double	intersect_cy(t_cylinder *cy, t_ray ray)
 	t = intersect_infinite_cy(cy, ray);
 	if (t != INFINITY)
 	{
-		hit = scalar_mult(t, ray.direction);
+		hit = add(ray.origin, scalar_mult(t, ray.direction));
 		hit = substract(hit, cy->position);
 		proj = dot(hit, cy->orientation);
 		if (proj < 0 || proj > cy->height)
 			return (INFINITY);
 	}
-
 	return (t);
 }
 
