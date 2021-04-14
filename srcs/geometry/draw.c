@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/13 16:23:35 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/14 15:45:38 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ray_tracer(t_image image, t_scene scene)
 			if (found_intersection(ray, scene, &inter))
 			{
 				set_intersection(ray, scene, &inter);
-		//		compute_shading(scene, ray, &inter);
+				compute_shading(scene, ray, &inter);
 				pixel_put_image(image, i, j, inter.color);
 			}
 		}
@@ -187,6 +187,8 @@ t_coordinates	get_normal(t_intersection *inter, t_ray prim_ray)
 		normal = get_square_normal(inter->obj->u.sq, prim_ray);
 	else if (inter->obj->type == TRIANGLE)
 		normal = get_triangle_normal(inter->obj->u.tr, prim_ray);
+	else if (inter->obj->type == CYLINDER)
+		normal = get_cylinder_normal(inter->obj->u.cy, prim_ray, inter);
 	else
 		normal = set_coordinates(0, 0, 0);
 	return (normalized(normal));

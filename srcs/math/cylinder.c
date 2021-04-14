@@ -8,85 +8,82 @@
 
 double	intersect_cy(t_cylinder *cy, t_ray ray)
 {
-	double			t;
+	t_polynome2deg	poly;
+
+	poly = solve_infinite_cy(cy, ray);
+	if (poly.delta < 0 || poly.sol1 < 0)
+		return (INFINITY);
+	check_if_between_planes(&poly.sol1, cy, ray);
+	check_if_between_planes(&poly.sol2, cy, ray);
+	check_if_hit_caps(&poly.sol1, cy, ray);
+	check_if_hit_caps(&poly.sol2, cy, ray);
+	return (fmin(poly.sol1, poly.sol2));
+}
+
+void	check_if_between_planes(double	*t, t_cylinder *cy, t_ray ray)
+{
 	t_coordinates	hit;
 	double			proj;
 
-	t = intersect_infinite_cy(cy, ray);
-	if (t != INFINITY)
-	{
-		hit = add(ray.origin, scalar_mult(t, ray.direction));
-		hit = substract(hit, cy->position);
-		proj = dot(hit, cy->orientation);
-		if (proj < 0 || proj > cy->height)
-			return (INFINITY);
-	}
-	return (t);
+	hit = add(ray.origin, scalar_mult(*t, ray.direction));
+	hit = substract(hit, cy->position);
+	proj = dot(hit, cy->orientation);
+	if (proj < 0 || proj > cy->height)
+		*t = INFINITY;
 }
 
-double	intersect_infinite_cy(t_cylinder *cy, t_ray ray)
+void	check_if_hit_caps(double *t, t_cylinder *cy, t_ray ray)
+{
+	double			t_top_cap;
+	double			t_bottom_cap;
+	t_coordinates	hit_top;
+	t_coordinates	hit_bottom;
+
+	t_top_cap = intersect_pl(&cy->top_cap, ray);
+	hit_top = add(ray.origin, scalar_mult(t_top_cap, ray.direction));
+	if (get_norm2(substract(hit_top, cy->top_cap.position)) \
+			> cy->radius * cy->radius)
+		t_top_cap = INFINITY;
+	t_bottom_cap = intersect_pl(&cy->bottom_cap, ray);
+	hit_bottom = add(ray.origin, scalar_mult(t_bottom_cap, ray.direction));
+	if (get_norm2(substract(hit_bottom, cy->bottom_cap.position)) \
+			> cy->radius * cy->radius)
+		t_bottom_cap = INFINITY;
+	if (t_top_cap < *t || t_bottom_cap < *t)
+		*t = fmin(t_top_cap, t_bottom_cap);
+}	
+
+t_coordinates	get_cylinder_normal(t_cylinder *cy, t_ray ray,
+		t_intersection *inter)
+{
+	t_coordinates	normal;
+	t_coordinates	hit_vec;
+	t_coordinates	axis_proj_vec;
+	double			proj;
+
+	hit_vec = substract(inter->p_hit, cy->position);
+	proj = dot(cy->orientation, hit_vec);
+	axis_proj_vec = add(cy->position, scalar_mult(proj, cy->orientation));
+	if (get_norm2(substract(inter->p_hit, axis_proj_vec)) \
+			- cy->radius * cy->radius < PRECISION)
+		normal = normalized(substract(inter->p_hit, axis_proj_vec));
+	else
+		normal = get_plane_normal(&cy->top_cap, ray);
+	return (normal);
+}
+
+t_polynome2deg	solve_infinite_cy(t_cylinder *cy, t_ray ray)
 {
 	t_polynome2deg	poly;
-	
+
 	poly.a = coef_a(*cy, ray);
 	poly.b = coef_b(*cy, ray);
 	poly.c = coef_c(*cy, ray);
 	poly.delta = poly.b * poly.b - 4 * poly.a * poly.c;
-	if (poly.delta < 0)
-		return (INFINITY);
-	poly.sol1 = (-poly.b + sqrt(poly.delta)) / (2 * poly.a);
-	poly.sol2 = (-poly.b - sqrt(poly.delta)) / (2 * poly.a);
-	if (poly.sol1 < 0)
-		return (INFINITY);
-	if (poly.sol2 > 0)
-		return (poly.sol2);
-	else
-		return (poly.sol1);
-}
-
-double	coef_a(t_cylinder cy, t_ray ray)
-{
-	double			tmp_d;
-	t_coordinates	tmp_v;
-
-	tmp_d = dot(ray.direction, cy.orientation);
-	tmp_v = scalar_mult(tmp_d, cy.orientation);
-	tmp_v = substract(ray.direction, tmp_v);
-	tmp_d = dot(tmp_v, tmp_v);
-	return (tmp_d);
-}
-
-double coef_b(t_cylinder cy, t_ray ray)
-{
-	double			tmp_d;
-	t_coordinates	tmp_v;
-	t_coordinates	delta_p;
-	t_coordinates	tmp_v2;
-
-
-	tmp_d = dot(ray.direction, cy.orientation);
-	tmp_v = scalar_mult(tmp_d, cy.orientation);
-	tmp_v = substract(ray.direction, tmp_v);
-	
-	delta_p = substract(ray.origin, cy.position);
-	tmp_d = dot(delta_p, cy.orientation);
-	tmp_v2 = scalar_mult(tmp_d, cy.orientation);
-	tmp_v2 = substract(delta_p, tmp_v2);
-	tmp_d = 2 * dot(tmp_v, tmp_v2);
-	return (tmp_d);
-}
-
-double	coef_c(t_cylinder cy, t_ray ray)
-{
-	double			tmp_d;
-	t_coordinates	tmp_v1;
-	t_coordinates	delta_p;
-
-	delta_p = substract(ray.origin, cy.position);
-	tmp_d = dot(delta_p, cy.orientation);
-	tmp_v1 = scalar_mult(tmp_d, cy.orientation);
-	tmp_v1 = substract(delta_p, tmp_v1);
-	tmp_d = dot(tmp_v1, tmp_v1);
-	tmp_d = tmp_d - cy.radius * cy.radius;
-	return (tmp_d);
+	if (poly.delta >= 0)
+	{
+		poly.sol1 = (-poly.b + sqrt(poly.delta)) / (2 * poly.a);
+		poly.sol2 = (-poly.b - sqrt(poly.delta)) / (2 * poly.a);
+	}
+	return (poly);
 }

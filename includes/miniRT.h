@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/12 11:17:52 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/14 16:06:16 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
 
 # define WINDOW_TITLE "The dankest miniRT"
 # define SHININESS (10)
-# define ACNEA (0.01)
+# define ACNEA (0.05)
+# define PRECISION (0.01)
 
 typedef int t_bool;
 
@@ -119,7 +120,8 @@ typedef	struct	s_cylinder
 	t_coordinates	orientation;
 	double			radius;
 	double			height;
-	t_coordinates	top_cap;
+	t_plane			top_cap;
+	t_plane			bottom_cap;
 	t_color			color;
 }				t_cylinder;
 
@@ -243,10 +245,14 @@ double			intersect_tr(t_triangle *tr, t_ray ray);
 t_bool			is_hit_inside_triangle(t_coordinates point, t_triangle *tr);
 t_coordinates	get_triangle_normal(t_triangle *triangle, t_ray ray);
 double			intersect_cy(t_cylinder *cy, t_ray ray);
-double			intersect_infinite_cy(t_cylinder *cy, t_ray ray);
 double			coef_a(t_cylinder cy, t_ray ray);
 double			coef_b(t_cylinder cy, t_ray ray);
 double			coef_c(t_cylinder cy, t_ray ray);
+t_polynome2deg	solve_infinite_cy(t_cylinder *cy, t_ray ray);
+void			check_if_between_planes(double *t, t_cylinder *cy, t_ray ray);
+void			check_if_hit_caps(double *t, t_cylinder *cy, t_ray ray);
+t_coordinates	get_cylinder_normal(t_cylinder *cy, t_ray ray,
+		t_intersection *inter);
 
 t_intersection	init_intersection(void);
 t_bool			found_intersection(t_ray prim_ray, t_scene scene, \

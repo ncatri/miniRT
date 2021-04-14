@@ -24,7 +24,11 @@ void	parse_cylinder(char *line, t_scene *scene)
 
 void	complete_cylinder_values(t_cylinder *cy)
 {
-	cy->top_cap = scalar_mult(cy->height, cy->orientation);
+	cy->top_cap.position = add(cy->position,
+			scalar_mult(cy->height, cy->orientation));
+	cy->top_cap.orientation = cy->orientation;
+	cy->bottom_cap.position = cy->position;
+	cy->bottom_cap.orientation = cy->orientation;
 }
 
 void	fill_cylinder_values(t_cylinder *cy, char **split)
