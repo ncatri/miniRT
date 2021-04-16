@@ -75,13 +75,3 @@ t_bool	str_isnumber(const char *str)
 	}
 	return (TRUE);
 }
-
-t_coordinates	set_light_intensity(t_color color, double ratio)
-{
-	t_coordinates rgb;
-
-	rgb.x = color.r / (double)255;
-	rgb.y = color.g / (double)255;
-	rgb.z = color.b / (double)255;
-	return (scalar_mult(ratio, rgb));
-}

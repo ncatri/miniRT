@@ -12,14 +12,19 @@ SRCS_LIST =	graphic_interface/window.c \
 			math/cylinder2.c \
 			geometry/draw.c \
 			parsing/parser.c \
-			parsing/parse_objects.c \
-			parsing/parse_objects2.c \
+			parsing/parse_resolution.c \
+			parsing/parse_ambient_light.c \
+			parsing/parse_camera.c \
+			parsing/parse_light.c \
+			parsing/parse_sphere.c \
+			parsing/parse_plane.c \
+			parsing/parse_square.c \
 			parsing/parse_triangle.c \
+			parsing/parse_cylinder.c \
 			parsing/parse_utils.c \
-			parsing/parse_utils2.c \
+			parsing/parse_errors.c \
 			parsing/data_extractors.c \
 			parsing/data_extractors2.c \
-			parsing/parse_cylinder.c \
 			debug.c \
 			shading.c \
 			colors.c \
