@@ -58,7 +58,7 @@ void	check_cylinder_values(t_cylinder *cy, t_scene *scene)
 	else if (fabs(get_norm2(cy->orientation) - 1) > 0.01)
 		set_error(scene, E_NOT_NORMED);
 }
-	
+
 void	push_cylinder_objlist(t_scene *scene, t_cylinder *cy)
 {
 	t_object	*obj;

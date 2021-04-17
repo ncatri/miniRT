@@ -1,3 +1,4 @@
+#include "../../includes/miniRT.h"
 
 void	parse_square(char *line, t_scene *scene)
 {
@@ -53,8 +54,8 @@ void	set_square_orientation_vectors(t_square *sq)
 {
 	t_coordinates	tmp;
 
-	if (is_equal(sq->orientation, set_coordinates(0, 1, 0)) ||
-			is_equal(sq->orientation, set_coordinates(0, -1, 0)))
+	if (is_equal(sq->orientation, set_coordinates(0, 1, 0)) \
+			|| is_equal(sq->orientation, set_coordinates(0, -1, 0)))
 		tmp = set_coordinates(0, 0, 1);
 	else
 		tmp = set_coordinates(0, 1, 0);

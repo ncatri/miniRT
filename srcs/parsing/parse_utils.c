@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:15:35 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/11 09:32:00 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 09:52:08 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	split_len(char **split)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (split[++i])

@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:39:08 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/12 11:20:05 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/15 10:47:54 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,4 @@ int main(int argc, char **argv)
 	print_objlist(scene);
 	
 	display_something(scene);
-//	display_mouse_position_on_click(scene.mlx);
 }

@@ -1,4 +1,4 @@
-#include "../../include/miniRT.h"
+#include "../../includes/miniRT.h"
 
 void	parse_light(char *line, t_scene *scene)
 {
@@ -27,7 +27,7 @@ light->color.value == -1)
 
 t_coordinates	set_light_intensity(t_color color, double ratio)
 {
-	t_coordinates rgb;
+	t_coordinates	rgb;
 
 	rgb.x = color.r / (double)255;
 	rgb.y = color.g / (double)255;
@@ -42,6 +42,6 @@ void	push_to_lightlist(t_scene *scene, t_light *light)
 	new = ft_lstnew(light);
 	if (new)
 		ft_lstadd_back(&scene->light_list, new);
-	else 
+	else
 		set_error(scene, E_MEM);
 }

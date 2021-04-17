@@ -32,11 +32,11 @@ void	push_to_camlist(t_scene *scene, t_camera *camera)
 	new = ft_lstnew(camera);
 	if (new)
 	{
-		ft_lstadd_back(&scene->light_list, new);
+		ft_lstadd_back(&scene->camera_list, new);
 		if (scene->cur_cam == NULL)
 			scene->cur_cam = scene->camera_list;
 	}
-	else 
+	else
 		set_error(scene, E_MEM);
 }
 

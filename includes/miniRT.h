@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/14 16:06:16 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 10:55:31 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ typedef struct s_object
 typedef struct s_scene
 {
 	t_mlx		mlx;
+	t_image		image;
 
 	int			width;
 	int			height;

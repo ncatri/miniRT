@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 08:06:58 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/12 11:21:44 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 10:56:01 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ void	set_mlx(t_scene *scene)
 int	key_hooks(int key, t_scene *scene)
 {
 	if (key == K_C)
-		printf("iter_cam goes here.\n");
+	{
+		iter_cur_cam(scene);
+	}
 	if (key == K_ESC)
 	{
 		free_all(scene);
@@ -38,8 +40,9 @@ int	key_hooks(int key, t_scene *scene)
 int	red_cross_quit(int key, t_scene *scene)
 {
 	(void)key;
-	(void)scene;
 	free_all(scene); //segfault
+	mlx_destroy_window(scene->mlx.connection_graphic_server,
+		scene->mlx.window_id);
 	exit(0);
 }
 
@@ -49,7 +52,7 @@ void	display_something(t_scene scene)
 
 	set_mlx(&scene);
 	mlx_key_hook(scene.mlx.window_id, key_hooks, &scene);
-	mlx_hook(scene.mlx.window_id, 17, 0, red_cross_quit, &scene.mlx);
+	mlx_hook(scene.mlx.window_id, 17, 0L, red_cross_quit, &scene.mlx);
 	image = initialize_image(scene.mlx, scene.width, scene.height);
 	ray_tracer(image, scene);
 	mlx_put_image_to_window(scene.mlx.connection_graphic_server, scene.mlx.window_id, image.id, 0, 0);

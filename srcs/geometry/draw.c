@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/14 15:45:38 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 10:55:21 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,16 +91,6 @@ t_ray	primary_ray(int i, int j, t_scene scene)
 	return (ray);
 }
 */
-int	iter_cur_cam(t_scene *scene)
-{
-	if (scene->camera_list == NULL || scene->cur_cam == NULL)
-		return (0);
-	if (scene->cur_cam->next == NULL)
-		scene->cur_cam = scene->camera_list;
-	else
-		scene->cur_cam = scene->cur_cam->next;
-	return (1);
-}
 
 t_intersection	init_intersection(void)
 {

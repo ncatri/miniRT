@@ -17,7 +17,8 @@ void	parse_ambient_light(char *line, t_scene *scene)
 		amb_light.color = get_color(split[2]);
 		if (amb_light.ratio == -1 || amb_light.color.value == -1)
 			set_error(scene, E_INVAL);
-		amb_light.intensity = set_light_intensity(amb_light.color, amb_light.ratio);
+		amb_light.intensity = set_light_intensity(amb_light.color,
+				amb_light.ratio);
 		scene->ambient = amb_light;
 		free_split(split);
 	}

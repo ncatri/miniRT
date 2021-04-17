@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:09:16 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/04 10:45:10 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 08:34:47 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double	get_ratio(char *str)
 {
-	double ratio;
+	double	ratio;
 
 	ratio = ft_atod(str);
 	if (!str_isnumber(str) || ratio < 0 || ratio > 1)
@@ -25,7 +25,7 @@ double	get_ratio(char *str)
 
 double	get_fov(char *str)
 {
-	double fov;
+	double	fov;
 
 	fov = ft_atod(str);
 	if (!str_isnumber(str) || fov < 0 || fov > 180)

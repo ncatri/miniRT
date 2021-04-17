@@ -42,6 +42,6 @@ void	push_sphere_objlist(t_scene *scene, t_sphere *sphere)
 		}
 		ft_lstadd_back(&scene->objects_list, new);
 	}
-	else 
+	else
 		set_error(scene, E_MEM);
 }
