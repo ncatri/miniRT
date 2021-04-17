@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 12:29:21 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/13 16:23:00 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 14:37:22 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ t_bool	is_equal(t_coordinates a, t_coordinates b)
 	double	epsilon;
 
 	epsilon = 0.001;
-	return (fabs(a.x -b.x) < epsilon && fabs(a.y - b.y) < epsilon
+	return (fabs(a.x -b.x) < epsilon && fabs(a.y - b.y) < epsilon \
 			&& fabs(a.z - b.z) < epsilon);
 }

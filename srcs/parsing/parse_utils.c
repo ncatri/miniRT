@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 13:15:35 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/17 09:52:08 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 13:25:19 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ t_scene	initialize_scene(void)
 {
 	t_scene	scene;
 
+	scene.rendered = FALSE;
 	scene.width = 0;
 	scene.height = 0;
 	scene.ambient.ratio = -1;

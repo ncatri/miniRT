@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 10:09:05 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/17 09:53:30 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 14:12:56 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@ t_bool	iterate_current_light(t_scene *scene)
 
 void	free_all(t_scene *scene)
 {
-/*	printf("scene->camera_list: %p\n", &scene->camera_list);
-	printf("scene->light_list: %p\n", &scene->light_list);
-	printf("scene->objects_list: %p\n", &scene->objects_list);
-*/
 	ft_lstclear(&scene->camera_list, free);
 	ft_lstclear(&scene->light_list, free);
 	ft_lstclear(&scene->objects_list, free_obj);
@@ -43,8 +39,6 @@ void	free_obj(void *content)
 	t_object	*obj;
 
 	obj = content;
-//	printf("\tobj: %p\n", &obj->u.tr);
-//	printf("\tcontent: %p\n", content);
 	free(obj->u.tr);
 	free(content);
 }

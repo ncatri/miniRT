@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/17 10:55:31 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 15:19:23 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ typedef struct s_scene
 {
 	t_mlx		mlx;
 	t_image		image;
+	t_bool		rendered;
 
 	int			width;
 	int			height;
@@ -206,9 +207,11 @@ typedef struct	s_intersection
 
 void		set_mlx(t_scene *scene);
 int			key_hooks(int key, t_scene *scene);
-int			red_cross_quit(int key, t_scene *scene);
+int			red_cross_quit(t_scene *scene);
 
 void		display_something(t_scene scene);
+int			renderer(t_scene *scene);
+void		check_display_size(t_scene *scene);
 
 /* images */
 
@@ -235,7 +238,7 @@ void			set_cameratoworld_matrix(t_camera *camera);
 t_coordinates	mult_vec_matrix(double mat[4][4], t_coordinates vec);
 t_coordinates	scalar_mult(double k, t_coordinates vect);
 
-void			ray_tracer(t_image image, t_scene scene);
+int				ray_tracer(t_scene scene);
 t_ray			primary_ray(int x, int y, t_scene scene);
 double			intersect_sp(t_sphere *sp, t_ray ray);
 double			intersect_pl(t_plane *pl, t_ray ray);

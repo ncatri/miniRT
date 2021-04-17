@@ -6,17 +6,17 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/17 10:55:21 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 14:34:04 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/miniRT.h"
 
-void	ray_tracer(t_image image, t_scene scene)
+int	ray_tracer(t_scene scene)
 {
-	int i;
-	int j;
-	t_ray	ray;
+	int				i;
+	int				j;
+	t_ray			ray;
 	t_intersection	inter;
 
 	i = -1;
@@ -31,21 +31,21 @@ void	ray_tracer(t_image image, t_scene scene)
 			{
 				set_intersection(ray, scene, &inter);
 				compute_shading(scene, ray, &inter);
-				pixel_put_image(image, i, j, inter.color);
+				pixel_put_image(scene.image, i, j, inter.color);
 			}
 		}
 	}
+	return (1);
 }
 
 t_ray	primary_ray(int	x, int y, t_scene scene)
 {
-	t_ray	ray;
-	t_camera *cam;
+	t_ray		ray;
+	t_camera	*cam;
 
 	cam = scene.cur_cam->content;
 	x = x - scene.width / 2;
 	y = scene.height / 2 - y;
-
 	ray.direction.x = cam->position.x / 2 - x;
 	ray.direction.y = y - cam->position.y / 2;
 	ray.direction.z = scene.width / \
@@ -56,8 +56,8 @@ t_ray	primary_ray(int	x, int y, t_scene scene)
 	return (ray);
 }
 
-// new version
-/*
+/* new version
+
 t_ray	primary_ray(int i, int j, t_scene scene)
 {
 	t_ray		ray;
@@ -79,7 +79,8 @@ t_ray	primary_ray(int i, int j, t_scene scene)
 	py = (i + 0.5) * 2 * w / scene.width - w;
 
 	u = set_coordinates(0, 1, 0);
-	if (is_equal(cam->orientation, u) || is_equal(cam->orientation, scalar_mult(-1,u)))
+	if (is_equal(cam->orientation, u) || |
+			is_equal(cam->orientation, scalar_mult(-1,u)))
 		u = set_coordinates(0, 0, 1);
 	v = cam->orientation;
 	vxu = cross_product(v, u);
@@ -124,62 +125,12 @@ t_bool	found_intersection(t_ray prim_ray, t_scene scene, t_intersection *inter)
 	return (inter->min_dist != INFINITY);
 }
 
-double	get_obj_intersect(t_object *obj, t_ray ray)
-{
-	if (obj->type == SPHERE)
-		return (intersect_sp(obj->u.sp, ray));
-	else if (obj->type == PLANE)
-		return (intersect_pl(obj->u.pl, ray));
-	else if (obj->type == SQUARE)
-		return (intersect_sq(obj->u.sq, ray));
-	else if(obj->type == TRIANGLE)
-		return (intersect_tr(obj->u.tr, ray));
-	else if (obj->type == CYLINDER)
-		return (intersect_cy(obj->u.cy, ray));
-	else
-		return (INFINITY);
-}
-
-t_color	get_obj_color(t_object *obj)
-{
-	if (obj->type == SPHERE)
-		return (obj->u.sp->color);
-	else if (obj->type == PLANE)
-		return (obj->u.pl->color);
-	else if (obj->type == SQUARE)
-		return (obj->u.sq->color);
-	else if (obj->type == TRIANGLE)
-		return (obj->u.tr->color);
-	else if (obj->type == CYLINDER)
-		return (obj->u.cy->color);
-	else
-		return (set_color(125,125,200));
-}
-
 void	set_intersection(t_ray prim_ray, t_scene scene, t_intersection *inter)
 {
 	(void)scene;
-	inter->color = get_obj_color(inter->obj); 
-	inter->p_hit = add(prim_ray.origin, scalar_mult(inter->min_dist, prim_ray.direction));
+	inter->color = get_obj_color(inter->obj);
+	inter->p_hit = add(prim_ray.origin, \
+			scalar_mult(inter->min_dist, prim_ray.direction));
 	inter->norm_hit = get_normal(inter, prim_ray);
 	inter->p_hit = add(scalar_mult(ACNEA, inter->norm_hit), inter->p_hit);
-}
-
-t_coordinates	get_normal(t_intersection *inter, t_ray prim_ray)
-{
-	t_coordinates	normal;
-
-	if (inter->obj->type == SPHERE)
-		normal = normalized(substract(inter->p_hit, inter->obj->u.sp->centre));
-	else if (inter->obj->type == PLANE)
-		normal = get_plane_normal(inter->obj->u.pl, prim_ray);
-	else if (inter->obj->type == SQUARE)
-		normal = get_square_normal(inter->obj->u.sq, prim_ray);
-	else if (inter->obj->type == TRIANGLE)
-		normal = get_triangle_normal(inter->obj->u.tr, prim_ray);
-	else if (inter->obj->type == CYLINDER)
-		normal = get_cylinder_normal(inter->obj->u.cy, prim_ray, inter);
-	else
-		normal = set_coordinates(0, 0, 0);
-	return (normalized(normal));
 }

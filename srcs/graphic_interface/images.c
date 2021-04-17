@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 14:12:02 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/02 08:27:22 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 15:22:45 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,15 @@ void	pixel_put_image(t_image image, int x, int y, t_color color)
 	*(unsigned int *)dst = color.value;
 }
 
-void	fill_image(t_image image, t_color color)
+void	check_display_size(t_scene *scene)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 
-	i = 0;
-	while (i < image.width)
-	{
-		j = 0;
-		while (j < image.height)
-		{
-			pixel_put_image(image, i, j, color);
-			j++;
-		}
-		i++;
-	}
+	mlx_get_screen_size(scene->mlx.connection_graphic_server, &x, &y);
+	printf("screen size: %d X %d\n", x, y);
+	if (scene->width > x)
+		scene->width = x;
+	if (scene->height > y)
+		scene->height = y;
 }

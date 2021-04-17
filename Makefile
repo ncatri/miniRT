@@ -26,6 +26,7 @@ SRCS_LIST =	graphic_interface/window.c \
 			parsing/data_extractors.c \
 			parsing/data_extractors2.c \
 			debug.c \
+			get_objects.c \
 			shading.c \
 			colors.c \
 			scene_utils.c

@@ -16,10 +16,8 @@ double	intersect_sq(t_square *sq, t_ray ray)
 		bound = sq->side / 2;
 		hit_point = add(ray.origin, scalar_mult(t, ray.direction));
 		hit_vector = substract(hit_point, sq->position);
-		double up_dist = dot(hit_vector, sq->up);
-		double right_dist = dot(hit_vector, sq->right);
-		if (fabs(up_dist) > bound ||
-				fabs(right_dist) > bound)
+		if (fabs(dot(hit_vector, sq->up)) > bound || \
+				fabs(dot(hit_vector, sq->right)) > bound)
 			return (INFINITY);
 	}
 	return (t);
