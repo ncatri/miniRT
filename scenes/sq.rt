@@ -6,23 +6,23 @@ A 0.3			  255,255,255
 l	25,0,0	0.8		255,255,255
 
 #	camera de face
-#c 	0,0,150   		0,0,-1  75 
-c 	-10,10,150   		0.371,0,-0.928  75 
+c 	0,0,150   		0,0,-1  75 
+#c 	-10,10,150   		0.371,0,-0.928  75 
 
 # 	camera de dos
-#c	0,0,-150		0,0,1	75
+c	0,0,-150		0,0,1	75
 
 #	camera en haut, regarde vers le bas
-#c 	0,150,0   		0,-1,0  75 
+c 	0,150,0   		0,-1,0  75 
 
 #	camera en bas, regarde vers le haut
-#c 	0,-150,0   		0,1,0  75 
+c 	0,-150,0   		0,1,0  75 
 
 #	camera a droite, regarde a gauche 
-#c 	150,0,0   		-1,0,0  75 
+c 	150,0,0   		-1,0,0  75 
 
 #	camera a gauche, regarde a droite 
-#c 	-150,0,0   		1,0,0  75 
+c 	-150,0,0   		1,0,0  75 
 
 #pl	0,0,0	0,0,-1			102,255,102
 #sp	0,0,0	50				102,102,255	

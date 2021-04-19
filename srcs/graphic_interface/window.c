@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 08:06:58 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/17 15:20:33 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/19 09:47:22 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,15 @@
 void	set_mlx(t_scene *scene)
 {
 	scene->mlx.connection_graphic_server = mlx_init();
+	if (scene->mlx.connection_graphic_server == NULL)
+		exit_cleanly_with_message(scene, EXIT_FAIL_MLX, \
+				"mlx failed to connect to graphic server.\n");
+	adjust_to_screen_size(scene);
 	scene->mlx.window_id = mlx_new_window(scene->mlx.connection_graphic_server,
 			scene->width, scene->height, WINDOW_TITLE);
-	if (!scene->mlx.connection_graphic_server || !scene->mlx.window_id)
-		set_error(scene, "couille mlx\n");
+	if (scene->mlx.window_id == NULL)
+		exit_cleanly_with_message(scene, EXIT_FAIL_MLX, "mlx failed at opening \
+				a new window.\n");
 }
 
 int	key_hooks(int key, t_scene *scene)
@@ -37,9 +42,11 @@ int	key_hooks(int key, t_scene *scene)
 	if (key == K_ESC)
 	{
 		free_all(scene);
+		mlx_destroy_image(scene->mlx.connection_graphic_server, \
+				scene->image.id);
 		mlx_destroy_window(scene->mlx.connection_graphic_server,
 			scene->mlx.window_id);
-		exit (0);
+		exit (EXIT_SUCCESS);
 	}
 	return (0);
 }
@@ -47,15 +54,16 @@ int	key_hooks(int key, t_scene *scene)
 int	red_cross_quit(t_scene *scene)
 {
 	free_all(scene);
+	mlx_destroy_image(scene->mlx.connection_graphic_server, \
+			scene->image.id);
 	mlx_destroy_window(scene->mlx.connection_graphic_server,
 		scene->mlx.window_id);
-	exit(0);
+	exit(EXIT_SUCCESS);
 }
 
 void	display_something(t_scene scene)
 {
 	set_mlx(&scene);
-	check_display_size(&scene);
 	mlx_key_hook(scene.mlx.window_id, key_hooks, &scene);
 	mlx_hook(scene.mlx.window_id, 17, 0L, red_cross_quit, &scene.mlx);
 	scene.image = initialize_image(scene.mlx, scene.width, scene.height);

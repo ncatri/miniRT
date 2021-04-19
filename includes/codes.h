@@ -6,14 +6,14 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 11:37:57 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/06 09:04:21 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/19 08:20:16 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CODES_H
 # define CODES_H
 
-/* error codes */
+/* error messages */
 
 # define E_NUM_ELEMT "Invalid number of elements for the object"
 # define E_ALREADY_EXISTS "The object must be defined only once; already defined"
@@ -24,6 +24,9 @@
 # define E_NOCAM "No camera defined"
 # define E_BADLINE "Invalid line type"
 # define E_NOT_NORMED "Orientation vector is not normalized"
+
+/* exit codes */
+# define EXIT_FAIL_MLX (2)
 
 /* key codes */
 

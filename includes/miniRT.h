@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/17 15:19:23 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/19 08:41:15 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,9 @@ int			red_cross_quit(t_scene *scene);
 
 void		display_something(t_scene scene);
 int			renderer(t_scene *scene);
-void		check_display_size(t_scene *scene);
+void		adjust_to_screen_size(t_scene *scene);
+
+void		exit_cleanly_with_message(t_scene *scene, int exit_code, char *message);
 
 /* images */
 

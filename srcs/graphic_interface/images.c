@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 14:12:02 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/17 15:22:45 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/19 08:40:14 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	pixel_put_image(t_image image, int x, int y, t_color color)
 	*(unsigned int *)dst = color.value;
 }
 
-void	check_display_size(t_scene *scene)
+void	adjust_to_screen_size(t_scene *scene)
 {
 	int	x;
 	int	y;
