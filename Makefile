@@ -29,7 +29,8 @@ SRCS_LIST =	graphic_interface/window.c \
 			get_objects.c \
 			shading.c \
 			colors.c \
-			scene_utils.c
+			scene_utils.c \
+			bitmap.c
 
 SRCS = $(addprefix $(FOLDER), $(SRCS_LIST))
 

@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 11:37:57 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/19 08:20:16 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/19 13:07:57 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 /* exit codes */
 # define EXIT_FAIL_MLX (2)
+# define EXIT_FAIL_BMP (3)
 
 /* key codes */
 

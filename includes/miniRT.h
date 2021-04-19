@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/19 08:41:15 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/19 15:06:43 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <math.h>
 # include <stdio.h>
-# include <errno.h>
+# include <fcntl.h>
 # include "../minilibx/mlx.h"
 # include "../libft/libft.h"
 # include "codes.h"
@@ -342,5 +342,11 @@ void			print_cylinder(t_cylinder cy);
 
 int				display_mouse_position_on_click(t_mlx mlx);
 int				mouse_hook_display_position_and_button(int button, int x, int y, t_mlx *mlx);
+
+/* bitmap file */
+void			prepare_output_file(t_scene *scene, char *scene_path);
+char			*extract_filename(char *scene_path);
+char			*get_filename(char *scene_path);
+char			*replace_suffix(char *filename);
 
 #endif
