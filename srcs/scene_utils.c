@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 10:09:05 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/19 08:22:42 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/20 10:07:39 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	free_all(t_scene *scene)
 	ft_lstclear(&scene->camera_list, free);
 	ft_lstclear(&scene->light_list, free);
 	ft_lstclear(&scene->objects_list, free_obj);
+	if (scene->image_buffer)
+		free(scene->image_buffer);
 }
 
 void	free_obj(void *content)

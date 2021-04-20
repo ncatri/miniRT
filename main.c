@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:39:08 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/19 14:19:26 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/20 11:17:28 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ int main(int argc, char **argv)
 	else
 	{
 		printf("let's save the image!\n");
+		scene.save_bmp = TRUE;
 		prepare_output_file(&scene, argv[1]);
+		prepare_buffer(&scene);
+		ray_tracer(scene);
+		create_bitmap(scene);
 		free_all(&scene);
 	}
 }

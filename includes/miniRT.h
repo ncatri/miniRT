@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/19 15:06:43 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/20 11:33:28 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,10 @@ typedef struct s_scene
 	t_mlx		mlx;
 	t_image		image;
 	t_bool		rendered;
+
+	t_bool		save_bmp;
+	int			fd;
+	char		*image_buffer;
 
 	int			width;
 	int			height;
@@ -348,5 +352,9 @@ void			prepare_output_file(t_scene *scene, char *scene_path);
 char			*extract_filename(char *scene_path);
 char			*get_filename(char *scene_path);
 char			*replace_suffix(char *filename);
+void			prepare_buffer(t_scene *scene);
+void			color_put_buffer(t_scene scene, int i, int j, t_color color);
+void			create_bitmap(t_scene scene);
+
 
 #endif

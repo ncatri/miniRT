@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/19 12:35:11 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/20 09:13:02 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	ray_tracer(t_scene scene)
 			{
 				set_intersection(ray, scene, &inter);
 				compute_shading(scene, ray, &inter);
-		//		if (draw)
+				if (scene.save_bmp)
+					color_put_buffer(scene, i, j, inter.color);
+				else
 					pixel_put_image(scene.image, i, j, inter.color);
-		//		else
-		//			write_in_bmp;
 			}
 		}
 	}

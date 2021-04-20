@@ -19,7 +19,7 @@ sphere->color.value == -1)
 			set_error(scene, E_INVAL);
 		push_sphere_objlist(scene, sphere);
 	}
-	else if (!sphere || errno != 0)
+	else
 		set_error(scene, E_MEM);
 	free_split(split);
 }

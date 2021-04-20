@@ -13,12 +13,12 @@ void	prepare_output_file(t_scene *scene, char *scene_path)
 		exit_cleanly_with_message(scene, EXIT_FAIL_BMP, \
 				"failed to extract output file name");
 	}
-	fd = open(outfile_name, O_WRONLY | O_CREAT, 644);
+	fd = open(outfile_name, O_WRONLY | O_CREAT, 0644);
 	free(outfile_name);
 	if (fd < 0)
 		exit_cleanly_with_message(scene, EXIT_FAIL_BMP, \
 				"failed to create output file");
-
+	scene->fd = fd;
 }
 
 char	*extract_filename(char *scene_path)
@@ -63,4 +63,63 @@ char	*replace_suffix(char *filename)
 	result = ft_strjoin(root, ".bmp");
 	free(root);
 	return (result);
+}
+
+void	prepare_buffer(t_scene *scene)
+{
+	scene->image_buffer = ft_calloc(sizeof(char), scene->width * scene->height * 3);
+	if (scene->image_buffer == NULL)
+		exit_cleanly_with_message(scene, EXIT_FAIL_BMP, \
+				"failed to allocate image buffer");
+}
+
+void	color_put_buffer(t_scene scene, int i, int j, t_color color)
+{
+	unsigned int	pix_i;
+
+	pix_i = (j * scene.width + i) * 3;
+//	*(scene.image_buffer + j * 3 * scene.width + i * 3) = (unsigned char)color.r;
+	*(scene.image_buffer + pix_i) = (unsigned char)color.b;
+	*(scene.image_buffer + pix_i + 1) = (unsigned char)color.g;
+	*(scene.image_buffer + pix_i + 2) = (unsigned char)color.r;
+
+}
+
+void	create_bitmap(t_scene scene)
+{
+	unsigned char	file_header[14] = {'B', 'M', 0, 0, 0, 0, 0, 0, 0, 0, 54, 0, 0, 0};
+	unsigned char	info_header[40] = {40, 0, 0, 0, 0, 0, 0, 0, 1, 0, 24, 0};
+	unsigned char	padding[3] = {0, 0, 0};
+	int				filesize;
+
+//	file_header = {'B', 'M', 0, 0, 0, 0, 0, 0, 0, 0, 54, 0, 0, 0};
+//	info_header = {40, 0, 0, 0, 0, 0, 0, 0, 1, 0, 24, 0};
+//	padding = {0, 0, 0};
+	filesize = 54 + scene.width * scene.height;
+
+	file_header[2] = (unsigned char)(filesize);
+	file_header[3] = (unsigned char)(filesize >> 8);
+	file_header[4] = (unsigned char)(filesize >> 16);
+	file_header[5] = (unsigned char)(filesize >> 24);
+
+	info_header[4] = (unsigned char)(scene.width);
+	info_header[5] = (unsigned char)(scene.width >> 8);
+	info_header[6] = (unsigned char)(scene.width >> 16);
+	info_header[7] = (unsigned char)(scene.width >> 24);
+	info_header[8] = (unsigned char)(scene.height);
+	info_header[9] = (unsigned char)(scene.height >> 8);
+	info_header[10] = (unsigned char)(scene.height >> 16);
+	info_header[11] = (unsigned char)(scene.height >> 24);
+	
+	write(scene.fd, file_header, 14);
+	write(scene.fd, info_header, 40);
+	
+	int	i;
+	i = 0;
+	while (i < scene.height)
+	{
+		write(scene.fd, scene.image_buffer + (scene.width*(scene.height - i -1)*3),3*scene.width);
+//		write(scene.fd, padding, 
+	}
+	(void)padding;
 }
