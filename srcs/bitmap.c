@@ -13,7 +13,7 @@ void	prepare_output_file(t_scene *scene, char *scene_path)
 		exit_cleanly_with_message(scene, EXIT_FAIL_BMP, \
 				"failed to extract output file name");
 	}
-	fd = open(outfile_name, O_WRONLY | O_CREAT, 0644);
+	fd = open(outfile_name, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	free(outfile_name);
 	if (fd < 0)
 		exit_cleanly_with_message(scene, EXIT_FAIL_BMP, \
@@ -92,10 +92,7 @@ void	create_bitmap(t_scene scene)
 	unsigned char	padding[3] = {0, 0, 0};
 	int				filesize;
 
-//	file_header = {'B', 'M', 0, 0, 0, 0, 0, 0, 0, 0, 54, 0, 0, 0};
-//	info_header = {40, 0, 0, 0, 0, 0, 0, 0, 1, 0, 24, 0};
-//	padding = {0, 0, 0};
-	filesize = 54 + scene.width * scene.height;
+	filesize = 54 + 3 * scene.width * scene.height;
 
 	file_header[2] = (unsigned char)(filesize);
 	file_header[3] = (unsigned char)(filesize >> 8);
@@ -110,16 +107,27 @@ void	create_bitmap(t_scene scene)
 	info_header[9] = (unsigned char)(scene.height >> 8);
 	info_header[10] = (unsigned char)(scene.height >> 16);
 	info_header[11] = (unsigned char)(scene.height >> 24);
+	info_header[12] = (unsigned char)(1);
+	info_header[14] = (unsigned char)(8 * 3);
 	
 	write(scene.fd, file_header, 14);
 	write(scene.fd, info_header, 40);
 	
 	int	i;
+	int	n_pad;
+	int	i_pad;
+
+	n_pad = (4 - (scene.width * 3) % 4) % 4;
 	i = 0;
 	while (i < scene.height)
 	{
 		write(scene.fd, scene.image_buffer + (scene.width*(scene.height - i -1)*3),3*scene.width);
-//		write(scene.fd, padding, 
+		i_pad = 0;
+		while (i_pad < n_pad)
+		{
+			write(scene.fd, padding, 3);
+			i_pad++;
+		}
+		i++;
 	}
-	(void)padding;
 }

@@ -7,3 +7,4 @@ libmlx.dylib
 miniRT
 miniRT.dSYM
 minilibx
+*.bmp
