@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/20 11:33:28 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/22 07:42:12 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # define SHININESS (10)
 # define ACNEA (0.05)
 # define PRECISION (0.01)
+
+# define BMP_FILEHEADER_SIZE (14)
+# define BMP_INFOHEADER_SIZE (40)
 
 typedef int t_bool;
 
@@ -355,6 +358,7 @@ char			*replace_suffix(char *filename);
 void			prepare_buffer(t_scene *scene);
 void			color_put_buffer(t_scene scene, int i, int j, t_color color);
 void			create_bitmap(t_scene scene);
-
+void			write_bmpfileheader(t_scene *scene, int n_pad);
+void			write_bmpinfoheader(t_scene *scene);
 
 #endif
