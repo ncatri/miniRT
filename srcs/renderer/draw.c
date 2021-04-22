@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/20 09:13:02 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/22 13:47:57 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,43 +58,6 @@ t_ray	primary_ray(int	x, int y, t_scene scene)
 	ray.origin = cam->position;
 	return (ray);
 }
-
-/* new version
-
-t_ray	primary_ray(int i, int j, t_scene scene)
-{
-	t_ray		ray;
-	t_camera	*cam;
-	double		px;
-	double		py;
-	double		h;
-	double		w;
-	t_coordinates	pix_coord;
-
-	t_coordinates	u;
-	t_coordinates	v;
-	t_coordinates	vxu;
-
-	cam = scene.cur_cam->content;
-	w = scene.ratio * tan(cam->fov * M_PI / (2 * 180));
-	h = tan(cam->fov * M_PI / (2 * 180));
-	px = h - (j + 0.5) * 2 * h / scene.height;
-	py = (i + 0.5) * 2 * w / scene.width - w;
-
-	u = set_coordinates(0, 1, 0);
-	if (is_equal(cam->orientation, u) || |
-			is_equal(cam->orientation, scalar_mult(-1,u)))
-		u = set_coordinates(0, 0, 1);
-	v = cam->orientation;
-	vxu = cross_product(v, u);
-	pix_coord = add(scalar_mult(px, u), scalar_mult(py, vxu));
-	pix_coord = add(add(cam->position, v), pix_coord);
-	ray.direction = substract(pix_coord, cam->position);
-	ray.direction = normalized(ray.direction);
-	ray.origin = cam->position;
-	return (ray);
-}
-*/
 
 t_intersection	init_intersection(void)
 {

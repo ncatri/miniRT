@@ -2,15 +2,19 @@ FOLDER = srcs/
 
 SRCS_LIST =	graphic_interface/window.c \
 			graphic_interface/images.c \
-			math/operations1.c \
-			math/operations2.c \
-			math/sphere.c \
-			math/plane.c \
-			math/square.c \
-			math/triangle.c \
-			math/cylinder.c \
-			math/cylinder2.c \
-			geometry/draw.c \
+			intersections/operations1.c \
+			intersections/operations2.c \
+			intersections/sphere.c \
+			intersections/plane.c \
+			intersections/square.c \
+			intersections/triangle.c \
+			intersections/cylinder.c \
+			intersections/cylinder2.c \
+			renderer/draw.c \
+			renderer/colors.c \
+			renderer/get_objects.c \
+			renderer/scene_utils.c \
+			renderer/shading.c \
 			parsing/parser.c \
 			parsing/parse_resolution.c \
 			parsing/parse_ambient_light.c \
@@ -25,13 +29,11 @@ SRCS_LIST =	graphic_interface/window.c \
 			parsing/parse_errors.c \
 			parsing/data_extractors.c \
 			parsing/data_extractors2.c \
-			debug.c \
-			get_objects.c \
-			shading.c \
-			colors.c \
-			scene_utils.c \
 			bitmap/bitmap.c \
-			bitmap/create_file.c
+			bitmap/create_file.c \
+			debug/debug.c \
+			debug/debug2.c \
+			debug/debug3.c \
 
 SRCS = $(addprefix $(FOLDER), $(SRCS_LIST))
 

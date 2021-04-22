@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/22 07:42:12 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/22 09:03:11 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define BMP_FILEHEADER_SIZE (14)
 # define BMP_INFOHEADER_SIZE (40)
 
-typedef int t_bool;
+typedef int	t_bool;
 
 enum e_obj {SPHERE, PLANE, SQUARE, TRIANGLE, CYLINDER};
 
@@ -94,7 +94,7 @@ typedef struct s_sphere
 	t_color			color;
 }					t_sphere;
 
-typedef struct	s_square
+typedef struct s_square
 {
 	t_coordinates	position;
 	t_coordinates	orientation;
@@ -105,7 +105,7 @@ typedef struct	s_square
 	double			coord_matrix[4][4];
 }				t_square;
 
-typedef	struct	s_triangle
+typedef struct s_triangle
 {
 	t_coordinates	p1;
 	t_coordinates	p2;
@@ -117,7 +117,7 @@ typedef	struct	s_triangle
 	t_color			color;
 }				t_triangle;
 
-typedef	struct	s_cylinder
+typedef struct s_cylinder
 {
 	t_coordinates	position;
 	t_coordinates	orientation;
@@ -190,7 +190,6 @@ typedef struct s_ray
 	t_coordinates	direction;
 }				t_ray;
 
-
 typedef struct s_polynome2deg
 {
 	double	a;
@@ -201,35 +200,36 @@ typedef struct s_polynome2deg
 	double	sol2;
 }				t_polynome2deg;
 
-typedef struct	s_intersection
+typedef struct s_intersection
 {
-	double		min_dist;
+	double			min_dist;
 	t_coordinates	p_hit;
 	t_coordinates	norm_hit;
-	t_object	*obj;
-	t_color		color;
+	t_object		*obj;
+	t_color			color;
 }				t_intersection;
 
 /* mlx management functions */
 
-void		set_mlx(t_scene *scene);
-int			key_hooks(int key, t_scene *scene);
-int			red_cross_quit(t_scene *scene);
+void			set_mlx(t_scene *scene);
+int				key_hooks(int key, t_scene *scene);
+int				red_cross_quit(t_scene *scene);
 
-void		display_something(t_scene scene);
-int			renderer(t_scene *scene);
-void		adjust_to_screen_size(t_scene *scene);
+void			display_something(t_scene scene);
+int				renderer(t_scene *scene);
+void			adjust_to_screen_size(t_scene *scene);
 
-void		exit_cleanly_with_message(t_scene *scene, int exit_code, char *message);
+void			exit_cleanly_with_message(t_scene *scene, \
+		int exit_code, char *message);
 
 /* images */
 
-void		pixel_put_image(t_image image, int x, int y, t_color color);
-void		fill_image(t_image image, t_color color);
-t_image		initialize_image(t_mlx mlx, int width, int height);
-int			create_trgb(t_color color);
-t_color		set_color(int r, int g, int b);
-void		draw_rainbow(t_image img);
+void			pixel_put_image(t_image image, int x, int y, t_color color);
+void			fill_image(t_image image, t_color color);
+t_image			initialize_image(t_mlx mlx, int width, int height);
+int				create_trgb(t_color color);
+t_color			set_color(int r, int g, int b);
+void			draw_rainbow(t_image img);
 
 /* mathematics */
 
@@ -264,7 +264,7 @@ double			coef_c(t_cylinder cy, t_ray ray);
 t_polynome2deg	solve_infinite_cy(t_cylinder *cy, t_ray ray);
 void			check_if_between_planes(double *t, t_cylinder *cy, t_ray ray);
 void			check_if_hit_caps(double *t, t_cylinder *cy, t_ray ray);
-t_coordinates	get_cylinder_normal(t_cylinder *cy, t_ray ray,
+t_coordinates	get_cylinder_normal(t_cylinder *cy, t_ray ray, \
 		t_intersection *inter);
 
 t_intersection	init_intersection(void);
@@ -280,13 +280,16 @@ int				iter_cur_cam(t_scene *scene);
 
 /* shading */
 
-void			compute_shading(t_scene scene, t_ray prim_ray, t_intersection *inter);
+void			compute_shading(t_scene scene, \
+		t_ray prim_ray, t_intersection *inter);
 t_color			mult_color(t_color color, t_coordinates mult);
-t_bool			get_light(t_scene scene, t_intersection *inter, t_ray light_ray);
+t_bool			get_light(t_scene scene, \
+		t_intersection *inter, t_ray light_ray);
 t_bool			iterate_current_light(t_scene *scene);
 t_ray			cast_light_ray(t_light *light, t_intersection *inter);
 t_coordinates	set_light_intensity(t_color color, double ratio);
-t_color			add_diffuse(t_intersection *inter, t_ray light_ray, t_light *light);
+t_color			add_diffuse(t_intersection *inter, \
+		t_ray light_ray, t_light *light);
 t_color			add_specular(t_intersection *inter, t_ray light_ray, \
 		t_light *light, t_ray prim_ray);
 
@@ -348,7 +351,8 @@ void			print_triangle(t_triangle tr);
 void			print_cylinder(t_cylinder cy);
 
 int				display_mouse_position_on_click(t_mlx mlx);
-int				mouse_hook_display_position_and_button(int button, int x, int y, t_mlx *mlx);
+int				mouse_hook_display_position_and_button(int button, \
+		int x, int y, t_mlx *mlx);
 
 /* bitmap file */
 void			prepare_output_file(t_scene *scene, char *scene_path);

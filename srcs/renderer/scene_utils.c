@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 10:09:05 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/20 10:07:39 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/22 13:24:20 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	iter_cur_cam(t_scene *scene)
 	return (1);
 }
 
-void	exit_cleanly_with_message(t_scene *scene, int exit_code, char* message)
+void	exit_cleanly_with_message(t_scene *scene, int exit_code, char *message)
 {
 	free_all(scene);
 	ft_putstr_fd("Error:\n", 2);

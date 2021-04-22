@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 11:37:57 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/19 13:07:57 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/22 09:08:53 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 /* error messages */
 
 # define E_NUM_ELEMT "Invalid number of elements for the object"
-# define E_ALREADY_EXISTS "The object must be defined only once; already defined"
+# define E_ALREADY_EXISTS "The object must be defined only once;\
+ already defined"
 # define E_INVAL "Invalid value(s)"
 # define E_MEM "Memory problem (not enough space?)"
 # define E_NORES "No resolution defined"
