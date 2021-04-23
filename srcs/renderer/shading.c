@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:41:39 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/09 08:55:51 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/23 14:13:04 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,12 @@ t_color	add_specular(t_intersection *inter, t_ray light_ray, t_light *light, \
 	t_color			specular;
 
 	v = scalar_mult(-1, prim_ray.direction);
-	l = scalar_mult(-1, light_ray.direction);
+	l = light_ray.direction;
+
 	reflect = substract(
 			scalar_mult(2 * dot(inter->norm_hit, l), inter->norm_hit), l);
-	coef = pow(dot(reflect, v), SHININESS);
+	coef = fmax(0, dot(reflect, v));	
+	coef = pow(coef, SHININESS);
 	specular = mult_color(inter->color, scalar_mult(coef, light->intensity));
 	return (specular);
 }
