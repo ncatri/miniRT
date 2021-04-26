@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:41:39 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/23 14:13:04 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/26 14:41:50 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@ void	compute_shading(t_scene scene, t_ray prim_ray, t_intersection *inter)
 {
 	t_ray			light_ray;
 	t_light			*light;
-	t_color			ambient;
 	t_color			diffuse;
 	t_color			specular;
+	t_color			shading;
 
-	ambient = mult_color(inter->color, scene.ambient.intensity);
-	inter->color = ambient;
+	shading = set_color(0, 0, 0);
 	while (iterate_current_light(&scene))
 	{
 		light = scene.cur_light->content;
@@ -30,10 +29,12 @@ void	compute_shading(t_scene scene, t_ray prim_ray, t_intersection *inter)
 		{
 			diffuse = add_diffuse(inter, light_ray, light);
 			specular = add_specular(inter, light_ray, light, prim_ray);
-			inter->color = add_colors(diffuse, inter->color);
-			inter->color = add_colors(specular, inter->color);
+			shading = add_colors(shading, diffuse);
+			shading = add_colors(shading, specular);
 		}
 	}
+	inter->color = add_colors(shading, \
+			mult_color(inter->color, scene.ambient.intensity));
 }
 
 t_bool	get_light(t_scene scene, t_intersection *inter, t_ray light_ray)
@@ -87,10 +88,9 @@ t_color	add_specular(t_intersection *inter, t_ray light_ray, t_light *light, \
 
 	v = scalar_mult(-1, prim_ray.direction);
 	l = light_ray.direction;
-
 	reflect = substract(
 			scalar_mult(2 * dot(inter->norm_hit, l), inter->norm_hit), l);
-	coef = fmax(0, dot(reflect, v));	
+	coef = fmax(0, dot(reflect, v));
 	coef = pow(coef, SHININESS);
 	specular = mult_color(inter->color, scalar_mult(coef, light->intensity));
 	return (specular);

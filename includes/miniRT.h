@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/23 14:07:40 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/26 14:27:47 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define FALSE (0)
 
 # define WINDOW_TITLE "The dankest miniRT"
-# define SHININESS (9)
+# define SHININESS (15)
 # define ACNEA (0.05)
 # define PRECISION (0.01)
 

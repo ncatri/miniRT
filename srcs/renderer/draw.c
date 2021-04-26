@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/23 09:56:11 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/26 14:41:01 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ray_tracer(t_scene scene)
 	}
 	return (1);
 }
-/*
+
 t_ray	primary_ray(int	x, int y, t_scene scene)
 {
 	t_ray		ray;
@@ -58,7 +58,7 @@ t_ray	primary_ray(int	x, int y, t_scene scene)
 	ray.origin = cam->position;
 	return (ray);
 }
-*/
+/*
 t_ray	primary_ray(int i, int j, t_scene scene)
 {
 	t_ray		ray;
@@ -89,6 +89,7 @@ t_ray	primary_ray(int i, int j, t_scene scene)
 	ray.origin = cam->position;
 	return (ray);
 }
+*/
 
 t_intersection	init_intersection(void)
 {
