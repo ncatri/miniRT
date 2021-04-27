@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 14:12:02 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/26 08:30:48 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/27 16:24:57 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	adjust_to_screen_size(t_scene *scene)
 	int	y;
 
 	mlx_get_screen_size(scene->mlx.connection_graphic_server, &x, &y);
-	printf("screen size: %d X %d\n", x, y);
 	if (scene->width > x)
 		scene->width = x;
 	if (scene->height > y)
 		scene->height = y;
+	scene->ratio = scene->width / (double)scene->height;
 }

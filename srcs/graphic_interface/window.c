@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 08:06:58 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/19 09:47:22 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/27 13:45:04 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,8 @@ void	display_something(t_scene scene)
 
 int	renderer(t_scene *scene)
 {
-	t_camera	*cam;
-
 	if (scene->rendered == FALSE)
 	{
-		cam = scene->cur_cam->content;
-		print_camera(cam);
 		ray_tracer(*scene);
 		mlx_put_image_to_window(scene->mlx.connection_graphic_server, \
 				scene->mlx.window_id, scene->image.id, 0, 0);
