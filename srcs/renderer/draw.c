@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:21:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/26 14:41:01 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/27 12:22:45 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,55 +41,30 @@ int	ray_tracer(t_scene scene)
 	return (1);
 }
 
-t_ray	primary_ray(int	x, int y, t_scene scene)
-{
-	t_ray		ray;
-	t_camera	*cam;
-
-	cam = scene.cur_cam->content;
-	x = x - scene.width / 2;
-	y = scene.height / 2 - y;
-	ray.direction.x = cam->position.x / 2 - x;
-	ray.direction.y = y - cam->position.y / 2;
-	ray.direction.z = scene.width / \
-					  (2 * tan(cam->fov * M_PI / (2 * 180)));
-	ray.direction = mult_vec_matrix(cam->c2w_matrix, ray.direction);
-	ray.direction = normalized(ray.direction);
-	ray.origin = cam->position;
-	return (ray);
-}
-/*
 t_ray	primary_ray(int i, int j, t_scene scene)
 {
 	t_ray		ray;
 	t_camera	*cam;
-	double		px;
-	double		py;
-	double		h;
-	double		w;
-	t_coordinates	pix_coord;
-	t_coordinates	u;
-	t_coordinates	v;
-	t_coordinates	vxu;
+	t_primray	p;
+
 	cam = scene.cur_cam->content;
-	w = scene.ratio * tan(cam->fov * M_PI / (2 * 180));
-	h = tan(cam->fov * M_PI / (2 * 180));
-	px = h - (j + 0.5) * 2 * h / scene.height;
-	py = (i + 0.5) * 2 * w / scene.width - w;
-	u = set_coordinates(0, 1, 0);
-	if (is_equal(cam->orientation, u) || \
-			is_equal(cam->orientation, scalar_mult(-1,u)))
-		u = set_coordinates(0, 0, 1);
-	v = cam->orientation;
-	vxu = cross_product(v, u);
-	pix_coord = add(scalar_mult(px, u), scalar_mult(py, vxu));
-	pix_coord = add(add(cam->position, v), pix_coord);
-	ray.direction = substract(pix_coord, cam->position);
+	p.w = scene.ratio * tan(cam->fov * M_PI / (2 * 180));
+	p.h = tan(cam->fov * M_PI / (2 * 180));
+	p.px = p.h - (j + 0.5) * 2 * p.h / scene.height;
+	p.py = (i + 0.5) * 2 * p.w / scene.width - p.w;
+	p.u = set_coordinates(0, 1, 0);
+	if (is_equal(cam->orientation, p.u) || \
+			is_equal(cam->orientation, scalar_mult(-1, p.u)))
+		p.u = set_coordinates(0, 0, 1);
+	p.v = cam->orientation;
+	p.vxu = cross_product(p.v, p.u);
+	p.pix_coord = add(scalar_mult(p.px, p.u), scalar_mult(p.py, p.vxu));
+	p.pix_coord = add(add(cam->position, p.v), p.pix_coord);
+	ray.direction = substract(p.pix_coord, cam->position);
 	ray.direction = normalized(ray.direction);
 	ray.origin = cam->position;
 	return (ray);
 }
-*/
 
 t_intersection	init_intersection(void)
 {

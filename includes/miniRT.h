@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/26 14:27:47 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/27 11:23:54 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define FALSE (0)
 
 # define WINDOW_TITLE "The dankest miniRT"
-# define SHININESS (15)
+# define SHININESS (30)
 # define ACNEA (0.05)
 # define PRECISION (0.01)
 
@@ -208,6 +208,18 @@ typedef struct s_intersection
 	t_object		*obj;
 	t_color			color;
 }				t_intersection;
+
+typedef struct s_primray
+{
+	double			px;
+	double			py;
+	double			h;
+	double			w;
+	t_coordinates	pix_coord;
+	t_coordinates	u;
+	t_coordinates	v;
+	t_coordinates	vxu;
+}				t_primray;
 
 /* mlx management functions */
 

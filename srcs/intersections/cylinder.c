@@ -61,11 +61,13 @@ t_coordinates	get_cylinder_normal(t_cylinder *cy, t_ray ray,
 	t_coordinates	axis_proj_vec;
 	double			proj;
 
+	double	n;
+
 	hit_vec = substract(inter->p_hit, cy->position);
 	proj = dot(cy->orientation, hit_vec);
-	axis_proj_vec = add(cy->position, scalar_mult(proj, cy->orientation));
-	if (get_norm2(substract(inter->p_hit, axis_proj_vec)) \
-			- cy->radius * cy->radius < PRECISION)
+	axis_proj_vec = add(cy->position, scalar_mult(proj, cy->orientation)); //point
+	n = get_norm2(substract(inter->p_hit, axis_proj_vec));
+	if (fabs(n - cy->radius * cy->radius) < PRECISION)
 		normal = normalized(substract(inter->p_hit, axis_proj_vec));
 	else
 		normal = get_plane_normal(&cy->top_cap, ray);
