@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 11:37:57 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/22 09:08:53 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 07:22:10 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define E_NOCAM "No camera defined"
 # define E_BADLINE "Invalid line type"
 # define E_NOT_NORMED "Orientation vector is not normalized"
+# define E_IMG_SIZE_MAX "The defined resolution is too high"
 
 /* exit codes */
 # define EXIT_FAIL_MLX (2)

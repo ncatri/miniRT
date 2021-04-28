@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 08:06:58 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/27 13:45:04 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 08:54:05 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	red_cross_quit(t_scene *scene)
 	exit(EXIT_SUCCESS);
 }
 
-void	display_something(t_scene scene)
+void	display(t_scene scene)
 {
 	set_mlx(&scene);
 	mlx_key_hook(scene.mlx.window_id, key_hooks, &scene);
@@ -70,7 +70,6 @@ void	display_something(t_scene scene)
 	mlx_loop_hook(scene.mlx.connection_graphic_server, renderer, &scene);
 	mlx_put_image_to_window(scene.mlx.connection_graphic_server, \
 			scene.mlx.window_id, scene.image.id, 0, 0);
-	display_mouse_position_on_click(scene.mlx);
 	mlx_loop(scene.mlx.connection_graphic_server);
 }
 

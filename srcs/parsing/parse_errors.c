@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:54:44 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/08 09:01:29 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 08:47:42 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void	set_error(t_scene *scene, char *message)
 {
-	scene->valid = FALSE;
-	scene->err_msg = message;
+	if (scene->valid)
+	{
+		scene->valid = FALSE;
+		scene->err_msg = message;
+	}
 }
 
 t_bool	check_complete(t_scene *scene)

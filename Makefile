@@ -64,9 +64,6 @@ all: $(NAME)
 $(NAME): $(OBJS) main.c $(LIBFT).a libmlx.dylib
 	$(CC) $(CFLAGS) $(LIBFLAGS) $(MLXFLAGS) -g $(OBJS) main.c -o $(NAME)
 
-hometest: $(OBJS) home.c $(LIBFT).a
-	$(CC) $(CFLAGS) -g $(OBJS) home.c $(LIBFLAGS) -lm -o home$(NAME)
-
 $(LIBFT).a:
 	$(MAKE) -C $(LIBFT)
 	mv $(LIBFT)/$(LIBFT).a .
@@ -89,4 +86,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean fclean re
+.PHONY: clean fclean re all

@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 11:19:21 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/27 13:59:44 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 08:48:33 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,16 @@ void	parse_resolution(char *line, t_scene *scene)
 	int		y;
 
 	if (scene->width != 0)
-	{
 		set_error(scene, E_ALREADY_EXISTS);
-		return ;
-	}
 	split = get_split(line, " \t", 3, scene);
-	if (split)
+	if (split && scene->valid)
 	{
 		x = (int)get_positive_val(split[1]);
 		y = (int)get_positive_val(split[2]);
 		if (x <= 0 || y <= 0)
 			set_error(scene, E_INVAL);
+		if (x > RESOLUTION_MAX || y > RESOLUTION_MAX)
+			set_error(scene, E_IMG_SIZE_MAX);
 		scene->width = x;
 		scene->height = y;
 		if (scene->valid)

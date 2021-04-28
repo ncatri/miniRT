@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:39:08 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/27 13:59:53 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 08:52:55 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 		return (0);
 	scene = scene_extractor(argv[1]);
 	if (argc == 2)
-		display_something(scene);
+		display(scene);
 	else
 	{
 		scene.save_bmp = TRUE;

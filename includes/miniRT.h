@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/27 13:59:49 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 08:56:58 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 
 # define BMP_FILEHEADER_SIZE (14)
 # define BMP_INFOHEADER_SIZE (40)
+# define RESOLUTION_MAX (10000)
 
 typedef int	t_bool;
 
@@ -227,7 +228,7 @@ void			set_mlx(t_scene *scene);
 int				key_hooks(int key, t_scene *scene);
 int				red_cross_quit(t_scene *scene);
 
-void			display_something(t_scene scene);
+void			display(t_scene scene);
 int				renderer(t_scene *scene);
 void			adjust_to_screen_size(t_scene *scene);
 

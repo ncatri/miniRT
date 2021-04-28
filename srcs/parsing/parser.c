@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:53:58 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/11 12:52:37 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 08:10:29 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,24 +94,29 @@ t_scene	parse_file(int fd)
 
 void	parse_line(char *line, t_scene *scene)
 {
-	if (ft_strncmp(line, "R", 1) == 0)
-		parse_resolution(line, scene);
-	else if (ft_strncmp(line, "A", 1) == 0)
-		parse_ambient_light(line, scene);
-	else if (ft_strncmp(line, "cy", 2) == 0)
-		parse_cylinder(line, scene);
-	else if (ft_strncmp(line, "c", 1) == 0)
-		parse_camera(line, scene);
-	else if (ft_strncmp(line, "l", 1) == 0)
-		parse_light(line, scene);
-	else if (ft_strncmp(line, "sp", 2) == 0)
-		parse_sphere(line, scene);
-	else if (ft_strncmp(line, "pl", 2) == 0)
-		parse_plane(line, scene);
-	else if (ft_strncmp(line, "sq", 2) == 0)
-		parse_square(line, scene);
-	else if (ft_strncmp(line, "tr", 2) == 0)
-		parse_triangle(line, scene);
-	else if (line[0] != '\0' && line[0] != '#')
+	char	*str;
+
+	str = line;
+	while (*str && (*str == ' ' || *str == '\t'))
+		str++;
+	if (ft_strncmp(str, "R", 1) == 0)
+		parse_resolution(str, scene);
+	else if (ft_strncmp(str, "A", 1) == 0)
+		parse_ambient_light(str, scene);
+	else if (ft_strncmp(str, "cy", 2) == 0)
+		parse_cylinder(str, scene);
+	else if (ft_strncmp(str, "c", 1) == 0)
+		parse_camera(str, scene);
+	else if (ft_strncmp(str, "l", 1) == 0)
+		parse_light(str, scene);
+	else if (ft_strncmp(str, "sp", 2) == 0)
+		parse_sphere(str, scene);
+	else if (ft_strncmp(str, "pl", 2) == 0)
+		parse_plane(str, scene);
+	else if (ft_strncmp(str, "sq", 2) == 0)
+		parse_square(str, scene);
+	else if (ft_strncmp(str, "tr", 2) == 0)
+		parse_triangle(str, scene);
+	else if (line[0] != '\0' && line[0] != '#' && str[0] != '#')
 		set_error(scene, E_BADLINE);
 }
