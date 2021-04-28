@@ -6,11 +6,11 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 11:19:21 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/28 08:48:33 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 10:48:33 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/miniRT.h"
+#include "miniRT.h"
 
 void	parse_resolution(char *line, t_scene *scene)
 {

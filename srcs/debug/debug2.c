@@ -1,4 +1,4 @@
-#include "../../includes/miniRT.h"
+#include "miniRT.h"
 
 void	print_sphere(t_sphere sp)
 {

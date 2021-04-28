@@ -1,4 +1,4 @@
-#include "../../includes/miniRT.h"
+#include "miniRT.h"
 
 double	intersect_sq(t_square *sq, t_ray ray)
 {

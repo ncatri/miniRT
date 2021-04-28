@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/28 08:56:58 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 14:33:11 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ typedef struct s_square
 	t_coordinates	right;
 	double			side;
 	t_color			color;
-	double			coord_matrix[4][4];
 }				t_square;
 
 typedef struct s_triangle
@@ -311,6 +310,7 @@ t_color			add_colors(t_color color1, t_color color2);
 
 t_bool			check_complete(t_scene *scene);
 void			set_error(t_scene *scene, char *message);
+void			display_error_line(int num_line, char *msg);
 void			free_all(t_scene *scene);
 void			free_obj(void *content);
 char			**get_split(char *line, char *sep, int size, t_scene *scene);
@@ -319,6 +319,7 @@ double			get_positive_val(char *str);
 double			get_fov(char *str);
 double			get_ratio(char *str);
 t_coordinates	get_coordinates(char *data);
+t_coordinates	get_unit_coordinates(char *data);
 t_color			get_color(char *data);
 t_bool			valid_rgb(t_color color);
 t_bool			str_isnumber(const char *str);

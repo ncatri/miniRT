@@ -6,11 +6,11 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:41:39 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/26 14:41:50 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 10:48:27 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/miniRT.h"
+#include "miniRT.h"
 
 void	compute_shading(t_scene scene, t_ray prim_ray, t_intersection *inter)
 {

@@ -37,9 +37,11 @@ SRCS_LIST =	graphic_interface/window.c \
 
 SRCS = $(addprefix $(FOLDER), $(SRCS_LIST))
 
+NAME = miniRT
+
 OBJS = $(SRCS:.c=.o)
 
-HEADER = includes/
+HEADER = ~/$(NAME)/includes/
 
 RM = rm -f
 
@@ -51,8 +53,6 @@ LIBFLAGS = -L . -lft
 
 MLXFLAGS = -L $(MLX) -lmlx -framework OpenGL -framework AppKit
 
-NAME = miniRT
-
 MLX = minilibx
 LIBFT = libft
 
@@ -62,7 +62,7 @@ LIBFT = libft
 all: $(NAME)
 
 $(NAME): $(OBJS) main.c $(LIBFT).a libmlx.dylib
-	$(CC) $(CFLAGS) $(LIBFLAGS) $(MLXFLAGS) -g $(OBJS) main.c -o $(NAME)
+	$(CC) $(CFLAGS) $(LIBFLAGS) $(MLXFLAGS) -I $(HEADER) -g $(OBJS) main.c -o $(NAME)
 
 $(LIBFT).a:
 	$(MAKE) -C $(LIBFT)

@@ -6,11 +6,11 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 10:09:05 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/22 13:24:20 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 10:41:32 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/miniRT.h"
+#include "miniRT.h"
 
 t_bool	iterate_current_light(t_scene *scene)
 {

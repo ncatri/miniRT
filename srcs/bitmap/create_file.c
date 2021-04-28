@@ -1,4 +1,4 @@
-#include "../includes/miniRT.h"
+#include "miniRT.h"
 
 void	prepare_output_file(t_scene *scene, char *scene_path)
 {
@@ -62,5 +62,10 @@ char	*replace_suffix(char *filename)
 	free_split(tmp_split);
 	result = ft_strjoin(root, ".bmp");
 	free(root);
+
+	// TO REMOVE
+	free(result);
+	result = ft_strdup("render.bmp");
+
 	return (result);
 }

@@ -6,11 +6,11 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 07:39:49 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/17 14:38:32 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 10:48:33 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/miniRT.h"
+#include "miniRT.h"
 
 double	intersect_pl(t_plane *pl, t_ray ray)
 {

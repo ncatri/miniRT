@@ -6,11 +6,11 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 12:35:26 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/03/22 14:32:26 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 10:48:33 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/miniRT.h"
+#include "miniRT.h"
 
 double	intersect_sp(t_sphere *sp, t_ray ray)
 {

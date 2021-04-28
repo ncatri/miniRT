@@ -1,4 +1,4 @@
-#include "../../includes/miniRT.h"
+#include "miniRT.h"
 
 void	parse_cylinder(char *line, t_scene *scene)
 {
@@ -36,7 +36,7 @@ void	fill_cylinder_values(t_cylinder *cy, char **split)
 	if (!cy || !split)
 		return ;
 	cy->position = get_coordinates(split[1]);
-	cy->orientation = get_coordinates(split[2]);
+	cy->orientation = get_unit_coordinates(split[2]);
 	cy->radius = get_positive_val(split[3]) / 2;
 	cy->height = get_positive_val(split[4]);
 	cy->color = get_color(split[5]);
@@ -55,8 +55,8 @@ void	check_cylinder_values(t_cylinder *cy, t_scene *scene)
 		|| cy->height == -1
 		|| cy->color.value == -1)
 		set_error(scene, E_INVAL);
-	else if (fabs(get_norm2(cy->orientation) - 1) > 0.01)
-		set_error(scene, E_NOT_NORMED);
+	else
+		cy->orientation = normalized(cy->orientation);
 }
 
 void	push_cylinder_objlist(t_scene *scene, t_cylinder *cy)

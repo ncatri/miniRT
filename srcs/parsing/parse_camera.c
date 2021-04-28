@@ -1,4 +1,4 @@
-#include "../../includes/miniRT.h"
+#include "miniRT.h"
 
 void	parse_camera(char *line, t_scene *scene)
 {
@@ -12,13 +12,12 @@ void	parse_camera(char *line, t_scene *scene)
 	if (camera)
 	{
 		camera->position = get_coordinates(split[1]);
-		camera->orientation = get_coordinates(split[2]);
+		camera->orientation = get_unit_coordinates(split[2]);
 		camera->fov = get_fov(split[3]);
 		if (camera->position.x == INFINITY || camera->orientation.x == INFINITY || \
 camera->fov == -1)
 			set_error(scene, E_INVAL);
-		else if (fabs(get_norm2(camera->orientation) - 1) > PRECISION)
-			set_error(scene, E_NOT_NORMED);
+		camera->orientation = normalized(camera->orientation);
 		push_to_camlist(scene, camera);
 	}
 	else

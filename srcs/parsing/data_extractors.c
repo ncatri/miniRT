@@ -6,11 +6,11 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 08:55:06 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/06 09:01:18 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 13:10:09 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/miniRT.h"
+#include "miniRT.h"
 
 t_color	get_color(char *data)
 {
@@ -59,6 +59,27 @@ t_coordinates	get_coordinates(char *data)
 		coord.x = ft_atod(extract[0]);
 		coord.y = ft_atod(extract[1]);
 		coord.z = ft_atod(extract[2]);
+	}
+	free_split(extract);
+	return (coord);
+}
+
+t_coordinates	get_unit_coordinates(char *data)
+{
+	char			**extract;
+	t_coordinates	coord;
+
+	extract = ft_split(data, ",");
+	if (split_len(extract) != 3 || !str_isnumber(extract[0]) || \
+!str_isnumber(extract[1]) || !str_isnumber(extract[2]))
+		coord.x = INFINITY;
+	else
+	{
+		coord.x = ft_atod(extract[0]);
+		coord.y = ft_atod(extract[1]);
+		coord.z = ft_atod(extract[2]);
+		if (fabs(coord.x) > 1 || fabs(coord.y) > 1 || fabs(coord.z) > 1)
+			coord.x = INFINITY;
 	}
 	free_split(extract);
 	return (coord);

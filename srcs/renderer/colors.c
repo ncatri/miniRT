@@ -6,11 +6,11 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 08:07:56 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/02 08:23:09 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 10:41:32 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/miniRT.h"
+#include "miniRT.h"
 
 t_color	mult_color(t_color color, t_coordinates mult)
 {

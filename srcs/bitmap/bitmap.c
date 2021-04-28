@@ -1,4 +1,4 @@
-#include "../includes/miniRT.h"
+#include "miniRT.h"
 
 void	prepare_buffer(t_scene *scene)
 {

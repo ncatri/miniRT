@@ -1,4 +1,4 @@
-#include "../includes/miniRT.h"
+#include "miniRT.h"
 
 double	get_obj_intersect(t_object *obj, t_ray ray)
 {

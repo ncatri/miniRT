@@ -6,11 +6,11 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 11:33:14 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/02/25 10:46:59 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 10:48:33 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/miniRT.h"
+#include "miniRT.h"
 
 t_coordinates	add(const t_coordinates a, const t_coordinates b)
 {

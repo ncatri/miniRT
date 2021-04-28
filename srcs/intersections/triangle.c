@@ -1,4 +1,4 @@
-#include "../../includes/miniRT.h"
+#include "miniRT.h"
 
 double	intersect_tr(t_triangle *tr, t_ray ray)
 {

@@ -6,11 +6,11 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:53:58 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/28 08:10:29 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 14:34:55 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/miniRT.h"
+#include "miniRT.h"
 
 t_bool	check_args(int argc, char **argv)
 {
@@ -21,16 +21,16 @@ t_bool	check_args(int argc, char **argv)
 		check = FALSE;
 	else if (!check_extension(argv[1]))
 	{
-		printf("Error\nInvalid file extension\t");
+		ft_putstr_fd("Error\nInvalid file extension.\n", 2);
 		check = FALSE;
 	}
 	else if (argc == 3 && ft_strcmp(argv[2], "--save") != 0)
 	{
-		printf("Error\nUnknown option\t");
+		ft_putstr_fd("Error\nUnknown option.\n", 2);
 		check = FALSE;
 	}
 	if (check == FALSE)
-		printf("Usage: ./miniRT *file*.rt [--save]\n");
+		ft_putstr_fd("Usage: ./miniRT *file*.rt [--save]\n", 2);
 	return (check);
 }
 
@@ -45,7 +45,9 @@ t_scene	scene_extractor(char *filename)
 	else
 	{
 		scene.valid = FALSE;
-		printf("Error\nCan't open file %s.\n", filename);
+		ft_putstr_fd("Error\nCan't open file ", 2);
+		ft_putstr_fd(filename, 2);
+		ft_putstr_fd(".\n", 2);
 	}
 	close(fd);
 	if (!scene.valid || !check_complete(&scene))
@@ -87,7 +89,7 @@ t_scene	parse_file(int fd)
 		num_line++;
 	}
 	if (!scene.valid)
-		printf("Error\nLine %d: %s\n", num_line, scene.err_msg);
+		display_error_line(num_line, scene.err_msg);
 	free(line);
 	return (scene);
 }

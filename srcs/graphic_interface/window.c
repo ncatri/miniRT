@@ -6,11 +6,11 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 08:06:58 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/28 08:54:05 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 10:26:51 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/miniRT.h"
+#include "miniRT.h"
 
 void	set_mlx(t_scene *scene)
 {
