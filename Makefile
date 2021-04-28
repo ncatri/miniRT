@@ -43,6 +43,8 @@ OBJS = $(SRCS:.c=.o)
 
 HEADER = ~/$(NAME)/includes/
 
+VPATH = $(HEADER)/includes/
+
 RM = rm -f
 
 CC = gcc
@@ -61,16 +63,18 @@ LIBFT = libft
 
 all: $(NAME)
 
-$(NAME): $(OBJS) main.c $(LIBFT).a libmlx.dylib
+$(NAME): $(LIBFT).a libmlx.dylib $(OBJS) main.c 
 	$(CC) $(CFLAGS) $(LIBFLAGS) $(MLXFLAGS) -I $(HEADER) -g $(OBJS) main.c -o $(NAME)
 
 $(LIBFT).a:
 	$(MAKE) -C $(LIBFT)
 	mv $(LIBFT)/$(LIBFT).a .
+	cp -r $(LIBFT)/includes/$(wildcard *.h) $(HEADER)
 
 libmlx.dylib:
 	$(MAKE) -C $(MLX)
 	mv $(MLX)/libmlx.dylib .
+	cp $(MLX)/mlx.h $(HEADER)
 
 clean:
 	$(RM) $(OBJS)
@@ -82,7 +86,10 @@ fclean: clean
 	$(MAKE) fclean -C $(LIBFT)
 	$(RM) libmlx.dylib
 	$(RM) libft.a
-	$(RM) -r $(NAME).dSYM
+	$(RM) $(HEADER)get_next_line.h
+	$(RM) $(HEADER)libft.h
+	$(RM) $(HEADER)mlx.h
+	$(RM) -rf $(NAME).dSYM
 
 re: fclean all
 

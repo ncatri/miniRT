@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:54:44 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/28 14:31:19 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 15:36:40 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,9 @@ t_bool	check_complete(t_scene *scene)
 
 void	display_error_line(int num_line, char *msg)
 {
-
-		ft_putstr_fd("Error\nLine ", 2);
-		ft_putnbr_fd(num_line, 2);
-		ft_putstr_fd(": ", 2);
-		ft_putstr_fd(msg, 2);
-		ft_putstr_fd(".\n", 2);
+	ft_putstr_fd("Error\nLine ", 2);
+	ft_putnbr_fd(num_line, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(msg, 2);
+	ft_putstr_fd(".\n", 2);
 }

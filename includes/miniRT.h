@@ -6,7 +6,7 @@
 /*   By: ncatrien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:43:30 by ncatrien          #+#    #+#             */
-/*   Updated: 2021/04/28 14:33:11 by ncatrien         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 16:27:09 by ncatrien         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <math.h>
 # include <stdio.h>
 # include <fcntl.h>
-# include "../minilibx/mlx.h"
-# include "../libft/libft.h"
+# include "mlx.h"
+# include "libft.h"
 # include "codes.h"
 
 # define TRUE (1)
