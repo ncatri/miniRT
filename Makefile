@@ -43,8 +43,6 @@ OBJS = $(SRCS:.c=.o)
 
 HEADER = ~/$(NAME)/includes/
 
-VPATH = $(HEADER)/includes/
-
 RM = rm -f
 
 CC = gcc
@@ -69,7 +67,7 @@ $(NAME): $(LIBFT).a libmlx.dylib $(OBJS) main.c
 $(LIBFT).a:
 	$(MAKE) -C $(LIBFT)
 	mv $(LIBFT)/$(LIBFT).a .
-	cp -r $(LIBFT)/includes/$(wildcard *.h) $(HEADER)
+	cp -R $(LIBFT)/includes/ $(HEADER)
 
 libmlx.dylib:
 	$(MAKE) -C $(MLX)
