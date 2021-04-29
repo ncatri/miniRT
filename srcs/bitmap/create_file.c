@@ -62,10 +62,5 @@ char	*replace_suffix(char *filename)
 	free_split(tmp_split);
 	result = ft_strjoin(root, ".bmp");
 	free(root);
-
-	// TO REMOVE
-	free(result);
-	result = ft_strdup("render.bmp");
-
 	return (result);
 }
